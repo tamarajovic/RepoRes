@@ -12,6 +12,8 @@ namespace Res
         {
             Console.WriteLine("prvi komit");
 
+            Console.WriteLine("afaskfl");
+
             Console.WriteLine("deygi");
         }
     }
