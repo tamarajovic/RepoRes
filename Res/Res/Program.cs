@@ -15,6 +15,7 @@ namespace Res
             Console.WriteLine("afaskfl");
 
             Console.WriteLine("deygi");
+            Console.WriteLine("dsdssdsds");
         }
     }
 }
