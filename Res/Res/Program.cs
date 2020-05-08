@@ -11,6 +11,8 @@ namespace Res
         static void Main(string[] args)
         {
             Console.WriteLine("prvi komit");
+
+            Console.WriteLine("deygi");
         }
     }
 }
