@@ -19,6 +19,11 @@ namespace Entiteti
             MaksSnaga = maksSnaga;
         }
 
+        public SolarniPanel()
+        {
+
+        }
+
         public int KolicinaGenerisaneEnergije(int ProcenatSunca)
         {
             return ProcenatSunca * MaksSnaga / 100;

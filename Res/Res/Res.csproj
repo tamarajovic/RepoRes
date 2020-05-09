@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entiteti\Entiteti.csproj">
+      <Project>{223CBAA0-BFE8-4124-903F-CFF7F02A47E5}</Project>
+      <Name>Entiteti</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
