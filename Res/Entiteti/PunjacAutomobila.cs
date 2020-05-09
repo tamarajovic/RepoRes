@@ -21,6 +21,7 @@ namespace Entiteti
 
         public PunjacAutomobila(int snagaBaterije)
         {
+
             SnagaBaterije = snagaBaterije;
         }
 
