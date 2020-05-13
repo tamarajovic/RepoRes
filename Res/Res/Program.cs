@@ -1,19 +1,25 @@
-﻿using Entiteti;
+﻿using Klase;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Res
 {
+
     class Program
     {
+
         static void Main(string[] args)
         {
+            Elektrodistribucija ditribucija = new Elektrodistribucija(1000);
+
+
             Meni();
-
-
+            
+            
 
         }
 
@@ -42,7 +48,7 @@ namespace Res
                             MeniZaDodaju();
                             break;
                         case 2:
-                            //...
+                            
                             break;
                     }
 
@@ -61,6 +67,8 @@ namespace Res
 
         public static void MeniZaDodaju()
         {
+
+
 
         }
 

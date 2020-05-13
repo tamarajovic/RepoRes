@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entiteti
+namespace Klase
 {
     public class Potrosac
     {
@@ -21,7 +21,7 @@ namespace Entiteti
 
         public Potrosac()
         {
-            
+
         }
 
         public void PokreniPotrosnju()
