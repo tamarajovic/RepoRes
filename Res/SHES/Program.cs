@@ -12,7 +12,7 @@ namespace SHES
         {
             BazaPodataka baza = new BazaPodataka();
 
-            
+            Console.WriteLine();
         }
 
     }
