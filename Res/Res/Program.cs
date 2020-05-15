@@ -1,29 +1,48 @@
-﻿using Klase;
+﻿using Contracts;
+using Klase;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Res
 {
 
-    class Program
+    public class Program
     {
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            
 
+
+            #region Connection
+            NetTcpBinding binding = new NetTcpBinding();
+
+            string addressBaterija = "net.tcp://localhost:8000/IBaterija";
+            ChannelFactory<IBaterija> channelBaterija = new ChannelFactory<IBaterija>(binding, addressBaterija);
+            IBaterija proxyBaterija = channelBaterija.CreateChannel();
+
+            string addressPunjac = "net.tcp://localhost:8000/IPunjac";
+            ChannelFactory<IPunjac> channelPunjac = new ChannelFactory<IPunjac>(binding, addressPunjac);
+            IPunjac proxyPunjac = channelPunjac.CreateChannel();
             
-            Meni();
-            
-            
+            //uraditi za panel i potrosac
+            #endregion
+
+            Meni(proxyPunjac, proxyBaterija);
+
+
+            Baterija b1 = new Baterija("glavnaBaterija", 60, 8000);
+            if (proxyBaterija.DodajBateriju(b1))
+                Console.WriteLine("baterija uspesno dodata");
+            else Console.WriteLine("greska");
 
         }
 
-        public static void Meni()
+        public static void Meni(IPunjac pp, IBaterija pb)
         {
             int komanda = 0;
 
@@ -57,11 +76,55 @@ namespace Res
                             switch (dodajNovi)
                             {
                                 case 1:
-
-                                    break;
-
-
-
+                                    {
+                                        Console.WriteLine("Ime potrosaca: ");
+                                        string ime = Console.ReadLine();
+                                        Console.WriteLine("Potrosnja potrosaca: ");
+                                        int potrosnja = int.Parse(Console.ReadLine());
+                                        //proxy.add
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        Console.WriteLine("Ime solarnog panela: ");
+                                        string ime = Console.ReadLine();
+                                        Console.WriteLine("Maksimalna snaga panela: ");
+                                        int snaga = int.Parse(Console.ReadLine());
+                                        //proxy.add
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        Console.WriteLine("Ime baterije: ");
+                                        string ime = Console.ReadLine();
+                                        Console.WriteLine("Maksimalna snaga baterije: ");
+                                        double snaga = double.Parse(Console.ReadLine());
+                                        Console.WriteLine("Kapacitet baterije: ");
+                                        double kapacitet = double.Parse(Console.ReadLine());
+                                        Baterija b = new Baterija(ime, snaga, kapacitet); 
+                                        if(pb.DodajBateriju(b))
+                                            Console.WriteLine("Baterija je uspesno dodata");
+                                        else
+                                            Console.WriteLine("Greska prilikom dodavanja baterije");
+                                        break;
+                                    }
+                                case 4:
+                                    {
+                                        Console.WriteLine("Naziv punjaca za automobil: ");
+                                        string ime = Console.ReadLine();
+                                        Console.WriteLine("Trenutno stanje baterije: ");
+                                        int stanje = int.Parse(Console.ReadLine());
+                                        Console.WriteLine("Snaga punjaca: ");
+                                        int snaga = int.Parse(Console.ReadLine());
+                                        Console.WriteLine("Kapacitet baterije automobila: ");
+                                        int kapacitet = int.Parse(Console.ReadLine());
+                                        PunjacAutomobila p = new PunjacAutomobila(ime, snaga, stanje, kapacitet);
+                                        if (pp.DodajPunjac(p))
+                                            Console.WriteLine("Punjac automobila je uspesno dodat");
+                                        else
+                                            Console.WriteLine("Greska prilikom dodavanja punjaca automobila");
+                                        break;
+                                    }
 
 
                             }
