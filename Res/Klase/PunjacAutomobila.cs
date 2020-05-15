@@ -9,9 +9,9 @@ namespace Klase
     public class PunjacAutomobila
     {
 
-        public int TrenutnoBaterija { get; set; }
-        public int SnagaBaterije { get; set; }
-
+        public int TrenutnoBaterijaAutomobila { get; set; }//koliko ima kad se utakne
+        public int SnagaBaterijePunjaca { get; set; } //koliko moze dapuni punjac
+        public int BaterijaAutomobila { get; set; }// dokle se puni
         public bool ZelimPunjenje { get; set; } = false;
 
         public bool UtaknutAutomobil { get; set; } = false;
@@ -24,7 +24,7 @@ namespace Klase
         public PunjacAutomobila(int snagaBaterije)
         {
 
-            SnagaBaterije = snagaBaterije;
+            SnagaBaterijePunjaca = snagaBaterije;
         }
 
     }

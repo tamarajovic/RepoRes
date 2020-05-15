@@ -11,8 +11,9 @@ namespace Klase
         public string Ime { get; set; }
         public double MaxSnaga { get; set; }
         public double Kapacitet { get; set; }
+        public int trProcenat { get; set; } = 100;
 
-        public string RezimRada { get; set; } //potrosac/proizvodjac?
+        public string RezimRada { get; set; } = "Proizvodjac";
         public Baterija() { }
 
         public Baterija(string ime, double maxSnaga, double kapacitet)
@@ -28,6 +29,7 @@ namespace Klase
             {
                 Kapacitet++;
                 RezimRada = "potrosac";
+                
             }
             else
             {
@@ -35,5 +37,7 @@ namespace Klase
                 RezimRada = "proizvodjac";
             }
         }
+
+        
     }
 }

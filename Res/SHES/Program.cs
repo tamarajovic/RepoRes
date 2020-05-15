@@ -10,6 +10,10 @@ namespace SHES
     {
         static void Main(string[] args)
         {
+            BazaPodataka baza = new BazaPodataka();
+            Simuliraj s = new Simuliraj(50);
+            
         }
+
     }
 }

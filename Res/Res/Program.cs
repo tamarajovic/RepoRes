@@ -14,9 +14,9 @@ namespace Res
 
         static void Main(string[] args)
         {
-            Elektrodistribucija ditribucija = new Elektrodistribucija(1000);
+            
 
-
+            
             Meni();
             
             
@@ -33,7 +33,7 @@ namespace Res
                 {
                     Console.WriteLine("Izaberite opciju:");
 
-                    Console.WriteLine("1 --> Dodajte novi uredjaj");
+                    Console.WriteLine("1 --> Dodajte novi element u sistem");
                     Console.WriteLine("2 --> Ukljucite potrosaca");
                     Console.WriteLine("3 --> Iskljucite potrosaca");
                     Console.WriteLine("4 --> Promenite osvetljenost sunca");
@@ -45,7 +45,27 @@ namespace Res
                     switch (komanda)
                     {
                         case 1:
-                            MeniZaDodaju();
+                            int dodajNovi;
+                            Console.WriteLine("Odaberite sta zelite da dodate");
+                            Console.WriteLine("1 --> Potrosac");
+                            Console.WriteLine("2 --> Solarni Panel");
+                            Console.WriteLine("3 --> Baterija");
+                            Console.WriteLine("4 --> Punjac za automobil");
+                            Console.WriteLine("Vas odgovor: ");
+                            dodajNovi = int.Parse(Console.ReadLine());
+
+                            switch (dodajNovi)
+                            {
+                                case 1:
+
+                                    break;
+
+
+
+
+
+                            }
+
                             break;
                         case 2:
                             
@@ -60,14 +80,6 @@ namespace Res
                 }
             }
             while (true);
-
-
-        }
-
-
-        public static void MeniZaDodaju()
-        {
-
 
 
         }
