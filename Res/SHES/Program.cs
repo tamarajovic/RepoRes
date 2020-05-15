@@ -11,8 +11,7 @@ namespace SHES
         static void Main(string[] args)
         {
             BazaPodataka baza = new BazaPodataka();
-
-            Console.WriteLine();
+            
         }
 
     }
