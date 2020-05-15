@@ -9,12 +9,11 @@ namespace SHES
 {
     public class BazaPovezivanje
     {
-        private ServiceHost serviceHost;
         private String endpointName = "Input";
 
         public BazaPovezivanje()
         {
-            string endPoint = String.Format("http://localhost:10100/{0}", endpointName)
+            string endPoint = String.Format("http://localhost:10100/{0}", endpointName);
         }
 
     }

@@ -1,5 +1,4 @@
-﻿using Contracts;
-using Klase;
+﻿using Klase;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SHES
 {
-    public class BazaPodataka : ICommon
+    public class BazaPodataka
     {
         public static List<Potrosac> potrosaci = new List<Potrosac>();
         public static List<Baterija> baterije = new List<Baterija>();
