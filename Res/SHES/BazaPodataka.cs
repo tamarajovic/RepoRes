@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SHES
 {
-    public class BazaPodataka : ISolarniPanel, IPotrosac
+    public class BazaPodataka
     {
         public static List<Potrosac> potrosaci = new List<Potrosac>();
         public static List<Baterija> baterije = new List<Baterija>();
@@ -30,66 +30,6 @@ namespace SHES
 
         }
 
-        //solarne panele
-
-        public bool DodajPanel(SolarniPanel s)
-        {
-            if (PronadjiPanel(s.Ime) != null)
-                return false;
-
-            paneli.Add(s);
-            return true;
-        }
-
-        public bool ObrisiPanel(string ime)
-        {
-            SolarniPanel s = PronadjiPanel(ime);
-            if (s == null)
-                return false;
-
-            paneli.Remove(s);
-            return true;
-        }
-
-        public SolarniPanel PronadjiPanel(string ime)
-        {
-            foreach (SolarniPanel s in paneli)
-            {
-                if (s.Ime == ime)
-                    return s;
-            }
-            return null;
-        }
-
-        //Potrosaci
-
-        public bool DodajPotrosaca(Potrosac p)
-        {
-            if (PronadjiPotrosaca(p.Ime) == null)
-                return false;
-
-            potrosaci.Add(p);
-            return true;
-        }
-
-        public bool ObrisiPotrosaca(string ime)
-        {
-            Potrosac p = PronadjiPotrosaca(ime);
-            if (p == null)
-                return false;
-
-            potrosaci.Remove(p);
-            return true;
-        }
-
-        public Potrosac PronadjiPotrosaca(string ime)
-        {
-            foreach(Potrosac p in potrosaci)
-            {
-                if (p.Ime == ime)
-                    return p;
-            }
-            return null;
-        }
+       
     }
 }

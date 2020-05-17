@@ -15,21 +15,32 @@ namespace SHES
             #region connection
             NetTcpBinding binding = new NetTcpBinding();
 
-            ServiceHost hostB = new ServiceHost(typeof(BaterijaProvider));
-            string addressB = "net.tcp://localhost:8000/IBaterija";
-            hostB.AddServiceEndpoint(typeof(IBaterija), binding, addressB);
-            hostB.Open();
+            ServiceHost hostBaterija = new ServiceHost(typeof(BaterijaProvider));
+            string addressBaterija = "net.tcp://localhost:8000/IBaterija";
+            hostBaterija.AddServiceEndpoint(typeof(IBaterija), binding, addressBaterija);
+            hostBaterija.Open();
 
-            ServiceHost hostP = new ServiceHost(typeof(PunjacProvider));
-            string addressP = "net.tcp://localhost:8000/IPunjac";
-            hostP.AddServiceEndpoint(typeof(IPunjac), binding, addressP);
-            hostP.Open();
+            ServiceHost hostPunjac = new ServiceHost(typeof(PunjacProvider));
+            string addressPunjac = "net.tcp://localhost:8000/IPunjac";
+            hostPunjac.AddServiceEndpoint(typeof(IPunjac), binding, addressPunjac);
+            hostPunjac.Open();
+
+            ServiceHost hostPanel = new ServiceHost(typeof(SolarniPanelProvider));
+            string addressPanel = "net.tcp://localhost:8000/ISolarnmiPanel";
+            hostPanel.AddServiceEndpoint(typeof(ISolarniPanel), binding, addressPanel);
+            hostPanel.Open();
+
+            ServiceHost hostPotrosac = new ServiceHost(typeof(PotrosacProvider));
+            string addressPotrosac = "net.tcp://localhost:8000/IPotrosac";
+            hostPotrosac.AddServiceEndpoint(typeof(IPotrosac), binding, addressPotrosac);
+            hostPotrosac.Open();
+
             #endregion
 
             Console.WriteLine("servis pokrenut");
             Console.ReadKey();
-            hostP.Close();
-            hostB.Close();
+            hostPunjac.Close();
+            hostBaterija.Close();
         }
 
     }
