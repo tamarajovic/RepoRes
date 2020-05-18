@@ -12,6 +12,9 @@ namespace Contracts
     public interface IPotrosac
     {
         [OperationContract]
+        List<Potrosac> VratiPotrosace();
+
+        [OperationContract]
         bool DodajPotrosaca(Potrosac p);
 
         [OperationContract]

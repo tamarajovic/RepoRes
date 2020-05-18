@@ -10,6 +10,11 @@ namespace SHES
 {
     public class PotrosacProvider : IPotrosac
     {
+        public List<Potrosac> VratiPotrosace()
+        {
+            return BazaPodataka.potrosaci;
+        }
+
         public bool DodajPotrosaca(Potrosac p)
         {
             if (PronadjiPotrosaca(p.Ime) != null)

@@ -44,5 +44,10 @@ namespace SHES
             }
             return null;
         }
+
+        public List<Baterija> VratiBaterije()
+        {
+            return BazaPodataka.baterije;
+        }
     }
 }

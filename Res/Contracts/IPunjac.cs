@@ -12,6 +12,9 @@ namespace Contracts
     public interface IPunjac
     {
         [OperationContract]
+        List<PunjacAutomobila> VratiPunjace();
+
+        [OperationContract]
         bool DodajPunjac(PunjacAutomobila punjac);
 
         [OperationContract]

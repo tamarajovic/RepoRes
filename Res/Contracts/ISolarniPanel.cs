@@ -12,6 +12,9 @@ namespace Contracts
     public interface ISolarniPanel
     {
         [OperationContract]
+        List<SolarniPanel> VratiPanele();
+
+        [OperationContract]
         bool DodajPanel(SolarniPanel s);
 
         [OperationContract]

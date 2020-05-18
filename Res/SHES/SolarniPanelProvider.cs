@@ -40,6 +40,9 @@ namespace SHES
             return null;
         }
 
-
+        public List<SolarniPanel> VratiPanele()
+        {
+            return BazaPodataka.paneli;
+        }
     }
 }

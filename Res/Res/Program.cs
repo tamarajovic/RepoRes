@@ -92,8 +92,8 @@ namespace Res
                                             string ime = Console.ReadLine();
                                             Console.WriteLine("Potrosnja potrosaca: ");
                                             int potrosnja = int.Parse(Console.ReadLine());
-                                            Potrosac p = new Potrosac(ime, potrosnja);
-                                            if (ppotrosac.DodajPotrosaca(p))
+                                            Potrosac po = new Potrosac(ime, potrosnja);
+                                            if (ppotrosac.DodajPotrosaca(po))
                                                 Console.WriteLine("Uspesno dodat novi potrosac");
                                             else
                                                 Console.WriteLine("Potrosac sa ovakvim imenom vec postoji");
@@ -136,8 +136,8 @@ namespace Res
                                             int snaga = int.Parse(Console.ReadLine());
                                             Console.WriteLine("Kapacitet baterije automobila: ");
                                             int kapacitet = int.Parse(Console.ReadLine());
-                                            PunjacAutomobila p = new PunjacAutomobila(ime, snaga, stanje, kapacitet);
-                                            if (ppunjac.DodajPunjac(p))
+                                            PunjacAutomobila pa = new PunjacAutomobila(ime, snaga, stanje, kapacitet);
+                                            if (ppunjac.DodajPunjac(pa))
                                                 Console.WriteLine("Punjac automobila je uspesno dodat");
                                             else
                                                 Console.WriteLine("Greska prilikom dodavanja punjaca automobila");
@@ -152,12 +152,48 @@ namespace Res
 
                             break;
                         case 2:
-                            Console.WriteLine("Odaberite potrosaca");
-
-                            for(int i=0;i<baza)
+                            Console.WriteLine("Unesite ime potrosaca: ");
+                            string potrosac = Console.ReadLine();
+                            Potrosac p = ppotrosac.PronadjiPotrosaca(potrosac);
+                            if (p == null)
+                            {
+                                Console.WriteLine("Ne postoji potrosac sa imenom {0}", potrosac);
+                                break;
+                            }
+                            else
+                            {
+                                if (p.Aktivan)
+                                {
+                                    Console.WriteLine("Potrosac je vec pokrenut");
+                                    break;
+                                }
+                                p.PokreniPotrosnju();
+                                Console.WriteLine("Potrosac {0} pokrenut", potrosac);
+                            }
+                            break;
+                        case 3:
+                            Console.WriteLine("Unesite ime potrosaca: ");
+                            potrosac = Console.ReadLine();
+                            p = ppotrosac.PronadjiPotrosaca(potrosac);
+                            if (p == null)
+                            {
+                                Console.WriteLine("Ne postoji potrosac sa imenom {0}", potrosac);
+                                break;
+                            }
+                            else
+                            {
+                                if (!p.Aktivan)
+                                {
+                                    Console.WriteLine("Potrosac nije bio aktivan");
+                                    break;
+                                }
+                                p.ZaustaviPotrosnju();
+                                Console.WriteLine("Potrosac {0} pokrenut", potrosac);
+                            }
 
 
                             break;
+
                     }
 
 

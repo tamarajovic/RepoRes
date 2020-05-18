@@ -119,6 +119,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PunjacProvider.cs" />
+    <Compile Include="Simulacija.cs" />
     <Compile Include="SolarniPanelProvider.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -43,5 +43,10 @@ namespace SHES
             }
             return null;
         }
+
+        public List<PunjacAutomobila> VratiPunjace()
+        {
+            return BazaPodataka.punjaci;
+        }
     }
 }

@@ -12,6 +12,9 @@ namespace Contracts
     public interface IBaterija
     {
         [OperationContract]
+        List<Baterija> VratiBaterije();
+
+        [OperationContract]
         bool DodajBateriju(Baterija baterija);
 
         [OperationContract]
