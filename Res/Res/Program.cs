@@ -37,10 +37,13 @@ namespace Res
             ChannelFactory<ISolarniPanel> channelPanel = new ChannelFactory<ISolarniPanel>(binding, addressPanel);
             ISolarniPanel proxyPanel = channelPanel.CreateChannel();
 
-            //uraditi za panel i potrosac
+
+            string addressSimulacija = "net.tcp://localhost:8000/ISimulacija";
+            ChannelFactory<ISimulacija> channelSimulacija = new ChannelFactory<ISimulacija>(binding, addressSimulacija);
+            ISimulacija proxySimulacija = channelSimulacija.CreateChannel();
             #endregion
 
-            Meni(proxyPunjac, proxyBaterija, proxyPanel, proxyPotrosac);
+            Meni(proxyPunjac, proxyBaterija, proxyPanel, proxyPotrosac, proxySimulacija);
 
 
             Baterija b1 = new Baterija("glavnaBaterija", 60, 8000);
@@ -50,7 +53,7 @@ namespace Res
 
         }
 
-        public static void Meni(IPunjac ppunjac, IBaterija pbaterija, ISolarniPanel ppanel, IPotrosac ppotrosac)
+        public static void Meni(IPunjac ppunjac, IBaterija pbaterija, ISolarniPanel ppanel, IPotrosac ppotrosac, ISimulacija psimulacija)
         {
             int komanda = 0;
 
@@ -152,7 +155,7 @@ namespace Res
                         case 2:
                             Console.WriteLine("Unesite ime potrosaca: ");
                             string potrosac1 = Console.ReadLine();
-                            Potrosac p1 = ppotrosac.PronadjiPotrosaca(potrosac1);
+                            /*Potrosac p1 = ppotrosac.PronadjiPotrosaca(potrosac1);
                             if (p1 == null)
                             {
                                 Console.WriteLine("Ne postoji potrosac sa imenom {0}", potrosac1);
@@ -167,12 +170,14 @@ namespace Res
                                 }
                                 p1.Aktivan = true;
                                 Console.WriteLine("Potrosac {0} pokrenut", potrosac1);
-                            }
+                            }*/
+                            ppotrosac.Ukljuci(potrosac1);
+
                             break;
                         case 3:
                             Console.WriteLine("Unesite ime potrosaca: ");
                             string potrosac2 = Console.ReadLine();
-                            Potrosac p2 = ppotrosac.PronadjiPotrosaca(potrosac2);
+                            /*Potrosac p2 = ppotrosac.PronadjiPotrosaca(potrosac2);
                             if (p2 == null)
                             {
                                 Console.WriteLine("Ne postoji potrosac sa imenom {0}", potrosac2);
@@ -187,7 +192,8 @@ namespace Res
                                 }
                                 p2.ZaustaviPotrosnju();
                                 Console.WriteLine("Potrosac {0} pokrenut", potrosac2);
-                            }
+                            }*/
+                            ppotrosac.Iskljuci(potrosac2);
                             break;
                         case 4:
                             Console.WriteLine("Unesite naziv punjaca: ");

@@ -1,4 +1,5 @@
-﻿using Klase;
+﻿using Contracts;
+using Klase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,13 @@ using System.Threading.Tasks;
 namespace SHES
 {
 
-    public class Simulacija
+    public class Simulacija : ISimulacija
     {
         public int Takt { get; set; } = 417; //ucita se iz xml-a ceo dan zza 10 min 
 
         public static int Dani { get; set; }
 
-        public int ProcenatSunca { get; set; }
+        public double ProcenatSunca { get; set; }
 
         public Simulacija()
         {
@@ -24,7 +25,7 @@ namespace SHES
             Simuliraj(Takt, ProcenatSunca);
         }
 
-        public static void Simuliraj(int brojac, int ProcenatSunca)
+        public static void Simuliraj(int brojac, double ProcenatSunca)
         {
             while (true) {
                 int satnica = 0;
@@ -90,6 +91,14 @@ namespace SHES
 
         }
 
+        public void PromeniOsuncanost(double procenat)
+        {
+            ProcenatSunca = procenat;
+        }
 
+        public void UbrzajVreme(int brojac)
+        {
+            Takt = brojac;
+        }
     }
 }

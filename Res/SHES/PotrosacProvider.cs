@@ -44,5 +44,28 @@ namespace SHES
             return null;
         }
 
+        public void Ukljuci(string ime)
+        {
+            foreach (Potrosac p in BazaPodataka.potrosaci)
+            {
+                if (p.Ime == ime)
+                {
+                    p.Aktivan = true;
+                    break;
+                }
+            }
+        }
+
+        public void Iskljuci(string ime)
+        {
+            foreach (Potrosac p in BazaPodataka.potrosaci)
+            {
+                if (p.Ime == ime)
+                {
+                    p.Aktivan = false;
+                    break;
+                }
+            }
+        }
     }
 }

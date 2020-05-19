@@ -45,6 +45,7 @@
     <Compile Include="IBaterija.cs" />
     <Compile Include="IPotrosac.cs" />
     <Compile Include="IPunjac.cs" />
+    <Compile Include="ISimulacija.cs" />
     <Compile Include="ISolarniPanel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

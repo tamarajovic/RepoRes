@@ -13,8 +13,6 @@ namespace SHES
         static void Main(string[] args)
         {
 
-
-
             #region connection
             NetTcpBinding binding = new NetTcpBinding();
 
@@ -38,11 +36,13 @@ namespace SHES
             hostPotrosac.AddServiceEndpoint(typeof(IPotrosac), binding, addressPotrosac);
             hostPotrosac.Open();
 
+            ServiceHost hostSimulacija = new ServiceHost(typeof(Simulacija));
+            string addressSimulacija= "net.tcp://localhost:8000/ISimulacija";
+            hostSimulacija.AddServiceEndpoint(typeof(ISimulacija), binding, addressSimulacija);
+            hostSimulacija.Open();
             #endregion
 
             Console.WriteLine("servis pokrenut");
-
-            Simulacija s = new Simulacija();
 
             Console.ReadKey();
             hostPunjac.Close();
