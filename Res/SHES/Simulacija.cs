@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Klase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,14 @@ namespace SHES
     {
         public int Takt { get; set; } = 417; //ucita se iz xml-a ceo dan zza 10 min 
 
-        public int ProcenatSunca { get; set; } = 0;
+        public static int Dani { get; set; }
+
+        public int ProcenatSunca { get; set; }
 
         public Simulacija()
         {
+            Dani = 0;
+            ProcenatSunca = 0;
             Simuliraj(Takt, ProcenatSunca);
         }
 
@@ -28,6 +33,7 @@ namespace SHES
 
                     if (i % 60 == 0)
                     {
+                        //Proveri();
                         satnica++;
                         if (satnica == 5)
                             ProcenatSunca = 30;
@@ -41,6 +47,7 @@ namespace SHES
                             ProcenatSunca = 40;
                         if (satnica == 22)
                             ProcenatSunca = 0;
+
                     }
 
 
@@ -48,11 +55,40 @@ namespace SHES
                     //Neka funkcija koja proverava jel se nesto desilo u Res projektu tj da vidi jel klijent nes promenio
 
                     Thread.Sleep(brojac);
+                   
+               
                 }
+                Dani++;
+                //upisi podatke u bazu
             }
 
         }
 
+        public static void Proveri()
+        {
+            int kolicina = 0;
+
+            foreach(Baterija b in BazaPodataka.baterije)
+            {
+                foreach(Potrosac p in BazaPodataka.potrosaci)
+                {
+                    if (p.Aktivan)
+                        kolicina -= p.Potrosnja;
+                }
+                foreach(PunjacAutomobila pa in BazaPodataka.punjaci)
+                {
+                    if (pa.UtaknutAutomobil)
+                    {
+                        kolicina -= pa.SnagaBaterijePunjaca;
+                    }
+                }
+
+                //... 
+                // pokusaj neki
+            }
+
+
+        }
 
 
     }

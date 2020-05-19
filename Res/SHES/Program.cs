@@ -13,7 +13,7 @@ namespace SHES
         static void Main(string[] args)
         {
 
-            Simulacija s = new Simulacija();
+
 
             #region connection
             NetTcpBinding binding = new NetTcpBinding();
@@ -41,6 +41,9 @@ namespace SHES
             #endregion
 
             Console.WriteLine("servis pokrenut");
+
+            Simulacija s = new Simulacija();
+
             Console.ReadKey();
             hostPunjac.Close();
             hostBaterija.Close();

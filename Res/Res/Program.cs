@@ -63,8 +63,10 @@ namespace Res
                     Console.WriteLine("1 --> Dodajte novi element u sistem");
                     Console.WriteLine("2 --> Ukljucite potrosaca");
                     Console.WriteLine("3 --> Iskljucite potrosaca");
-                    Console.WriteLine("4 --> Promenite osvetljenost sunca");
-                    Console.WriteLine("5 --> Izlaz iz sistema");
+                    Console.WriteLine("4 --> Ukljucite automobil na punjac");
+                    Console.WriteLine("5 --> Iskljucite automobil sa punjaca");
+                    Console.WriteLine("6 --> Obrisite elemenat iz sistema");
+                    Console.WriteLine("7 --> Izlaz iz sistema");
 
                     Console.WriteLine("Vas odgovor: ");
                     komanda = int.Parse(Console.ReadLine());
@@ -130,14 +132,10 @@ namespace Res
                                         {
                                             Console.WriteLine("Naziv punjaca za automobil: ");
                                             string ime = Console.ReadLine();
-                                            Console.WriteLine("Trenutno stanje baterije: ");
-                                            int stanje = int.Parse(Console.ReadLine());
                                             Console.WriteLine("Snaga punjaca: ");
                                             int snaga = int.Parse(Console.ReadLine());
-                                            Console.WriteLine("Kapacitet baterije automobila: ");
-                                            int kapacitet = int.Parse(Console.ReadLine());
-                                            PunjacAutomobila pa = new PunjacAutomobila(ime, snaga, stanje, kapacitet);
-                                            if (ppunjac.DodajPunjac(pa))
+                                            PunjacAutomobila pauto = new PunjacAutomobila(ime, snaga);
+                                            if (ppunjac.DodajPunjac(pauto))
                                                 Console.WriteLine("Punjac automobila je uspesno dodat");
                                             else
                                                 Console.WriteLine("Greska prilikom dodavanja punjaca automobila");
@@ -153,47 +151,153 @@ namespace Res
                             break;
                         case 2:
                             Console.WriteLine("Unesite ime potrosaca: ");
-                            string potrosac = Console.ReadLine();
-                            Potrosac p = ppotrosac.PronadjiPotrosaca(potrosac);
-                            if (p == null)
+                            string potrosac1 = Console.ReadLine();
+                            Potrosac p1 = ppotrosac.PronadjiPotrosaca(potrosac1);
+                            if (p1 == null)
                             {
-                                Console.WriteLine("Ne postoji potrosac sa imenom {0}", potrosac);
+                                Console.WriteLine("Ne postoji potrosac sa imenom {0}", potrosac1);
                                 break;
                             }
                             else
                             {
-                                if (p.Aktivan)
+                                if (p1.Aktivan)
                                 {
                                     Console.WriteLine("Potrosac je vec pokrenut");
                                     break;
                                 }
-                                p.PokreniPotrosnju();
-                                Console.WriteLine("Potrosac {0} pokrenut", potrosac);
+                                p1.Aktivan = true;
+                                Console.WriteLine("Potrosac {0} pokrenut", potrosac1);
                             }
                             break;
                         case 3:
                             Console.WriteLine("Unesite ime potrosaca: ");
-                            potrosac = Console.ReadLine();
-                            p = ppotrosac.PronadjiPotrosaca(potrosac);
-                            if (p == null)
+                            string potrosac2 = Console.ReadLine();
+                            Potrosac p2 = ppotrosac.PronadjiPotrosaca(potrosac2);
+                            if (p2 == null)
                             {
-                                Console.WriteLine("Ne postoji potrosac sa imenom {0}", potrosac);
+                                Console.WriteLine("Ne postoji potrosac sa imenom {0}", potrosac2);
                                 break;
                             }
                             else
                             {
-                                if (!p.Aktivan)
+                                if (!p2.Aktivan)
                                 {
                                     Console.WriteLine("Potrosac nije bio aktivan");
                                     break;
                                 }
-                                p.ZaustaviPotrosnju();
-                                Console.WriteLine("Potrosac {0} pokrenut", potrosac);
+                                p2.ZaustaviPotrosnju();
+                                Console.WriteLine("Potrosac {0} pokrenut", potrosac2);
                             }
-
-
+                            break;
+                        case 4:
+                            Console.WriteLine("Unesite naziv punjaca: ");
+                            string naziv = Console.ReadLine();
+                            PunjacAutomobila pa = ppunjac.PronadjiPunjac(naziv);
+                            if (pa == null)
+                            {
+                                Console.WriteLine("Ne postoji punjac {0}", naziv);
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Unesite koliko vas automobil ima trenutno baterije: ");
+                                int kolicinaBaterije = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Unesite koliki je kapacitet baterije vaseg automobila: ");
+                                int maksKoliicinabaterije = int.Parse(Console.ReadLine());
+                                if (maksKoliicinabaterije > kolicinaBaterije)
+                                {
+                                    pa.UtaknutAutomobil = true;
+                                    pa.ZelimPunjenje = true;// preko ovog boola ce biti radjena provera u bazi da li se puni ili ne
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Vas auto je vec pun");
+                                    break;
+                                }
+                                
+                            }
                             break;
 
+                        case 5:
+                            Console.WriteLine("Unesite naziv punjaca: ");
+                            string nazivZaBrisanje = Console.ReadLine();
+                            PunjacAutomobila pa2 = ppunjac.PronadjiPunjac(nazivZaBrisanje);
+                            if (pa2 == null)
+                            {
+                                Console.WriteLine("Ne postoji punjac {0}", nazivZaBrisanje);
+                                break;
+                            }
+                            else
+                            {
+                                if (!pa2.UtaknutAutomobil)
+                                {
+                                    Console.WriteLine("Nema utaknutog automobila na punjac");
+                                    break;
+                                }
+                                else
+                                {
+                                    pa2.UtaknutAutomobil = false;
+                                    Console.WriteLine("Automobil je istaknut sa punjaca {0}", pa2.Naziv);
+                                }
+                            }
+                            break;
+
+                        case 6:
+                            int obrisi;
+                            do
+                            {
+
+                                Console.WriteLine("Odaberite sta zelite da dodate");
+                                Console.WriteLine("1 --> Potrosac");
+                                Console.WriteLine("2 --> Solarni Panel");
+                                Console.WriteLine("3 --> Baterija");
+                                Console.WriteLine("4 --> Punjac za automobil");
+                                Console.WriteLine("5 --> Nazad");
+                                Console.WriteLine("Vas odgovor: ");
+                                obrisi = int.Parse(Console.ReadLine());
+
+                                switch (obrisi)
+                                {
+                                    case 1:
+                                        Console.WriteLine("Unestie ime potrosaca: ");
+                                        string imep = Console.ReadLine();
+                                        if (ppotrosac.ObrisiPotrosaca(imep))
+                                            Console.WriteLine("Uspesno obrisan potrosac {0}", imep);
+                                        Console.WriteLine("Ne postoji potrosac sa imenom {0}", imep);
+                                        break;
+
+                                    case 2:
+                                        Console.WriteLine("Unesite ime Solarnog panela: ");
+                                        string imes = Console.ReadLine();
+                                        if(ppanel.ObrisiPanel(imes))
+                                            Console.WriteLine("Uspesno obrisan panel {0}", imes);
+                                        Console.WriteLine("Ne postoji panel sa imenom {0}", imes);
+                                        break;
+
+                                    case 3:
+                                        Console.WriteLine("Unesite ime baterije: ");
+                                        string imeb = Console.ReadLine();
+                                        if(pbaterija.ObrisiBateriju(imeb))
+                                            Console.WriteLine("Uspesno obrisana baterija {0}", imeb);
+                                        Console.WriteLine("Ne postoji baterija sa imenom {0}", imeb);
+                                        break;
+
+                                    case 4:
+                                        Console.WriteLine("Unesite ime punjaca: ");
+                                        string imepa = Console.ReadLine();
+                                        if(ppunjac.ObrisiPunjac(imepa))
+                                            Console.WriteLine("Uspeno obrisan punjac {0}", imepa);
+                                        Console.WriteLine("Ne postoji punjac sa imenom {0}", imepa);
+                                        break;
+
+                                    default:
+                                        Console.WriteLine("Unesite neki od ponudjenih brojeva");
+                                        break;
+                                }
+
+                            }
+                            while (obrisi != 5);
+                            break;
                     }
 
 
@@ -203,7 +307,7 @@ namespace Res
                     Console.WriteLine("Molimo vas da unesete neki od ponudjenih brojeva, dodatne informacije : " + ex.Message);
                 }
             }
-            while (komanda != 123);
+            while (komanda != 7);
 
 
         }
