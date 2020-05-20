@@ -46,11 +46,6 @@ namespace Res
             Meni(proxyPunjac, proxyBaterija, proxyPanel, proxyPotrosac, proxySimulacija);
 
 
-            Baterija b1 = new Baterija("glavnaBaterija", 60, 8000);
-            if (proxyBaterija.DodajBateriju(b1))
-                Console.WriteLine("baterija uspesno dodata");
-            else Console.WriteLine("greska");
-
         }
 
         public static void Meni(IPunjac ppunjac, IBaterija pbaterija, ISolarniPanel ppanel, IPotrosac ppotrosac, ISimulacija psimulacija)
@@ -155,7 +150,7 @@ namespace Res
                         case 2:
                             Console.WriteLine("Unesite ime potrosaca: ");
                             string potrosac1 = Console.ReadLine();
-                            /*Potrosac p1 = ppotrosac.PronadjiPotrosaca(potrosac1);
+                            Potrosac p1 = ppotrosac.PronadjiPotrosaca(potrosac1);
                             if (p1 == null)
                             {
                                 Console.WriteLine("Ne postoji potrosac sa imenom {0}", potrosac1);
@@ -168,16 +163,16 @@ namespace Res
                                     Console.WriteLine("Potrosac je vec pokrenut");
                                     break;
                                 }
-                                p1.Aktivan = true;
-                                Console.WriteLine("Potrosac {0} pokrenut", potrosac1);
-                            }*/
-                            ppotrosac.Ukljuci(potrosac1);
+                                ppotrosac.Ukljuci(potrosac1);
+                                Console.WriteLine("Potrosac {0} ukljucen", potrosac1);
+                            }
+                            
 
                             break;
                         case 3:
                             Console.WriteLine("Unesite ime potrosaca: ");
                             string potrosac2 = Console.ReadLine();
-                            /*Potrosac p2 = ppotrosac.PronadjiPotrosaca(potrosac2);
+                            Potrosac p2 = ppotrosac.PronadjiPotrosaca(potrosac2);
                             if (p2 == null)
                             {
                                 Console.WriteLine("Ne postoji potrosac sa imenom {0}", potrosac2);
@@ -190,10 +185,9 @@ namespace Res
                                     Console.WriteLine("Potrosac nije bio aktivan");
                                     break;
                                 }
-                                p2.ZaustaviPotrosnju();
-                                Console.WriteLine("Potrosac {0} pokrenut", potrosac2);
-                            }*/
-                            ppotrosac.Iskljuci(potrosac2);
+                                ppotrosac.Iskljuci(potrosac2);
+                                Console.WriteLine("Potrosac {0} iskljucen", potrosac2);
+                            }
                             break;
                         case 4:
                             Console.WriteLine("Unesite naziv punjaca: ");
@@ -202,7 +196,10 @@ namespace Res
                             if (pa == null)
                             {
                                 Console.WriteLine("Ne postoji punjac {0}", naziv);
-                                break;
+                            }
+                            else if (pa.UtaknutAutomobil == true)
+                            {
+                                Console.WriteLine("Vec je utaknut drugi automobil");
                             }
                             else
                             {
@@ -212,15 +209,16 @@ namespace Res
                                 int maksKoliicinabaterije = int.Parse(Console.ReadLine());
                                 if (maksKoliicinabaterije > kolicinaBaterije)
                                 {
-                                    pa.UtaknutAutomobil = true;
-                                    pa.ZelimPunjenje = true;// preko ovog boola ce biti radjena provera u bazi da li se puni ili ne
+                                    ppunjac.Ukljuci(naziv, maksKoliicinabaterije, kolicinaBaterije);
+                                    
                                 }
                                 else
                                 {
+                                    ppunjac.Ukljuci(naziv, maksKoliicinabaterije, kolicinaBaterije);
                                     Console.WriteLine("Vas auto je vec pun");
                                     break;
                                 }
-                                
+
                             }
                             break;
 
@@ -302,7 +300,7 @@ namespace Res
                                 }
 
                             }
-                            while (obrisi != 5);
+                            while (obrisi != 7);
                             break;
                     }
 

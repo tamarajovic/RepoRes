@@ -22,5 +22,11 @@ namespace Contracts
 
         [OperationContract]
         PunjacAutomobila PronadjiPunjac(string ime);
+
+        [OperationContract]
+        void Ukljuci(string ime, int maksKolicina, int kolicina);
+
+        [OperationContract]
+        void Iskljuci(string ime);
     }
 }
