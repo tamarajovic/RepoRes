@@ -96,51 +96,84 @@ namespace SHES
             {
                 kolicina += s.KolicinaGenerisaneEnergije(procenatSunca);
             }
-            if(kolicina > 0)
+            if(kolicina > 0) // pune se baterije
             {
                 foreach(Baterija b in BazaPodataka.baterije)
                 {
                     if(b.TrProcenat < 100)
                     {
-                        int procenatKojiSeNapuniPoSatuMaks = ((100 * b.MaxSnaga) / b.Kapacitet);
-                        if(100 - b.TrProcenat <= procenatKojiSeNapuniPoSatuMaks)
+                        if (kolicina >= b.MaxSnaga) // ne moze sve da stane u jednu bateriju tokom jedne iteracije, ili je knap
                         {
-                            kolicina -= b.MaxSnaga;
-                            b.TrProcenat += procenatKojiSeNapuniPoSatuMaks;
+                            int procenatKojiSeNapuniPoSatuMaks = ((100 * b.MaxSnaga) / b.Kapacitet);
+                            if (100 - b.TrProcenat >= procenatKojiSeNapuniPoSatuMaks) // moze pun obim u roku od jednog sata
+                            {
+                                kolicina -= b.MaxSnaga;
+                                b.TrProcenat += procenatKojiSeNapuniPoSatuMaks;
+                            }
+                            else // ne moze pun obim
+                            {
+                                double procenatPrazneBaterije = 100 - b.TrProcenat;
+                                kolicina -= ((b.MaxSnaga * procenatPrazneBaterije) / 100);
+                                b.TrProcenat = 100;
+                            }
                         }
-                        else
+                        else // sve moze u jednu bateriju 
                         {
-                            int procenatPrazneBaterije = 100 - b.TrProcenat;
-                            kolicina -= ((b.MaxSnaga * procenatPrazneBaterije) / 100);
-                            b.TrProcenat = 100;
+                            double kolikoProcenataMozeDaSeDopuni = ((100 * kolicina) / b.Kapacitet);
+                            if (100 - b.TrProcenat >= kolikoProcenataMozeDaSeDopuni)
+                            {
+                                kolicina = 0;
+                                b.TrProcenat += kolikoProcenataMozeDaSeDopuni;
+                            }
+                            else
+                            {
+                                double procenatPrazneBaterije = 100 - b.TrProcenat;
+                                kolicina -= ((b.MaxSnaga * procenatPrazneBaterije) / 100);
+                                b.TrProcenat = 100;
+                            }
                         }
-
                     }
                 }
-                if(kolicina > 0)
+                if(kolicina > 0) // kraj proveravanja, odnos sa distribucijom
                 {
                     BazaPodataka.distribucija[0].Trosi = false;
                     novac = BazaPodataka.distribucija[0].Razlika(kolicina);
                 }
             }
-            else
+            else // prazne se baterije
             {
                 foreach(Baterija b in BazaPodataka.baterije)
                 {
                     if(b.TrProcenat > 0)
                     {
-                        int procenatKojiSeIsprazniPoSatuMaks = ((100 * b.MaxSnaga) / b.Kapacitet);
-                        if(b.TrProcenat - procenatKojiSeIsprazniPoSatuMaks >= 0)
+                        if (kolicina >= b.MaxSnaga) // treba joj ili maks ili vise od jedne baterija
                         {
-                            kolicina += b.MaxSnaga;
-                            b.TrProcenat -= procenatKojiSeIsprazniPoSatuMaks;
+                            int procenatKojiSeIsprazniPoSatuMaks = ((100 * b.MaxSnaga) / b.Kapacitet);
+                            if (b.TrProcenat - procenatKojiSeIsprazniPoSatuMaks >= 0) // ceo kapacitet za jedan sat se skine sa baterije
+                            {
+                                kolicina += b.MaxSnaga;
+                                b.TrProcenat -= procenatKojiSeIsprazniPoSatuMaks;
+                            }
+                            else // skida se sa baterije sve
+                            {
+                                kolicina += ((b.MaxSnaga * b.TrProcenat) / 100);
+                                b.TrProcenat = 0;
+                            }
                         }
-                        else
+                        else // treba joj samo jedna baterija
                         {
-                            kolicina += ((b.MaxSnaga * b.TrProcenat) / 100);
-                            b.TrProcenat = 0;
+                            double procenatKojiCeSkinutiKolicina = ((100 * kolicina) / b.Kapacitet);
+                            if (b.TrProcenat - procenatKojiCeSkinutiKolicina >= 0) // sve moze sa jedne baterije
+                            {
+                                kolicina = 0;
+                                b.TrProcenat -= procenatKojiCeSkinutiKolicina;
+                            }
+                            else
+                            {
+                                kolicina -= ((b.MaxSnaga * b.TrProcenat) / 100);
+                                b.TrProcenat = 0;
+                            }
                         }
-
                     }
                 }
                 if(kolicina < 0)

@@ -11,7 +11,7 @@ namespace Klase
         public string Ime { get; set; }
         public int MaxSnaga { get; set; }
         public int Kapacitet { get; set; }
-        public int TrProcenat { get; set; } = 100;
+        public double TrProcenat { get; set; } = 100;
 
         public Baterija() { }
 
