@@ -116,9 +116,9 @@ namespace Res
                                             Console.WriteLine("Ime baterije: ");
                                             string ime = Console.ReadLine();
                                             Console.WriteLine("Maksimalna snaga baterije: ");
-                                            double snaga = double.Parse(Console.ReadLine());
+                                            int snaga = int.Parse(Console.ReadLine());
                                             Console.WriteLine("Kapacitet baterije: ");
-                                            double kapacitet = double.Parse(Console.ReadLine());
+                                            int kapacitet = int.Parse(Console.ReadLine());
                                             Baterija b = new Baterija(ime, snaga, kapacitet);
                                             if (pbaterija.DodajBateriju(b))
                                                 Console.WriteLine("Baterija je uspesno dodata");
@@ -132,7 +132,11 @@ namespace Res
                                             string ime = Console.ReadLine();
                                             Console.WriteLine("Snaga punjaca: ");
                                             int snaga = int.Parse(Console.ReadLine());
-                                            PunjacAutomobila pauto = new PunjacAutomobila(ime, snaga);
+                                            Console.WriteLine("Unesite koliko vas automobil ima trenutno procenata baterije: ");
+                                            int kolicinaBaterije = int.Parse(Console.ReadLine());
+                                            Console.WriteLine("Unesite koliko je kapacitet baterije vaseg automobila: ");
+                                            int maksKoliicinabaterije = int.Parse(Console.ReadLine());
+                                            PunjacAutomobila pauto = new PunjacAutomobila(ime, snaga, kolicinaBaterije, maksKoliicinabaterije);
                                             if (ppunjac.DodajPunjac(pauto))
                                                 Console.WriteLine("Punjac automobila je uspesno dodat");
                                             else
@@ -203,18 +207,15 @@ namespace Res
                             }
                             else
                             {
-                                Console.WriteLine("Unesite koliko vas automobil ima trenutno baterije: ");
-                                int kolicinaBaterije = int.Parse(Console.ReadLine());
-                                Console.WriteLine("Unesite koliki je kapacitet baterije vaseg automobila: ");
-                                int maksKoliicinabaterije = int.Parse(Console.ReadLine());
-                                if (maksKoliicinabaterije > kolicinaBaterije)
+
+                                if (pa.MaksBaterijaAutomobila > pa.TrenutnoBaterijaAutomobila)
                                 {
-                                    ppunjac.Ukljuci(naziv, maksKoliicinabaterije, kolicinaBaterije);
-                                    
+                                    ppunjac.Ukljuci(naziv);
+                                    Console.WriteLine("Automobil je ukljucen na punjac {0}", naziv);
                                 }
                                 else
                                 {
-                                    ppunjac.Ukljuci(naziv, maksKoliicinabaterije, kolicinaBaterije);
+                                    ppunjac.Ukljuci(naziv);
                                     Console.WriteLine("Vas auto je vec pun");
                                     break;
                                 }
@@ -240,7 +241,7 @@ namespace Res
                                 }
                                 else
                                 {
-                                    pa2.UtaknutAutomobil = false;
+                                    ppunjac.Iskljuci(nazivZaBrisanje);
                                     Console.WriteLine("Automobil je istaknut sa punjaca {0}", pa2.Naziv);
                                 }
                             }
@@ -293,14 +294,13 @@ namespace Res
                                             Console.WriteLine("Uspeno obrisan punjac {0}", imepa);
                                         Console.WriteLine("Ne postoji punjac sa imenom {0}", imepa);
                                         break;
-
                                     default:
                                         Console.WriteLine("Unesite neki od ponudjenih brojeva");
                                         break;
                                 }
 
                             }
-                            while (obrisi != 7);
+                            while (obrisi != 5);
                             break;
                     }
 

@@ -27,16 +27,9 @@ namespace Klase
             CenaPokWh = cenaPokWh;
         }
 
-        public int Razlika(int kolicina)
+        public double Razlika(double kolicina)
         {
-            if (Trosi)
-            {
                 return CenaPokWh * kolicina;
-            }
-            else
-            {
-                return -CenaPokWh * kolicina;
-            }
         }
 
 

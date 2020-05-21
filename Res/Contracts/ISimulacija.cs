@@ -11,7 +11,7 @@ namespace Contracts
     public interface ISimulacija
     {
         [OperationContract]
-        void PromeniOsuncanost(double procenat);
+        void PromeniOsuncanost(int procenat);
         [OperationContract]
         void UbrzajVreme(int brojac);
     }

@@ -28,8 +28,6 @@ namespace SHES
                 if (p.Naziv == ime)
                 {
                     p.UtaknutAutomobil = false;
-                    p.TrenutnoBaterijaAutomobila = 0;
-                    p.BaterijaAutomobila = 0;
                     break;
                 }
             }
@@ -58,15 +56,13 @@ namespace SHES
             return null;
         }
 
-        public void Ukljuci(string ime, int maksKolicina, int kolicina)
+        public void Ukljuci(string ime)
         {
             foreach (PunjacAutomobila p in BazaPodataka.punjaci)
             {
                 if (p.Naziv == ime)
                 {
                     p.UtaknutAutomobil = true;
-                    p.BaterijaAutomobila = maksKolicina;
-                    p.TrenutnoBaterijaAutomobila = kolicina;
                     break;
                 }
             }
