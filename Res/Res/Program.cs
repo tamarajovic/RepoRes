@@ -64,7 +64,9 @@ namespace Res
                     Console.WriteLine("4 --> Ukljucite automobil na punjac");
                     Console.WriteLine("5 --> Iskljucite automobil sa punjaca");
                     Console.WriteLine("6 --> Obrisite elemenat iz sistema");
-                    Console.WriteLine("7 --> Izlaz iz sistema");
+                    Console.WriteLine("7 --> Menjajte brzinu prolaska vremena");
+                    Console.WriteLine("8 --> Promenite osuncanost");
+                    Console.WriteLine("9 --> Izlaz iz sistema");
 
                     Console.WriteLine("Vas odgovor: ");
                     komanda = int.Parse(Console.ReadLine());
@@ -302,6 +304,16 @@ namespace Res
                             }
                             while (obrisi != 5);
                             break;
+                        case 7:
+                            Console.WriteLine("Unesite broj za koliko puta zelite da ubrzate prolazak vremena: ");
+                            int broj = int.Parse(Console.ReadLine());
+                            psimulacija.UbrzajVreme(broj);
+                            break;
+                        case 8:
+                            Console.WriteLine("Unesite procenat osuncanosti: ");
+                            int procenat = int.Parse(Console.ReadLine());
+                            psimulacija.PromeniOsuncanost(procenat);
+                            break;
                     }
 
 
@@ -311,7 +323,7 @@ namespace Res
                     Console.WriteLine("Molimo vas da unesete neki od ponudjenih brojeva, dodatne informacije : " + ex.Message);
                 }
             }
-            while (komanda != 7);
+            while (komanda != 9);
 
 
         }

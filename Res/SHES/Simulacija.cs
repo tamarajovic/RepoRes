@@ -2,6 +2,7 @@
 using Klase;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -194,6 +195,18 @@ namespace SHES
         public void UbrzajVreme(int brojac)
         {
             Takt = brojac;
+        }
+
+        public void SnimiIzvestaj()
+        {
+            FileStream fs = new FileStream("dnevniIzvestaji.txt", FileMode.Append, FileAccess.Write);
+            StreamWriter sw = new StreamWriter(fs);
+
+            string izvestaj = "";
+            //sta se sve pise u izvestaj
+            sw.WriteLine(izvestaj);
+            sw.Close();
+            fs.Close();
         }
     }
 }
