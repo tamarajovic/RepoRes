@@ -1,3 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ArrayOfPotrosac xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-</ArrayOfPotrosac>
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfElektrodistribucija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Elektrodistribucija>
+    <CenaPokWh>500</CenaPokWh>
+    <Trosi>false</Trosi>
+  </Elektrodistribucija>
+</ArrayOfElektrodistribucija>

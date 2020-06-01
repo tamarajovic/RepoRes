@@ -1,3 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ArrayOfPotrosac xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-</ArrayOfPotrosac>
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBaterija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Baterija>
+    <Ime>b1</Ime>
+    <MaxSnaga>500</MaxSnaga>
+    <KapacitetUSatima>140</KapacitetUSatima>
+    <Kapacitet>3.5714285714285716</Kapacitet>
+    <TrProcenat>100</TrProcenat>
+  </Baterija>
+</ArrayOfBaterija>

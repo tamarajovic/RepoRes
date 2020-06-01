@@ -1,3 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ArrayOfPotrosac xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-</ArrayOfPotrosac>
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSolarniPanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SolarniPanel>
+    <Ime>p1</Ime>
+    <MaksSnaga>300</MaksSnaga>
+  </SolarniPanel>
+</ArrayOfSolarniPanel>

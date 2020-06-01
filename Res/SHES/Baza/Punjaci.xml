@@ -1,3 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ArrayOfPotrosac xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-</ArrayOfPotrosac>
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPunjacAutomobila xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PunjacAutomobila>
+    <Naziv>pa1</Naziv>
+    <TrenutnoBaterijaAutomobila>50</TrenutnoBaterijaAutomobila>
+    <SnagaBaterijePunjaca>100</SnagaBaterijePunjaca>
+    <MaksBaterijaAutomobila>400</MaksBaterijaAutomobila>
+    <UtaknutAutomobil>false</UtaknutAutomobil>
+  </PunjacAutomobila>
+</ArrayOfPunjacAutomobila>

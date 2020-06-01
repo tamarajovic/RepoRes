@@ -1,3 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfPotrosac xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Potrosac>
+    <Ime>Frizider</Ime>
+    <Potrosnja>300</Potrosnja>
+    <Aktivan>false</Aktivan>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Rerna</Ime>
+    <Potrosnja>200</Potrosnja>
+    <Aktivan>false</Aktivan>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Klima</Ime>
+    <Potrosnja>150</Potrosnja>
+    <Aktivan>false</Aktivan>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Ves masina</Ime>
+    <Potrosnja>140</Potrosnja>
+    <Aktivan>false</Aktivan>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Toster</Ime>
+    <Potrosnja>20</Potrosnja>
+    <Aktivan>false</Aktivan>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Sporet</Ime>
+    <Potrosnja>200</Potrosnja>
+    <Aktivan>false</Aktivan>
+  </Potrosac>
 </ArrayOfPotrosac>
