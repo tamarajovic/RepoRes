@@ -43,6 +43,8 @@ namespace SHES
             #endregion
             
             Console.WriteLine("servis pokrenut");
+            BazaPodataka b = new BazaPodataka();
+            BazaPodataka.Run();
 
             Console.ReadKey();
             hostPunjac.Close();
