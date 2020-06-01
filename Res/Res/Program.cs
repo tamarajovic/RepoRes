@@ -120,7 +120,7 @@ namespace Res
                                             Console.WriteLine("Maksimalna snaga baterije: ");
                                             int snaga = int.Parse(Console.ReadLine());
                                             Console.WriteLine("Kapacitet baterije: ");
-                                            int kapacitet = int.Parse(Console.ReadLine());
+                                            double kapacitet = double.Parse(Console.ReadLine());
                                             Baterija b = new Baterija(ime, snaga, kapacitet);
                                             if (pbaterija.DodajBateriju(b))
                                                 Console.WriteLine("Baterija je uspesno dodata");

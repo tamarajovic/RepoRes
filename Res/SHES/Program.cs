@@ -41,7 +41,7 @@ namespace SHES
             hostSimulacija.AddServiceEndpoint(typeof(ISimulacija), binding, addressSimulacija);
             hostSimulacija.Open();
             #endregion
-
+            
             Console.WriteLine("servis pokrenut");
 
             Console.ReadKey();
