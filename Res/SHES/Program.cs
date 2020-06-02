@@ -41,11 +41,15 @@ namespace SHES
             hostSimulacija.AddServiceEndpoint(typeof(ISimulacija), binding, addressSimulacija);
             hostSimulacija.Open();
             #endregion
-            
-            Console.WriteLine("servis pokrenut");
+
 
             BazaPodataka b = new BazaPodataka();
             BazaPodataka.Run();
+
+            Console.WriteLine("servis pokrenut");
+
+            Simulacija s = new Simulacija();
+            s.Simuliraj(41, 0);
 
             Console.ReadKey();
             hostPunjac.Close();

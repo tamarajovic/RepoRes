@@ -30,61 +30,86 @@ namespace SHES
         {
             bool puniBateriju = false;
             bool prazniBateriju = false;
-            while (true) {
-                int satnica = 0;
-                double novac = 0;
-                for (int i = 1; i <= 1440; i++)
+
+            new Thread(() =>
+            {
+                while (true)
                 {
-                    if (puniBateriju)
+                    int satnica = 0;
+                    double novac = 0;
+                    for (int i = 1; i <= 1440; i++)
                     {
-                        novac += PuniBaterije();
-                    }
-                    else if (prazniBateriju)
-                    {
-                        novac -= PrazniBaterije();
-                    }
-
-                    if (i % 60 == 0)
-                    {
-                        satnica++;
-                        
-                        if (satnica == 3)
+                        if (puniBateriju)
                         {
-                            puniBateriju = true;
+                            novac += PuniBaterije();
                         }
-                        if (satnica == 5)
-                            ProcenatSunca = 30;
-                        if (satnica == 6)
-                            puniBateriju = false;
-                        if (satnica == 7)
-                            ProcenatSunca = 60;
-                        if (satnica == 9)
-                            ProcenatSunca = 100;
-                        if (satnica == 14)
-                            prazniBateriju = true;
-                        if (satnica == 17)
-                            prazniBateriju = false;
-                        if (satnica == 20)
-                            ProcenatSunca = 70;
-                        if (satnica == 21)
-                            ProcenatSunca = 40;
-                        if (satnica == 22)
-                            ProcenatSunca = 0;
+                        if (prazniBateriju)
+                        {
+                            novac -= PrazniBaterije();
+                        }
+                        if (i % 60 == 0)
+                        {
+                            novac += Potroseno();
+                            satnica++;
+
+                            if (satnica == 3)
+                            {
+                                puniBateriju = true;
+                                Console.WriteLine("Puni Baterije");
+                            }
+                            if (satnica == 5)
+                                ProcenatSunca = 30;
+                            if (satnica == 6)
+                            {
+                                puniBateriju = false;
+                                Console.WriteLine("Ne puni vise baterije");
+                            }
+                            if (satnica == 7)
+                                ProcenatSunca = 60;
+                            if (satnica == 9)
+                                ProcenatSunca = 100;
+                            if (satnica == 14)
+                            {
+                                prazniBateriju = true;
+                                Console.WriteLine("Prazni baterije");
+                            }
+                            if (satnica == 17)
+                            {
+                                prazniBateriju = false;
+                                Console.WriteLine("Ne prazni vise baterije");
+                            }
+                            if (satnica == 20)
+                                ProcenatSunca = 70;
+                            if (satnica == 21)
+                                ProcenatSunca = 40;
+                            if (satnica == 22)
+                                ProcenatSunca = 0;
+
+                        }
+
+                        Thread.Sleep(brojac);
+
 
                     }
-
-                    Thread.Sleep(brojac);
-                   
-               
+                    Dani++;
+                    Console.WriteLine("Prodje dan, potroseno {0}", novac);
                 }
-                Dani++;
-                Console.WriteLine("Prodje dan, potroseno {0}", novac);
-            }
+            }).Start();
+            
 
         }
 
 
         #region Racunanje potrosnje
+
+        public double Potroseno()
+        {
+            double kolicina = 0;
+            kolicina += IzracunajPanele(ProcenatSunca);
+            kolicina += IzracunajPotrosace();
+            kolicina += IzracunajPunjace();
+            return IzracunajBaterije(kolicina);
+        }
 
 
         public double IzracunajPanele(int procenatSunca)

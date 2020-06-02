@@ -3,31 +3,31 @@
   <Potrosac>
     <Ime>Frizider</Ime>
     <Potrosnja>300</Potrosnja>
-    <Aktivan>false</Aktivan>
+    <Aktivan>true</Aktivan>
   </Potrosac>
   <Potrosac>
     <Ime>Rerna</Ime>
     <Potrosnja>200</Potrosnja>
-    <Aktivan>false</Aktivan>
+    <Aktivan>true</Aktivan>
   </Potrosac>
   <Potrosac>
     <Ime>Klima</Ime>
     <Potrosnja>150</Potrosnja>
-    <Aktivan>false</Aktivan>
+    <Aktivan>true</Aktivan>
   </Potrosac>
   <Potrosac>
     <Ime>Ves masina</Ime>
     <Potrosnja>140</Potrosnja>
-    <Aktivan>false</Aktivan>
+    <Aktivan>true</Aktivan>
   </Potrosac>
   <Potrosac>
     <Ime>Toster</Ime>
     <Potrosnja>20</Potrosnja>
-    <Aktivan>false</Aktivan>
+    <Aktivan>true</Aktivan>
   </Potrosac>
   <Potrosac>
     <Ime>Sporet</Ime>
     <Potrosnja>200</Potrosnja>
-    <Aktivan>false</Aktivan>
+    <Aktivan>true</Aktivan>
   </Potrosac>
 </ArrayOfPotrosac>

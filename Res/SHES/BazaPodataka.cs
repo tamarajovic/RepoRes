@@ -17,24 +17,24 @@ namespace SHES
 {
     public class BazaPodataka 
     {
-        static string PotrosaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Potrosaci.xml";
-        static string BaterijePath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Baterije.xml";
-        static string PaneliPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Paneli.xml";
-        static string PunjaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Punjaci.xml";
-        static string DistribucijaPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Distribucija.xml";
+        //static string PotrosaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Potrosaci.xml";
+        //static string BaterijePath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Baterije.xml";
+        //static string PaneliPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Paneli.xml";
+        //static string PunjaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Punjaci.xml";
+        //static string DistribucijaPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Distribucija.xml";
 
         //daje null, mozda nisam dobar path stavila???
-        //static string PotrosaciPath = HostingEnvironment.MapPath("/Baza/Potrosaci.xml");
-        //static string BaterijePath = HostingEnvironment.MapPath("Baza/Baterije.xml");
-        //static string PaneliPath = HostingEnvironment.MapPath("Baza/Paneli.xml");
-        //static string PunjaciPath = HostingEnvironment.MapPath("Baza/Punjaci.xml");
-        //static string DistribucijaPath = HostingEnvironment.MapPath("Baza/Distribucija.xml");
+        //static string PotrosaciPath = HostingEnvironment.MapPath("~/Baza/Potrosaci.xml");
+        //static string BaterijePath = HostingEnvironment.MapPath("~/Baza/Baterije.xml");
+        //static string PaneliPath = HostingEnvironment.MapPath("~/Baza/Paneli.xml");
+        //static string PunjaciPath = HostingEnvironment.MapPath("~/Baza/Punjaci.xml");
+        //static string DistribucijaPath = HostingEnvironment.MapPath("~/Baza/Distribucija.xml");
 
-        //static string PotrosaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Potrosaci.xml";
-        //static string BaterijePath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Baterije.xml";
-        //static string PaneliPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Paneli.xml";
-        //static string PunjaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Punjaci.xml";
-        //static string DistribucijaPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Distribucija.xml";
+        static string PotrosaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Potrosaci.xml";
+        static string BaterijePath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Baterije.xml";
+        static string PaneliPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Paneli.xml";
+        static string PunjaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Punjaci.xml";
+        static string DistribucijaPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Distribucija.xml";
 
 
         public static List<Potrosac> potrosaci = new List<Potrosac>();
