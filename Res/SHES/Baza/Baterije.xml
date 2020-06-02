@@ -2,9 +2,9 @@
 <ArrayOfBaterija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Baterija>
     <Ime>b1</Ime>
-    <MaxSnaga>500</MaxSnaga>
-    <KapacitetUSatima>140</KapacitetUSatima>
-    <Kapacitet>3.5714285714285716</Kapacitet>
-    <TrProcenat>28380</TrProcenat>
+    <MaxSnaga>1</MaxSnaga>
+    <KapacitetUSatima>5</KapacitetUSatima>
+    <TrKapacitet>0</TrKapacitet>
+    <MaksKapacitet>5</MaksKapacitet>
   </Baterija>
 </ArrayOfBaterija>

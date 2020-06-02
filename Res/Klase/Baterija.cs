@@ -9,10 +9,10 @@ namespace Klase
     public class Baterija
     {
         public string Ime { get; set; }
-        public int MaxSnaga { get; set; }
-        public double KapacitetUSatima { get; set; } 
-        public double Kapacitet { get; set; } 
-        public double TrProcenat { get; set; } = 100;
+        public int MaxSnaga { get; set; }  // po satu koliko moze da isporuci
+        public double KapacitetUSatima { get; set; } //koliko sati rada ima u sebi 
+        public double TrKapacitet { get; set; }  // odnos ova dva iznad
+        public double MaksKapacitet { get; set; } // ne menja se
 
         public Baterija() { }
 
@@ -21,22 +21,10 @@ namespace Klase
             Ime = ime;
             MaxSnaga = maxSnaga;
             KapacitetUSatima = kapacitet;
-            Kapacitet = MaxSnaga / KapacitetUSatima;
+            TrKapacitet = MaxSnaga * KapacitetUSatima;
+            MaksKapacitet = MaxSnaga * KapacitetUSatima;
         }
 
-        public void PromeniKapacitet(bool puniSe)
-        {
-            if (puniSe)
-            {
-                KapacitetUSatima += (1 / 60);
-                Kapacitet = MaxSnaga / KapacitetUSatima;
-            }
-            else
-            {
-                KapacitetUSatima -= (1 / 60);
-                Kapacitet = MaxSnaga / KapacitetUSatima;
-            }
-        }
         
     }
 }

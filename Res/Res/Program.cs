@@ -93,7 +93,7 @@ namespace Res
                                             Console.WriteLine("Ime potrosaca: ");
                                             string ime = Console.ReadLine();
                                             Console.WriteLine("Potrosnja potrosaca: ");
-                                            int potrosnja = int.Parse(Console.ReadLine());
+                                            double potrosnja = double.Parse(Console.ReadLine());
                                             Potrosac po = new Potrosac(ime, potrosnja);
                                             if (ppotrosac.DodajPotrosaca(po))
                                                 Console.WriteLine("Uspesno dodat novi potrosac");

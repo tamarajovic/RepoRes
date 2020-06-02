@@ -9,11 +9,11 @@ namespace Klase
     public class Potrosac
     {
         public string Ime { get; set; }
-        public int Potrosnja { get; set; }
+        public double Potrosnja { get; set; }
 
         public bool Aktivan { get; set; } = false;
 
-        public Potrosac(string ime, int potrosnja)
+        public Potrosac(string ime, double potrosnja)
         {
             Ime = ime;
             Potrosnja = potrosnja;

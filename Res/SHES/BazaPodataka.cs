@@ -71,7 +71,7 @@ namespace SHES
                 }
                 if(baterije.Count == 0)
                 {
-                    baterije.Add(new Baterija("b1", 500, 140));
+                    baterije.Add(new Baterija("b1", 1, 5));
                 }
             }
             if (File.Exists(PaneliPath))
