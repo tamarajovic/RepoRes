@@ -13,6 +13,8 @@ namespace SHES
 
     public class Simulacija : ISimulacija
     {
+        public static double Kolicina { get; set; } = 0;
+
         public int Takt { get; set; } = 417; //ucita se iz xml-a ceo dan zza 10 min 
 
         public static int Dani { get; set; }
@@ -23,7 +25,7 @@ namespace SHES
         {
             Dani = 0;
             ProcenatSunca = 0;
-            Simuliraj(Takt, ProcenatSunca);
+            //Simuliraj(Takt, ProcenatSunca);
         }
 
         public void Simuliraj(int brojac, int ProcenatSunca)
@@ -89,6 +91,7 @@ namespace SHES
                                 {
                                     Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
                                 }
+                                BazaPodataka.potrosaci[3].Aktivan = false;
                             }
                             if (satnica == 7)
                                 ProcenatSunca = 60;
@@ -247,6 +250,7 @@ namespace SHES
                 if(kolicina > 0) // kraj proveravanja, odnos sa distribucijom
                 {
                     BazaPodataka.distribucija[0].Trosi = false;
+                    Kolicina += kolicina;
                     novac = BazaPodataka.distribucija[0].Razlika(kolicina);
                 }
             }
@@ -288,6 +292,7 @@ namespace SHES
                 if(kolicina < 0)
                 {
                     kolicina = kolicina * (-1);
+                    Kolicina += kolicina;
                     BazaPodataka.distribucija[0].Trosi = true;
                     novac = BazaPodataka.distribucija[0].Razlika(kolicina);
                 }
@@ -317,6 +322,8 @@ namespace SHES
                     }
                 }
             }
+            Kolicina += kolicina;
+
             return BazaPodataka.distribucija[0].Razlika(kolicina);
         }
 
@@ -341,6 +348,8 @@ namespace SHES
                     }
                 }
             }
+            Kolicina += kolicina;
+
             return BazaPodataka.distribucija[0].Razlika(kolicina);
         }
 
@@ -365,6 +374,11 @@ namespace SHES
             sw.WriteLine(izvestaj);
             sw.Close();
             fs.Close();
+        }
+
+        public double VratiKolicinu()
+        {
+            return Kolicina;
         }
     }
 }

@@ -14,5 +14,7 @@ namespace Contracts
         void PromeniOsuncanost(int procenat);
         [OperationContract]
         void UbrzajVreme(int brojac);
+        [OperationContract]
+        double VratiKolicinu();
     }
 }

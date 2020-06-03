@@ -29,7 +29,7 @@ namespace Klase
 
         public double Razlika(double kolicina)
         {
-                return CenaPokWh * kolicina;
+            return CenaPokWh * kolicina;
         }
 
 

@@ -43,6 +43,8 @@ namespace SHES
         public static List<PunjacAutomobila> punjaci = new List<PunjacAutomobila>();
         public static List<Elektrodistribucija> distribucija = new List<Elektrodistribucija>();
 
+
+
         public BazaPodataka()
         {
 
@@ -55,11 +57,11 @@ namespace SHES
                 }
                 if(potrosaci.Count == 0)
                 {
-                    potrosaci.Add(new Potrosac("Frizider", 300));
-                    potrosaci.Add(new Potrosac("Rerna", 200));
-                    potrosaci.Add(new Potrosac("Klima", 150));
-                    potrosaci.Add(new Potrosac("Ves masina", 140));
-                    potrosaci.Add(new Potrosac("Toster", 20));
+                    potrosaci.Add(new Potrosac("Frizider", 0.3));
+                    potrosaci.Add(new Potrosac("Rerna", 2));
+                    potrosaci.Add(new Potrosac("Klima", 4));
+                    potrosaci.Add(new Potrosac("Ves masina", 1.5));
+                    potrosaci.Add(new Potrosac("Toster", 0.01));
                 }
             }
             if (File.Exists(BaterijePath))
@@ -121,11 +123,13 @@ namespace SHES
             {
                 while (true)
                 {
+
                     XmlSerializer xmlSerializerPotrosac = new XmlSerializer(typeof(List<Potrosac>));
-                    using(StreamWriter sw = new StreamWriter(PotrosaciPath))
+                    using (StreamWriter sw = new StreamWriter(PotrosaciPath))
                     {
                         xmlSerializerPotrosac.Serialize(sw, potrosaci);
                     }
+
 
                     XmlSerializer xmlSerializerBaterija = new XmlSerializer(typeof(List<Baterija>));
                     using (StreamWriter sw = new StreamWriter(BaterijePath))
@@ -150,9 +154,10 @@ namespace SHES
                     {
                         xmlSerializerDistribucija.Serialize(sw, distribucija);
                     }
-
                     Thread.Sleep(5000);
                 }
+                
+                
 
 
 

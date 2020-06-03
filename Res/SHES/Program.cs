@@ -40,8 +40,37 @@ namespace SHES
             string addressSimulacija= "net.tcp://localhost:8000/ISimulacija";
             hostSimulacija.AddServiceEndpoint(typeof(ISimulacija), binding, addressSimulacija);
             hostSimulacija.Open();
-            #endregion
 
+
+            //drugi deo
+            NetTcpBinding binding1 = new NetTcpBinding();
+
+            ServiceHost hostBaterija1 = new ServiceHost(typeof(BaterijaProvider));
+            string addressBaterija1 = "net.tcp://localhost:8001/IBaterija";
+            hostBaterija1.AddServiceEndpoint(typeof(IBaterija), binding1, addressBaterija1);
+            hostBaterija1.Open();
+
+            ServiceHost hostPunjac1 = new ServiceHost(typeof(PunjacProvider));
+            string addressPunjac1 = "net.tcp://localhost:8001/IPunjac";
+            hostPunjac1.AddServiceEndpoint(typeof(IPunjac), binding1, addressPunjac1);
+            hostPunjac1.Open();
+
+            ServiceHost hostPanel1 = new ServiceHost(typeof(SolarniPanelProvider));
+            string addressPanel1 = "net.tcp://localhost:8001/ISolarniPanel";
+            hostPanel1.AddServiceEndpoint(typeof(ISolarniPanel), binding1, addressPanel1);
+            hostPanel1.Open();
+
+            ServiceHost hostPotrosac1 = new ServiceHost(typeof(PotrosacProvider));
+            string addressPotrosac1 = "net.tcp://localhost:8001/IPotrosac";
+            hostPotrosac1.AddServiceEndpoint(typeof(IPotrosac), binding1, addressPotrosac1);
+            hostPotrosac1.Open();
+
+            ServiceHost hostSimulacija1 = new ServiceHost(typeof(Simulacija));
+            string addressSimulacija1 = "net.tcp://localhost:8001/ISimulacija";
+            hostSimulacija1.AddServiceEndpoint(typeof(ISimulacija), binding1, addressSimulacija1);
+            hostSimulacija1.Open();
+
+            #endregion
 
             BazaPodataka b = new BazaPodataka();
             BazaPodataka.Run();
