@@ -4,7 +4,7 @@
     <Ime>b1</Ime>
     <MaxSnaga>1</MaxSnaga>
     <KapacitetUSatima>5</KapacitetUSatima>
-    <TrKapacitet>1</TrKapacitet>
+    <TrKapacitet>0</TrKapacitet>
     <MaksKapacitet>5</MaksKapacitet>
   </Baterija>
 </ArrayOfBaterija>

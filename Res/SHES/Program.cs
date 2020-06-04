@@ -78,7 +78,7 @@ namespace SHES
             Console.WriteLine("servis pokrenut");
 
             Simulacija s = new Simulacija();
-            s.Simuliraj(41, 0);
+            s.Simuliraj();
 
             Console.ReadKey();
             hostPunjac.Close();

@@ -15,20 +15,19 @@ namespace SHES
     {
         public static double Kolicina { get; set; } = 0;
 
-        public int Takt { get; set; } = 417; //ucita se iz xml-a ceo dan zza 10 min 
+        public int Takt { get; set; } = 41; //ucita se iz xml-a ceo dan zza 10 min  417 bilo za 10 min rada
 
-        public static int Dani { get; set; }
+        public int Dani { get; set; } = 0;
 
-        public int ProcenatSunca { get; set; }
+        public static double ProcenatSunca { get; set; } = 0;
+
+        public static double EnergijaBaterija { get; set; } = 0;
 
         public Simulacija()
         {
-            Dani = 0;
-            ProcenatSunca = 0;
-            //Simuliraj(Takt, ProcenatSunca);
         }
 
-        public void Simuliraj(int brojac, int ProcenatSunca)
+        public void Simuliraj()
         {
             bool puniBateriju = false;
             bool prazniBateriju = false;
@@ -54,6 +53,7 @@ namespace SHES
                         }
                         if (i % 60 == 0)
                         {
+
                             novac += Potroseno();
                             satnica++;
 
@@ -66,7 +66,7 @@ namespace SHES
                                     Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
                                 }
                             }
-                            if(satnica == 4)
+                            else if(satnica == 4)
                             {
                                 puniBateriju = true;
                                 foreach (Baterija b in BazaPodataka.baterije)
@@ -74,7 +74,7 @@ namespace SHES
                                     Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
                                 }
                             }
-                            if (satnica == 5)
+                            else if (satnica == 5)
                             {
                                 puniBateriju = true;
                                 ProcenatSunca = 30;
@@ -83,7 +83,7 @@ namespace SHES
                                     Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
                                 }
                             }
-                            if (satnica == 6)
+                            else if (satnica == 6)
                             {
                                 puniBateriju = false;
                                 Console.WriteLine("Ne puni vise baterije");
@@ -93,11 +93,11 @@ namespace SHES
                                 }
                                 BazaPodataka.potrosaci[3].Aktivan = false;
                             }
-                            if (satnica == 7)
+                            else if (satnica == 7)
                                 ProcenatSunca = 60;
-                            if (satnica == 9)
-                                ProcenatSunca = 100;
-                            if (satnica == 14)
+                            else if (satnica == 9)
+                                ProcenatSunca = 100.0;
+                            else if (satnica == 14)
                             {
                                 prazniBateriju = true;
                                 Console.WriteLine("Prazni baterije");
@@ -106,15 +106,15 @@ namespace SHES
                                     Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
                                 }
                             }
-                            if(satnica == 15)
+                            else if(satnica == 15)
                             {
                                 prazniBateriju = true;
                             }
-                            if(satnica == 16)
+                            else if(satnica == 16)
                             {
                                 prazniBateriju = true;
                             }
-                            if (satnica == 17)
+                            else if (satnica == 17)
                             {
                                 Console.WriteLine("Ne prazni vise baterije");
                                 foreach (Baterija b in BazaPodataka.baterije)
@@ -122,16 +122,16 @@ namespace SHES
                                     Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
                                 }
                             }
-                            if (satnica == 20)
+                            else if (satnica == 20)
                                 ProcenatSunca = 70;
-                            if (satnica == 21)
+                            else if (satnica == 21)
                                 ProcenatSunca = 40;
-                            if (satnica == 22)
+                            else if (satnica == 22)
                                 ProcenatSunca = 0;
 
                         }
 
-                        Thread.Sleep(brojac);
+                        Thread.Sleep(Takt);
 
 
                     }
@@ -156,7 +156,7 @@ namespace SHES
         }
 
 
-        public double IzracunajPanele(int procenatSunca)
+        public double IzracunajPanele(double procenatSunca)
         {
             double kolicina = 0;
             foreach (SolarniPanel s in BazaPodataka.paneli)
@@ -216,11 +216,13 @@ namespace SHES
                             {
                                 kolicina -= b.MaxSnaga;
                                 b.TrKapacitet += b.MaxSnaga;
+                                EnergijaBaterija += b.MaxSnaga;
                             }
                             else // ne moze pun obim
                             {
                                 kolicina -= (b.MaksKapacitet - b.TrKapacitet);
                                 b.TrKapacitet = b.MaksKapacitet;
+                                EnergijaBaterija += (b.MaksKapacitet - b.TrKapacitet);
                             }
                         }
                         else
@@ -228,6 +230,7 @@ namespace SHES
                             if (b.TrKapacitet + kolicina <= b.MaksKapacitet)
                             {
                                 b.TrKapacitet += kolicina;
+                                EnergijaBaterija += kolicina;
                                 kolicina = 0;
                             }
                             else
@@ -236,10 +239,12 @@ namespace SHES
                                 if(kolicina <= mestaNaBateriji)
                                 {
                                     b.TrKapacitet += kolicina;
+                                    EnergijaBaterija += kolicina;
                                     kolicina = 0;
                                 }
                                 else
                                 {
+                                    EnergijaBaterija += mestaNaBateriji;
                                     b.TrKapacitet += mestaNaBateriji;
                                     kolicina -= mestaNaBateriji;
                                 }
@@ -267,11 +272,13 @@ namespace SHES
                             {
                                 kolicina -= b.MaxSnaga;
                                 b.TrKapacitet -= b.MaxSnaga;
+                                EnergijaBaterija -= b.MaxSnaga;
                             }
                             else // skida se sa baterije sve
                             {
                                 kolicina -= b.TrKapacitet;
                                 b.TrKapacitet = 0;
+                                EnergijaBaterija -= b.TrKapacitet;
                             }
                         }
                         else // treba joj samo jedna baterija
@@ -280,9 +287,11 @@ namespace SHES
                             {
                                 b.TrKapacitet -= kolicina;
                                 kolicina = 0;
+                                EnergijaBaterija -= kolicina;
                             }
                             else
                             {
+                                EnergijaBaterija -= b.TrKapacitet;
                                 kolicina -= b.TrKapacitet;
                                 b.TrKapacitet = 0;
                             }
@@ -312,19 +321,21 @@ namespace SHES
                     //double procenatKojiSeNapuniPoSatuMaks = ((100 * b.MaxSnaga) / b.Kapacitet);
                     if (b.TrKapacitet + b.MaxSnaga <= b.MaksKapacitet) // moze pun obim u roku od jednog sata
                     {
+                        EnergijaBaterija += b.MaxSnaga;
                         kolicina += b.MaxSnaga;
                         b.TrKapacitet += b.MaxSnaga;
                     }
                     else // ne moze pun obim
                     {
+                        EnergijaBaterija += b.TrKapacitet;
                         kolicina += b.TrKapacitet;
                         b.TrKapacitet = 0;
                     }
                 }
             }
-            Kolicina += kolicina;
+            Kolicina -= kolicina;
 
-            return BazaPodataka.distribucija[0].Razlika(kolicina);
+            return BazaPodataka.distribucija[0].Razlika(-kolicina);
         }
 
         public double PrazniBaterije()
@@ -337,12 +348,14 @@ namespace SHES
                     //double procenatKojiSeIsprazniPoSatuMaks = ((100 * b.MaxSnaga) / b.Kapacitet);
                     if (b.TrKapacitet - b.MaxSnaga >= 0) // ceo kapacitet za jedan sat se skine sa baterije
                     {
+                        EnergijaBaterija -= b.MaxSnaga;
                         kolicina += b.MaxSnaga;
                         b.TrKapacitet -= b.MaxSnaga;
 
                     }
                     else // skida se sa baterije sve
                     {
+                        EnergijaBaterija -= b.TrKapacitet;
                         kolicina += b.TrKapacitet;
                         b.TrKapacitet = 0;
                     }
@@ -364,21 +377,19 @@ namespace SHES
             Takt = brojac;
         }
 
-        public void SnimiIzvestaj()
-        {
-            FileStream fs = new FileStream("dnevniIzvestaji.txt", FileMode.Append, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs);
-
-            string izvestaj = "";
-            //sta se sve pise u izvestaj
-            sw.WriteLine(izvestaj);
-            sw.Close();
-            fs.Close();
-        }
-
         public double VratiKolicinu()
         {
             return Kolicina;
+        }
+
+        public double VratiOsuncanost()
+        {
+            return ProcenatSunca;
+        }
+
+        public double VratiEnergijeBaterije()
+        {
+            return EnergijaBaterija;
         }
     }
 }

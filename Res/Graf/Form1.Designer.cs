@@ -31,6 +31,9 @@
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.PotrosnjaChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PotrosnjaChart)).BeginInit();
@@ -49,15 +52,30 @@
             series1.Color = System.Drawing.Color.DarkGreen;
             series1.Legend = "Legend1";
             series1.Name = "Potrosaci";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Paneli";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Legend = "Legend1";
+            series3.Name = "Baterije";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Legend = "Legend1";
+            series4.Name = "Distribucija";
             this.PotrosnjaChart.Series.Add(series1);
-            this.PotrosnjaChart.Size = new System.Drawing.Size(300, 300);
+            this.PotrosnjaChart.Series.Add(series2);
+            this.PotrosnjaChart.Series.Add(series3);
+            this.PotrosnjaChart.Series.Add(series4);
+            this.PotrosnjaChart.Size = new System.Drawing.Size(615, 355);
             this.PotrosnjaChart.TabIndex = 0;
             this.PotrosnjaChart.Text = "PotrosnjaChart";
             this.PotrosnjaChart.Click += new System.EventHandler(this.PotrosnjaChart_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(214, 365);
+            this.button1.Location = new System.Drawing.Point(344, 394);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;

@@ -24,7 +24,7 @@ namespace Klase
 
         }
 
-        public int KolicinaGenerisaneEnergije(int ProcenatSunca)
+        public double KolicinaGenerisaneEnergije(double ProcenatSunca)
         {
             return ProcenatSunca * MaksSnaga / 100;
         }

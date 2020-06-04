@@ -85,7 +85,7 @@ namespace SHES
                 }
                 if(paneli.Count == 0)
                 {
-                    paneli.Add(new SolarniPanel("p1", 300));
+                    paneli.Add(new SolarniPanel("p1", 10));
                 }
             }
             if (File.Exists(PunjaciPath))
@@ -154,7 +154,7 @@ namespace SHES
                     {
                         xmlSerializerDistribucija.Serialize(sw, distribucija);
                     }
-                    Thread.Sleep(5000);
+                    Thread.Sleep(10000);
                 }
                 
                 

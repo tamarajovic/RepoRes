@@ -8,12 +8,12 @@
   <Potrosac>
     <Ime>Rerna</Ime>
     <Potrosnja>2</Potrosnja>
-    <Aktivan>false</Aktivan>
+    <Aktivan>true</Aktivan>
   </Potrosac>
   <Potrosac>
     <Ime>Klima</Ime>
     <Potrosnja>4</Potrosnja>
-    <Aktivan>false</Aktivan>
+    <Aktivan>true</Aktivan>
   </Potrosac>
   <Potrosac>
     <Ime>Ves masina</Ime>

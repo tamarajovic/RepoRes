@@ -25,10 +25,14 @@ namespace Graf
         public static List<SolarniPanel> paneli = new List<SolarniPanel>();
         public static List<PunjacAutomobila> punjaci = new List<PunjacAutomobila>();
         public static double Potroseno;
+        public static double Osuncanost;
+        public static double EnergijaBaterija;
 
         private Thread thread;
+        private double[] vrDistribucije = new double[24];
         private double[] vrPotrosaca = new double[24];
-
+        private double[] vrPanela = new double[24];
+        private double[] vrBaterija = new double[24];
 
         public static void Osvezi()
         {
@@ -63,6 +67,8 @@ namespace Graf
             paneli = proxyPanel.VratiPanele();
             //punjaci = proxyPunjac.VratiPunjace();
             Potroseno = proxySimulacija.VratiKolicinu();
+            EnergijaBaterija = proxySimulacija.VratiEnergijeBaterije();
+            Osuncanost = proxySimulacija.VratiOsuncanost();
         }
 
         public Form1()
@@ -79,21 +85,30 @@ namespace Graf
             while (true)
             {
 
-                double potrosanjaPotrosaca = 0;
-
-                //foreach (Potrosac p in potrosaci)
-                //{
-                //    potrosanjaPotrosaca += p.Potrosnja;
-                //}
+                Osvezi();
                 
-                foreach (Baterija p in baterije)
+                double potrosanjaPotrosaca = 0;
+                double proizvodnjaPanela = 0;
+
+                foreach(SolarniPanel sp in paneli)
                 {
-                    potrosanjaPotrosaca += p.TrKapacitet;
+                    proizvodnjaPanela += sp.KolicinaGenerisaneEnergije(Osuncanost);
                 }
 
+                foreach (Potrosac p in potrosaci)
+                {
+                    if (p.Aktivan)
+                        potrosanjaPotrosaca -= p.Potrosnja;
+                }
 
+                vrDistribucije[vrDistribucije.Length - 1] = Potroseno;
+                vrBaterija[vrBaterija.Length - 1] = EnergijaBaterija;
+                vrPanela[vrPanela.Length - 1] = proizvodnjaPanela;
                 vrPotrosaca[vrPotrosaca.Length - 1] = potrosanjaPotrosaca;
 
+                Array.Copy(vrDistribucije, 1, vrDistribucije, 0, vrDistribucije.Length - 1);
+                Array.Copy(vrBaterija, 1, vrBaterija, 0, vrBaterija.Length - 1);
+                Array.Copy(vrPanela, 1, vrPanela, 0, vrPanela.Length - 1);
                 Array.Copy(vrPotrosaca, 1, vrPotrosaca, 0, vrPotrosaca.Length - 1);
 
                 if (PotrosnjaChart.IsHandleCreated)
@@ -105,7 +120,7 @@ namespace Graf
 
                 }
 
-
+                Thread.Sleep(1000);
             }
 
 
@@ -113,12 +128,17 @@ namespace Graf
 
         private void UpdatePotrosnjaChart()
         {
+            PotrosnjaChart.Series["Distribucija"].Points.Clear();
+            PotrosnjaChart.Series["Baterije"].Points.Clear();
+            PotrosnjaChart.Series["Paneli"].Points.Clear();
             PotrosnjaChart.Series["Potrosaci"].Points.Clear();
 
             for(int i=0; i<vrPotrosaca.Length - 1; i++)
             {
-                PotrosnjaChart.Series["Potrosaci"].Points.AddY(vrPotrosaca[i]);
-
+                PotrosnjaChart.Series["Distribucija"].Points.AddXY(i + 1 , vrDistribucije[i]);
+                PotrosnjaChart.Series["Baterije"].Points.AddXY(i + 1, vrBaterija[i]);
+                PotrosnjaChart.Series["Potrosaci"].Points.AddXY(i + 1, vrPotrosaca[i]);
+                PotrosnjaChart.Series["Paneli"].Points.AddXY(i + 1, vrPanela[i]);
             }
         }
 

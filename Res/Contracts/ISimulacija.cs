@@ -16,5 +16,9 @@ namespace Contracts
         void UbrzajVreme(int brojac);
         [OperationContract]
         double VratiKolicinu();
+        [OperationContract]
+        double VratiOsuncanost();
+        [OperationContract]
+        double VratiEnergijeBaterije();
     }
 }
