@@ -18,7 +18,7 @@
   <Potrosac>
     <Ime>Ves masina</Ime>
     <Potrosnja>1.5</Potrosnja>
-    <Aktivan>false</Aktivan>
+    <Aktivan>true</Aktivan>
   </Potrosac>
   <Potrosac>
     <Ime>Toster</Ime>

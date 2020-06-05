@@ -12,13 +12,23 @@ namespace Contracts
     {
         [OperationContract]
         void PromeniOsuncanost(int procenat);
+
         [OperationContract]
         void UbrzajVreme(int brojac);
+
         [OperationContract]
         double VratiKolicinu();
+
         [OperationContract]
         double VratiOsuncanost();
+
         [OperationContract]
         double VratiEnergijeBaterije();
+
+        [OperationContract]
+        bool ProveriSatnicu();
+
+        [OperationContract]
+        int VratiSatnicu();
     }
 }
