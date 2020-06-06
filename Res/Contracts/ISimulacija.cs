@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Klase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -30,5 +31,8 @@ namespace Contracts
 
         [OperationContract]
         int VratiSatnicu();
+
+        [OperationContract]
+        PotrosnjaPoDanu VratiPotrosnju(DateTime datum);
     }
 }

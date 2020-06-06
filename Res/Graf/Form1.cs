@@ -62,6 +62,7 @@ namespace Graf
             ISimulacija proxySimulacija = channelSimulacija.CreateChannel();
 
 
+
             #endregion
 
             potrosaci = proxyPotrosac.VratiPotrosace();

@@ -155,6 +155,7 @@
   <ItemGroup>
     <Content Include="Baza\Baterije.xml" />
     <Content Include="Baza\Distribucija.xml" />
+    <Content Include="Baza\IstorijaPotrosnje.xml" />
     <Content Include="Baza\Paneli.xml" />
     <Content Include="Baza\Potrosaci.xml" />
     <Content Include="Baza\Punjaci.xml" />

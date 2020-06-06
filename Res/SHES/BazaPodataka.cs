@@ -17,11 +17,12 @@ namespace SHES
 {
     public class BazaPodataka 
     {
-        //static string PotrosaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Potrosaci.xml";
-        //static string BaterijePath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Baterije.xml";
-        //static string PaneliPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Paneli.xml";
-        //static string PunjaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Punjaci.xml";
-        //static string DistribucijaPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Distribucija.xml";
+        static string PotrosaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Potrosaci.xml";
+        static string BaterijePath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Baterije.xml";
+        static string PaneliPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Paneli.xml";
+        static string PunjaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Punjaci.xml";
+        static string DistribucijaPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Distribucija.xml";
+        static string IstorijaPotrosnjePath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\IstorijaPotrosnje.xml";
 
         //daje null, mozda nisam dobar path stavila???
         //static string PotrosaciPath = HostingEnvironment.MapPath("~/Baza/Potrosaci.xml");
@@ -30,11 +31,11 @@ namespace SHES
         //static string PunjaciPath = HostingEnvironment.MapPath("~/Baza/Punjaci.xml");
         //static string DistribucijaPath = HostingEnvironment.MapPath("~/Baza/Distribucija.xml");
 
-        static string PotrosaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Potrosaci.xml";
-        static string BaterijePath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Baterije.xml";
-        static string PaneliPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Paneli.xml";
-        static string PunjaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Punjaci.xml";
-        static string DistribucijaPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Distribucija.xml";
+        //static string PotrosaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Potrosaci.xml";
+        //static string BaterijePath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Baterije.xml";
+        //static string PaneliPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Paneli.xml";
+        //static string PunjaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Punjaci.xml";
+        //static string DistribucijaPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Distribucija.xml";
 
 
         public static List<Potrosac> potrosaci = new List<Potrosac>();
@@ -42,8 +43,7 @@ namespace SHES
         public static List<SolarniPanel> paneli = new List<SolarniPanel>();
         public static List<PunjacAutomobila> punjaci = new List<PunjacAutomobila>();
         public static List<Elektrodistribucija> distribucija = new List<Elektrodistribucija>();
-
-
+        public static List<PotrosnjaPoDanu> istorijaPotrosnje = new List<PotrosnjaPoDanu>();
 
         public BazaPodataka()
         {
@@ -113,7 +113,14 @@ namespace SHES
                 }
             }
 
-
+            //if (File.Exists(IstorijaPotrosnjePath))
+            //{
+            //    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<PotrosnjaPoDanu>));
+            //    using (StreamReader sr = new StreamReader(IstorijaPotrosnjePath))
+            //    {
+            //        istorijaPotrosnje = (List<PotrosnjaPoDanu>)xmlSerializer.Deserialize(sr);
+            //    }
+            //}
 
         }
 
@@ -164,6 +171,16 @@ namespace SHES
             }).Start();
         }
 
-       
+
+        //da li pisati na kraju dana ili na svakih sat vremena??
+        public void UpisiPotrosnju()
+        {
+            XmlSerializer xmlSerializerPotrosac = new XmlSerializer(typeof(List<PotrosnjaPoDanu>));
+            using (StreamWriter sw = new StreamWriter(IstorijaPotrosnjePath))
+            {
+                xmlSerializerPotrosac.Serialize(sw, istorijaPotrosnje);
+            }
+        }
+
     }
 }

@@ -55,6 +55,7 @@
     <Compile Include="Baterija.cs" />
     <Compile Include="Elektrodistribucija.cs" />
     <Compile Include="Potrosac.cs" />
+    <Compile Include="PotrosnjaPoDanu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PunjacAutomobila.cs" />
     <Compile Include="SolarniPanel.cs" />

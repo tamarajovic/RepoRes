@@ -21,8 +21,11 @@ namespace SHES
         public static bool PromenaSatnice { get; set; } = false;
         public static int satnica { get; set; } = 0;
 
+        public static PotrosnjaPoDanu potrosnjaPoDanu;
+
         public Simulacija()
         {
+            potrosnjaPoDanu = new PotrosnjaPoDanu();
         }
 
         public void Simuliraj()
@@ -192,6 +195,11 @@ namespace SHES
                             }
 
                             novac += Potroseno();
+
+                            potrosnjaPoDanu.EnergijaIzBaterije.Add(EnergijaBaterija);
+                            //dodati uvoz, paneli i potrosaci
+
+
                             satnica++;
                             Kolicina = 0;
                             EnergijaBaterija = 0;
@@ -468,5 +476,25 @@ namespace SHES
         {
             return satnica;
         }
+
+        //potrosnja za grafik
+        public PotrosnjaPoDanu VratiPotrosnju(DateTime datum)
+        {
+            PotrosnjaPoDanu potrosnja = new PotrosnjaPoDanu();
+
+            foreach (var p in BazaPodataka.istorijaPotrosnje)
+            {
+                if (p.Datum.Equals(datum))
+                {
+                    return p;
+                }
+                    
+            }
+
+            return potrosnja;
+        }
+
+
+
     }
 }
