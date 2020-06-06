@@ -10,7 +10,6 @@ namespace Klase
     {
         public string Ime { get; set; }
         public double Potrosnja { get; set; }
-
         public bool Aktivan { get; set; } = false;
 
         public Potrosac(string ime, double potrosnja)
@@ -23,21 +22,6 @@ namespace Klase
         {
 
         }
-
-        public void PokreniPotrosnju()
-        {
-            Aktivan = true;
-        }
-
-        public void ZaustaviPotrosnju()
-        {
-            Aktivan = false;
-        }
-
-        //za neko vreme iz neke baterije trosi kolicinu Potrosnja
-        //po nekoj vremenskoj jedinici samo se pozove Potrosac.Potrosnja
-        // i skine ta kolicina iz baterija ili iz elektroditribicuje
-        // if(aktivan) obracunaj potrosnju
 
     }
 }

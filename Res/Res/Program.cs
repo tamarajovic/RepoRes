@@ -20,6 +20,7 @@ namespace Res
 
             #region Connection
             NetTcpBinding binding = new NetTcpBinding();
+            NetTcpBinding binding2 = new NetTcpBinding();
 
             string addressBaterija = "net.tcp://localhost:8000/IBaterija";
             ChannelFactory<IBaterija> channelBaterija = new ChannelFactory<IBaterija>(binding, addressBaterija);
@@ -41,14 +42,18 @@ namespace Res
             string addressSimulacija = "net.tcp://localhost:8000/ISimulacija";
             ChannelFactory<ISimulacija> channelSimulacija = new ChannelFactory<ISimulacija>(binding, addressSimulacija);
             ISimulacija proxySimulacija = channelSimulacija.CreateChannel();
+
+            string addressGraf = "net.tcp://localhost:8002/IGrafik";
+            ChannelFactory<IGrafik> channelGrafik = new ChannelFactory<IGrafik>(binding2, addressGraf);
+            IGrafik proxyGrafik = channelGrafik.CreateChannel();
             #endregion
 
-            Meni(proxyPunjac, proxyBaterija, proxyPanel, proxyPotrosac, proxySimulacija);
+            Meni(proxyPunjac, proxyBaterija, proxyPanel, proxyPotrosac, proxySimulacija, proxyGrafik);
 
 
         }
 
-        public static void Meni(IPunjac ppunjac, IBaterija pbaterija, ISolarniPanel ppanel, IPotrosac ppotrosac, ISimulacija psimulacija)
+        public static void Meni(IPunjac ppunjac, IBaterija pbaterija, ISolarniPanel ppanel, IPotrosac ppotrosac, ISimulacija psimulacija, IGrafik pgrafik)
         {
             int komanda = 0;
 
@@ -66,7 +71,8 @@ namespace Res
                     Console.WriteLine("6 --> Obrisite elemenat iz sistema");
                     Console.WriteLine("7 --> Menjajte brzinu prolaska vremena");
                     Console.WriteLine("8 --> Promenite osuncanost");
-                    Console.WriteLine("9 --> Izlaz iz sistema");
+                    Console.WriteLine("9 --> Prikaz izvestaja");
+                    Console.WriteLine("10 --> Izlaz iz sistema");
 
                     Console.WriteLine("Vas odgovor: ");
                     komanda = int.Parse(Console.ReadLine());
@@ -314,6 +320,12 @@ namespace Res
                             int procenat = int.Parse(Console.ReadLine());
                             psimulacija.PromeniOsuncanost(procenat);
                             break;
+                        case 9:
+                            Console.WriteLine("Unesite datum za prikaz izvestaja");
+                            string Datum = Console.ReadLine();
+                            //provera sta je uneo
+                            pgrafik.ProslediDatum(Datum);
+                            break;
                     }
 
 
@@ -323,7 +335,7 @@ namespace Res
                     Console.WriteLine("Molimo vas da unesete neki od ponudjenih brojeva, dodatne informacije : " + ex.Message);
                 }
             }
-            while (komanda != 9);
+            while (komanda != 10);
 
 
         }

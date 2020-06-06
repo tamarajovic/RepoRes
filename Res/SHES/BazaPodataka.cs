@@ -17,12 +17,12 @@ namespace SHES
 {
     public class BazaPodataka 
     {
-        static string PotrosaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Potrosaci.xml";
-        static string BaterijePath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Baterije.xml";
-        static string PaneliPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Paneli.xml";
-        static string PunjaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Punjaci.xml";
-        static string DistribucijaPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Distribucija.xml";
-        static string IstorijaPotrosnjePath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\IstorijaPotrosnje.xml";
+        //static string PotrosaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Potrosaci.xml";
+        //static string BaterijePath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Baterije.xml";
+        //static string PaneliPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Paneli.xml";
+        //static string PunjaciPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Punjaci.xml";
+        //static string DistribucijaPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\Distribucija.xml";
+        //static string IstorijaPotrosnjePath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\IstorijaPotrosnje.xml";
 
         //daje null, mozda nisam dobar path stavila???
         //static string PotrosaciPath = HostingEnvironment.MapPath("~/Baza/Potrosaci.xml");
@@ -31,12 +31,12 @@ namespace SHES
         //static string PunjaciPath = HostingEnvironment.MapPath("~/Baza/Punjaci.xml");
         //static string DistribucijaPath = HostingEnvironment.MapPath("~/Baza/Distribucija.xml");
 
-        //static string PotrosaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Potrosaci.xml";
-        //static string BaterijePath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Baterije.xml";
-        //static string PaneliPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Paneli.xml";
-        //static string PunjaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Punjaci.xml";
-        //static string DistribucijaPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Distribucija.xml";
-
+        static string PotrosaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Potrosaci.xml";
+        static string BaterijePath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Baterije.xml";
+        static string PaneliPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Paneli.xml";
+        static string PunjaciPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Punjaci.xml";
+        static string DistribucijaPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\Distribucija.xml";
+        static string IstorijaPotrosnjePath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\IstorijaPotrosnje.xml";
 
         public static List<Potrosac> potrosaci = new List<Potrosac>();
         public static List<Baterija> baterije = new List<Baterija>();
@@ -112,7 +112,6 @@ namespace SHES
                     distribucija.Add(new Elektrodistribucija(500));
                 }
             }
-
             //if (File.Exists(IstorijaPotrosnjePath))
             //{
             //    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<PotrosnjaPoDanu>));
@@ -173,7 +172,7 @@ namespace SHES
 
 
         //da li pisati na kraju dana ili na svakih sat vremena??
-        public void UpisiPotrosnju()
+        public static void UpisiPotrosnju()
         {
             XmlSerializer xmlSerializerPotrosac = new XmlSerializer(typeof(List<PotrosnjaPoDanu>));
             using (StreamWriter sw = new StreamWriter(IstorijaPotrosnjePath))

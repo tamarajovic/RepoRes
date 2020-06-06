@@ -9,20 +9,14 @@ namespace Klase
     public class Elektrodistribucija
     {
 
-        public int CenaPokWh { get; set; }
-
-        //Snaga Razmene
-        public bool Trosi { get; set; }
+        public double CenaPokWh { get; set; }
 
         public Elektrodistribucija()
         {
 
         }
 
-        // ne postavljam Trosi posto se proverava tek kad krene sa radom app
-        // pa ce se onda postavljati
-
-        public Elektrodistribucija(int cenaPokWh)
+        public Elektrodistribucija(double cenaPokWh)
         {
             CenaPokWh = cenaPokWh;
         }

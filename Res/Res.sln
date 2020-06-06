@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Cont
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graf", "Graf\Graf.csproj", "{C43D7B90-5E17-4A1B-902A-0BF4D6150D04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grafik", "Grafik\Grafik.csproj", "{7CDC01AD-C715-4F3D-B5CD-6CB162A3261E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlaseTest", "KlaseTest\KlaseTest.csproj", "{74FF2720-C08F-4027-B515-7EAB5203DED4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{C43D7B90-5E17-4A1B-902A-0BF4D6150D04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C43D7B90-5E17-4A1B-902A-0BF4D6150D04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C43D7B90-5E17-4A1B-902A-0BF4D6150D04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CDC01AD-C715-4F3D-B5CD-6CB162A3261E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CDC01AD-C715-4F3D-B5CD-6CB162A3261E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CDC01AD-C715-4F3D-B5CD-6CB162A3261E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CDC01AD-C715-4F3D-B5CD-6CB162A3261E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74FF2720-C08F-4027-B515-7EAB5203DED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74FF2720-C08F-4027-B515-7EAB5203DED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74FF2720-C08F-4027-B515-7EAB5203DED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74FF2720-C08F-4027-B515-7EAB5203DED4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

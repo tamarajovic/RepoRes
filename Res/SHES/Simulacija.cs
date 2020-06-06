@@ -18,198 +18,173 @@ namespace SHES
         public int Dani { get; set; } = 0;
         public static double ProcenatSunca { get; set; } = 0;
         public static double EnergijaBaterija { get; set; } = 0;
-        public static bool PromenaSatnice { get; set; } = false;
         public static int satnica { get; set; } = 0;
 
-        public static PotrosnjaPoDanu potrosnjaPoDanu;
+        public static int countDani = 0;
+        
 
         public Simulacija()
         {
-            potrosnjaPoDanu = new PotrosnjaPoDanu();
+            
         }
 
         public void Simuliraj()
         {
-            bool puniBateriju = false;
-            bool prazniBateriju = false;
 
             new Thread(() =>
             {
-                while (true)
+            while (true)
+            {
+                double novac = 0;
+                for (int i = 1; i <= 1440; i++)
                 {
-                    double novac = 0;
-                    for (int i = 1; i <= 1440; i++)
+                    if (i % 60 == 0)
                     {
- 
-                        if (puniBateriju)
+
+                        if (satnica == 0)
                         {
+                            BazaPodataka.istorijaPotrosnje.Add(new PotrosnjaPoDanu());
+                        }
+                        else if (satnica == 1)
+                        {
+                        }
+                        else if (satnica == 2)
+                        {
+
+                        }
+                        else if (satnica == 3)
+                        {
+                            BazaPodataka.distribucija[0].CenaPokWh = 1.5;
                             novac -= PuniBaterije();
-                            puniBateriju = false;
+                            Console.WriteLine("Puni Baterije");
+
                         }
-                        if (prazniBateriju)
+                        else if (satnica == 4)
                         {
-                            novac += PrazniBaterije();
-                            prazniBateriju = false;
-                        }
-                        if (i % 60 == 0)
-                        {
-                            PromenaSatnice = false;
                             
-                            if(satnica == 0)
-                            {
-                                PromenaSatnice = true;
-                            }
-                            else if (satnica == 1)
-                            {
-                                PromenaSatnice = true;
-                            }
-                            else if (satnica == 2)
-                            {
-                                PromenaSatnice = true;
-                            }
-                            else if (satnica == 3)
-                            {
-                                PromenaSatnice = true;
-                                puniBateriju = true;
-                                Console.WriteLine("Puni Baterije");
-                                foreach (Baterija b in BazaPodataka.baterije)
-                                {
-                                    Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
-                                }
-                            }
-                            else if (satnica == 4)
-                            {
-                                PromenaSatnice = true;
-                                puniBateriju = true;
-                                foreach (Baterija b in BazaPodataka.baterije)
-                                {
-                                    Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
-                                }
-                            }
-                            else if (satnica == 5)
-                            {
-                                PromenaSatnice = true;
-                                puniBateriju = true;
-                                ProcenatSunca = 30;
-                                foreach (Baterija b in BazaPodataka.baterije)
-                                {
-                                    Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
-                                }
-                            }
-                            else if (satnica == 6)
-                            {
-                                PromenaSatnice = true;
-                                puniBateriju = false;
-                                Console.WriteLine("Ne puni vise baterije");
-                                foreach (Baterija b in BazaPodataka.baterije)
-                                {
-                                    Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
-                                }
-                                BazaPodataka.potrosaci[3].Aktivan = true;
-                            }
-                            else if (satnica == 7)
-                            {
-                                PromenaSatnice = true;
-                                ProcenatSunca = 60;
-                            }
-                            else if (satnica == 8)
-                            {
-                                PromenaSatnice = true;
-                            }
-                            else if (satnica == 9)
-                            {
-                                PromenaSatnice = true;
-                                ProcenatSunca = 100.0;
-                            }
-                            else if (satnica == 10)
-                            {
-                                PromenaSatnice = true;
-                            }
-                            else if (satnica == 11)
-                            {
-                                PromenaSatnice = true;
-                            }
-                            else if (satnica == 12)
-                            {
-                                PromenaSatnice = true;
-                            }
-                            else if (satnica == 13)
-                            {
-                                PromenaSatnice = true;
-                            }
-                            else if (satnica == 14)
-                            {
-                                PromenaSatnice = true;
-                                prazniBateriju = true;
-                                Console.WriteLine("Prazni baterije");
-                                foreach (Baterija b in BazaPodataka.baterije)
-                                {
-                                    Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
-                                }
-                            }
-                            else if (satnica == 15)
-                            {
-                                PromenaSatnice = true;
-                                prazniBateriju = true;
-                            }
-                            else if (satnica == 16)
-                            {
-                                PromenaSatnice = true;
-                                prazniBateriju = true;
-                            }
-                            else if (satnica == 17)
-                            {
-                                PromenaSatnice = true;
-                                Console.WriteLine("Ne prazni vise baterije");
-                                foreach (Baterija b in BazaPodataka.baterije)
-                                {
-                                    Console.WriteLine("{0} -- {1}", b.Ime, b.TrKapacitet);
-                                }
-                            }
-                            else if (satnica == 18)
-                            {
-                                PromenaSatnice = true;
-                            }
-                            else if (satnica == 19)
-                            {
-                                PromenaSatnice = true;
-                            }
-                            else if (satnica == 20)
-                            {
-                                PromenaSatnice = true;
-                                ProcenatSunca = 70;
-                            }
-                            else if (satnica == 21)
-                            {
-                                PromenaSatnice = true;
-                                ProcenatSunca = 40;
-                            }
-                            else if (satnica == 22)
-                            {
-                                PromenaSatnice = true;
-                                ProcenatSunca = 0;
-                            }
-                            else if (satnica == 23)
-                            {
-                                PromenaSatnice = true;
-                            }
+                            novac -= PuniBaterije();
+                        }
+                        else if (satnica == 5)
+                        {
+                            
+                            novac -= PuniBaterije();
+                            ProcenatSunca = 30;
+                        }
+                        else if (satnica == 6)
+                        {
+                            BazaPodataka.distribucija[0].CenaPokWh = 3;
+                        }
+                        else if (satnica == 7)
+                        {
+                            
+                            ProcenatSunca = 60;
+                        }
+                        else if (satnica == 8)
+                        {
+                           
+                        }
+                        else if (satnica == 9)
+                        {
+                           
+                            ProcenatSunca = 100.0;
+                        }
+                        else if (satnica == 10)
+                        {
+                           
+                        }
+                        else if (satnica == 11)
+                        {
+                            
+                        }
+                        else if (satnica == 12)
+                        {
+                            
+                        }
+                        else if (satnica == 13)
+                        {
+                            
+                        }
+                        else if (satnica == 14)
+                        {
+                            
+                            novac += PrazniBaterije();
+                            BazaPodataka.distribucija[0].CenaPokWh = 5;
+                        }
+                        else if (satnica == 15)
+                        {
+                            
+                            novac += PrazniBaterije();
+                        }
+                        else if (satnica == 16)
+                        {
+                            
+                            novac += PrazniBaterije();
+                        }
+                        else if (satnica == 17)
+                        {
+                            BazaPodataka.distribucija[0].CenaPokWh = 3;
 
-                            novac += Potroseno();
+                        }
+                        else if (satnica == 18)
+                        {
+                            
+                        }
+                        else if (satnica == 19)
+                        {
+                            
+                        }
+                        else if (satnica == 20)
+                        {
+                            
+                            ProcenatSunca = 70;
+                        }
+                        else if (satnica == 21)
+                        {
+                            
+                            ProcenatSunca = 40;
+                        }
+                        else if (satnica == 22)
+                        {
+                            
+                            ProcenatSunca = 0;
+                        }
+                        else if (satnica == 23)
+                        {
+                            
+                        }
 
-                            potrosnjaPoDanu.EnergijaIzBaterije.Add(EnergijaBaterija);
-                            //dodati uvoz, paneli i potrosaci
+                        novac += Potroseno();
+
+                        BazaPodataka.istorijaPotrosnje[countDani].EnergijaIzBaterije.Add(EnergijaBaterija);
+                        double potrosnjaAktivnih = 0;
+                        foreach (Potrosac p in BazaPodataka.potrosaci)
+                        {
+                            if (p.Aktivan)
+                                potrosnjaAktivnih -= p.Potrosnja;
+                        }
+                        BazaPodataka.istorijaPotrosnje[countDani].PotrosnjaPotrosaca.Add(potrosnjaAktivnih);
+                        double proizvodnjaPanela = 0;
+
+                        foreach (SolarniPanel sp in BazaPodataka.paneli)
+                        {
+                            proizvodnjaPanela += sp.KolicinaGenerisaneEnergije(ProcenatSunca);
+                        }
+                        BazaPodataka.istorijaPotrosnje[countDani].ProizvodnjaSP.Add(proizvodnjaPanela);
+                        BazaPodataka.istorijaPotrosnje[countDani].Uvoz.Add(Kolicina);
 
 
-                            satnica++;
-                            Kolicina = 0;
-                            EnergijaBaterija = 0;
+                        satnica++;
+                        Kolicina = 0;
+                        EnergijaBaterija = 0;
                         }
 
                         Thread.Sleep(Takt);
 
 
                     }
+                    countDani++;
                     Dani++;
+                    BazaPodataka.UpisiPotrosnju();
                     satnica = 0;
                     Console.WriteLine("Prodje dan, potroseno {0}", novac);
                 }
@@ -329,8 +304,7 @@ namespace SHES
                 }
                 if(kolicina > 0) // kraj proveravanja, odnos sa distribucijom
                 {
-                    BazaPodataka.distribucija[0].Trosi = false;
-                    Kolicina += kolicina;
+                    Kolicina -= kolicina;
                     novac = BazaPodataka.distribucija[0].Razlika(kolicina);
                 }
             }
@@ -343,7 +317,7 @@ namespace SHES
                     {
                         if (kolicina >= b.MaxSnaga) // treba joj ili maks ili vise od jedne baterija
                         {
-                            if (b.MaksKapacitet - b.TrKapacitet >= b.MaxSnaga) // ceo kapacitet za jedan sat se skine sa baterije
+                            if (b.TrKapacitet >= b.MaxSnaga) // ceo kapacitet za jedan sat se skine sa baterije
                             {
                                 kolicina -= b.MaxSnaga;
                                 b.TrKapacitet -= b.MaxSnaga;
@@ -373,11 +347,10 @@ namespace SHES
                         }
                     }
                 }
-                if(kolicina < 0)
+                if(kolicina > 0)
                 {
                     kolicina = kolicina * (-1);
-                    Kolicina += kolicina;
-                    BazaPodataka.distribucija[0].Trosi = true;
+                    Kolicina -= kolicina;
                     novac = BazaPodataka.distribucija[0].Razlika(kolicina);
                 }
             }
@@ -385,6 +358,8 @@ namespace SHES
             return novac;
         }
         #endregion
+
+        #region UpravljanjeBaterijom
 
         public double PuniBaterije() // vraca kolicinu potrosene energije
         {
@@ -408,7 +383,7 @@ namespace SHES
                     }
                 }
             }
-            Kolicina -= kolicina;
+            Kolicina += kolicina;
 
             return BazaPodataka.distribucija[0].Razlika(-kolicina);
         }
@@ -436,11 +411,12 @@ namespace SHES
                     }
                 }
             }
-            Kolicina += kolicina;
+            Kolicina -= kolicina;
 
             return BazaPodataka.distribucija[0].Razlika(kolicina);
         }
 
+        #endregion
 
         public void PromeniOsuncanost(int procenat)
         {
@@ -467,32 +443,11 @@ namespace SHES
             return EnergijaBaterija;
         }
 
-        public bool ProveriSatnicu()
-        {
-            return PromenaSatnice;
-        }
-
         public int VratiSatnicu()
         {
             return satnica;
         }
 
-        //potrosnja za grafik
-        public PotrosnjaPoDanu VratiPotrosnju(DateTime datum)
-        {
-            PotrosnjaPoDanu potrosnja = new PotrosnjaPoDanu();
-
-            foreach (var p in BazaPodataka.istorijaPotrosnje)
-            {
-                if (p.Datum.Equals(datum))
-                {
-                    return p;
-                }
-                    
-            }
-
-            return potrosnja;
-        }
 
 
 

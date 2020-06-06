@@ -27,12 +27,7 @@ namespace Contracts
         double VratiEnergijeBaterije();
 
         [OperationContract]
-        bool ProveriSatnicu();
-
-        [OperationContract]
         int VratiSatnicu();
 
-        [OperationContract]
-        PotrosnjaPoDanu VratiPotrosnju(DateTime datum);
     }
 }
