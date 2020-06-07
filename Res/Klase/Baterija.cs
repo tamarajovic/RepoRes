@@ -18,6 +18,25 @@ namespace Klase
 
         public Baterija(string ime, int maxSnaga, double kapacitet)
         {
+            if (String.IsNullOrEmpty(ime))
+            {
+                throw new ArgumentOutOfRangeException("Naziv baterije ne moze biti prazan");
+            }
+
+            if (ime.Trim() == "") {
+                throw new ArgumentOutOfRangeException("Naziv baterije ne moze biti prazan");
+            }
+
+            if (maxSnaga <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Maksimalna snaga mora biti pozitivan broj");
+            }
+
+            if (kapacitet <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Kapacitet mora biti pozitivan broj");
+            }
+
             Ime = ime;
             MaxSnaga = maxSnaga;
             KapacitetUSatima = kapacitet;

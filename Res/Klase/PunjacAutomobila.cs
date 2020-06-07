@@ -23,6 +23,31 @@ namespace Klase
 
         public PunjacAutomobila(string naziv, int snagaBaterije, int procenatBaterije, int maksSnagabaterijeAuta)
         {
+            if (String.IsNullOrEmpty(naziv))
+            {
+                throw new ArgumentOutOfRangeException("Naziv baterije ne moze biti prazan");
+            }
+
+            if (naziv.Trim() == "")
+            {
+                throw new ArgumentOutOfRangeException("Naziv baterije ne moze biti prazan");
+            }
+
+            if (snagaBaterije <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Snaga punjaca mora biti pozitivan broj");
+            }
+
+            if (procenatBaterije < 0 || procenatBaterije > 100)
+            {
+                throw new ArgumentOutOfRangeException("Procenat baterije mora biti pozitivan broj(ne veci od 100)");
+            }
+
+            if (maksSnagabaterijeAuta <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Snaga baterija automobila mora biti pozitivan broj");
+            }
+
             Naziv = naziv;
             SnagaBaterijePunjaca = snagaBaterije;
             MaksBaterijaAutomobila = maksSnagabaterijeAuta;
