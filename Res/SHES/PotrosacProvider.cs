@@ -17,6 +17,11 @@ namespace SHES
 
         public bool DodajPotrosaca(Potrosac p)
         {
+            if(p == null)
+            {
+                throw new ArgumentNullException("Primljeni potrosac je null");
+            }
+
             if (PronadjiPotrosaca(p.Ime) != null)
                 return false;
 
@@ -67,5 +72,6 @@ namespace SHES
                 }
             }
         }
+
     }
 }

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grafik", "Grafik\Grafik.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KlaseTest", "KlaseTest\KlaseTest.csproj", "{74FF2720-C08F-4027-B515-7EAB5203DED4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHESTest", "SHESTest\SHESTest.csproj", "{B95C17C8-B0E4-46E3-9807-4D02758C45DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{74FF2720-C08F-4027-B515-7EAB5203DED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{74FF2720-C08F-4027-B515-7EAB5203DED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{74FF2720-C08F-4027-B515-7EAB5203DED4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B95C17C8-B0E4-46E3-9807-4D02758C45DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B95C17C8-B0E4-46E3-9807-4D02758C45DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B95C17C8-B0E4-46E3-9807-4D02758C45DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B95C17C8-B0E4-46E3-9807-4D02758C45DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

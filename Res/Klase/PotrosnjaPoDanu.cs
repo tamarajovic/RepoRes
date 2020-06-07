@@ -30,14 +30,10 @@ namespace Klase
             EnergijaIzBaterije = new List<double>();
             Uvoz = new List<double>();
             PotrosnjaPotrosaca = new List<double>();
-            string vremeSad = DateTime.Now.ToString();
-            string[] tokeni = vremeSad.Split('/');
-            string Mesec = tokeni[0];
-            string Dan = tokeni[1];
-            string Godina = tokeni[2].Split(' ')[0];
-            int GodinaBroj = int.Parse(Godina);
-            int DanBroj = int.Parse(Dan);
-            int MesecBroj = int.Parse(Mesec);
+
+            DateTime danas = DateTime.Now;
+            int DanBroj = danas.Day;
+
             DanBroj += countDana;
             //if (MesecBroj == 1 && DanBroj > 31)
             //{
@@ -107,7 +103,7 @@ namespace Klase
             //}
            
             countDana++;
-            Datum = Dan.ToString() + '/' + Mesec.ToString() + '/' + Godina.ToString();
+            Datum = DanBroj.ToString() + '/' + danas.Month + '/' + danas.Year;
         }
 
 
