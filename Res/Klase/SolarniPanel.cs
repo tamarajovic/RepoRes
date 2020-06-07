@@ -10,12 +10,25 @@ namespace Klase
     {
 
         public string Ime { get; set; }
-        public int MaksSnaga { get; set; }
+        public double MaksSnaga { get; set; }
 
 
-        public SolarniPanel(string ime, int maksSnaga)
+        public SolarniPanel(string ime, double maksSnaga)
         {
-            Ime = ime;
+            if(ime == null)
+            {
+                throw new ArgumentNullException("Ime ne sme biti null");
+            }
+            if(ime.Trim() == "")
+            {
+                throw new ArgumentException("Ime mora imati karaktere");
+            }
+            if(maksSnaga <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Snaga panela mora biti pozitivan broj");
+            }
+
+            Ime = ime.Trim();
             MaksSnaga = maksSnaga;
         }
 
@@ -24,9 +37,14 @@ namespace Klase
 
         }
 
-        public double KolicinaGenerisaneEnergije(double ProcenatSunca)
+        public double KolicinaGenerisaneEnergije(double procenatSunca)
         {
-            return ProcenatSunca * MaksSnaga / 100;
+            if(procenatSunca < 0 || procenatSunca > 100)
+            {
+                throw new ArgumentOutOfRangeException("Procenat sunca je u granicama od 0 do 100");
+            }
+
+            return procenatSunca * MaksSnaga / 100;
         }
 
 

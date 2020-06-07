@@ -18,6 +18,11 @@ namespace Klase
 
         public Elektrodistribucija(double cenaPokWh)
         {
+            if(cenaPokWh <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Cena mora biti pozitivan broj");
+            }
+
             CenaPokWh = cenaPokWh;
         }
 
