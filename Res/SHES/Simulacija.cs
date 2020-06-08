@@ -176,17 +176,17 @@ namespace SHES
                         satnica++;
                         Kolicina = 0;
                         EnergijaBaterija = 0;
-                        }
-
-                        Thread.Sleep(Takt);
-
-
                     }
-                    countDani++;
-                    Dani++;
-                    BazaPodataka.UpisiPotrosnju();
-                    satnica = 0;
-                    Console.WriteLine("Prodje dan, potroseno {0}", novac);
+
+                     Thread.Sleep(Takt);
+
+
+                }
+                countDani++;
+                Dani++;
+                BazaPodataka.UpisiPotrosnju();
+                satnica = 0;
+                Console.WriteLine("Prodje dan, potroseno {0}", novac);
                 }
             }).Start();
             
