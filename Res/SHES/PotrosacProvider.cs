@@ -50,28 +50,14 @@ namespace SHES
             return null;
         }
 
-        public void Ukljuci(string ime)
+        public void Ukljuci(Potrosac p)
         {
-            foreach (Potrosac p in BazaPodataka.potrosaci)
-            {
-                if (p.Ime == ime)
-                {
-                    p.Aktivan = true;
-                    break;
-                }
-            }
+            p.Aktivan = true;
         }
 
-        public void Iskljuci(string ime)
+        public void Iskljuci(Potrosac p)
         {
-            foreach (Potrosac p in BazaPodataka.potrosaci)
-            {
-                if (p.Ime == ime)
-                {
-                    p.Aktivan = false;
-                    break;
-                }
-            }
+            p.Aktivan = false;
         }
 
     }

@@ -2,6 +2,10 @@
 <ArrayOfSolarniPanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SolarniPanel>
     <Ime>p1</Ime>
-    <MaksSnaga>10</MaksSnaga>
+    <MaksSnaga>3</MaksSnaga>
+  </SolarniPanel>
+  <SolarniPanel>
+    <Ime>p2</Ime>
+    <MaksSnaga>2</MaksSnaga>
   </SolarniPanel>
 </ArrayOfSolarniPanel>

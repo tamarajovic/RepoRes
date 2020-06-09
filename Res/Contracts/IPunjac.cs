@@ -24,9 +24,9 @@ namespace Contracts
         PunjacAutomobila PronadjiPunjac(string ime);
 
         [OperationContract]
-        void Ukljuci(string ime);
+        void Ukljuci(PunjacAutomobila pa);
 
         [OperationContract]
-        void Iskljuci(string ime);
+        void Iskljuci(PunjacAutomobila pa);
     }
 }

@@ -16,5 +16,12 @@ namespace SHESTest
     { 
 
 
+        [SetUp]
+        public void Pokreni()
+        {
+
+        }
+
+
     }
 }

@@ -16,8 +16,6 @@ namespace Res
 
         public static void Main(string[] args)
         {
-
-
             #region Connection
             NetTcpBinding binding = new NetTcpBinding();
             NetTcpBinding binding2 = new NetTcpBinding();
@@ -49,8 +47,7 @@ namespace Res
             #endregion
 
             Meni(proxyPunjac, proxyBaterija, proxyPanel, proxyPotrosac, proxySimulacija, proxyGrafik);
-
-
+            
         }
 
         public static void Meni(IPunjac ppunjac, IBaterija pbaterija, ISolarniPanel ppanel, IPotrosac ppotrosac, ISimulacija psimulacija, IGrafik pgrafik)
@@ -124,7 +121,7 @@ namespace Res
                                             Console.WriteLine("Ime baterije: ");
                                             string ime = Console.ReadLine();
                                             Console.WriteLine("Maksimalna snaga baterije: ");
-                                            int snaga = int.Parse(Console.ReadLine());
+                                            double snaga = double.Parse(Console.ReadLine());
                                             Console.WriteLine("Kapacitet baterije: ");
                                             double kapacitet = double.Parse(Console.ReadLine());
                                             Baterija b = new Baterija(ime, snaga, kapacitet);
@@ -139,11 +136,11 @@ namespace Res
                                             Console.WriteLine("Naziv punjaca za automobil: ");
                                             string ime = Console.ReadLine();
                                             Console.WriteLine("Snaga punjaca: ");
-                                            int snaga = int.Parse(Console.ReadLine());
+                                            double snaga = double.Parse(Console.ReadLine());
                                             Console.WriteLine("Unesite koliko vas automobil ima trenutno procenata baterije: ");
-                                            int kolicinaBaterije = int.Parse(Console.ReadLine());
+                                            double kolicinaBaterije = double.Parse(Console.ReadLine());
                                             Console.WriteLine("Unesite koliko je kapacitet baterije vaseg automobila: ");
-                                            int maksKoliicinabaterije = int.Parse(Console.ReadLine());
+                                            double maksKoliicinabaterije = double.Parse(Console.ReadLine());
                                             PunjacAutomobila pauto = new PunjacAutomobila(ime, snaga, kolicinaBaterije, maksKoliicinabaterije);
                                             if (ppunjac.DodajPunjac(pauto))
                                                 Console.WriteLine("Punjac automobila je uspesno dodat");
@@ -175,7 +172,7 @@ namespace Res
                                     Console.WriteLine("Potrosac je vec pokrenut");
                                     break;
                                 }
-                                ppotrosac.Ukljuci(potrosac1);
+                                ppotrosac.Ukljuci(p1);
                                 Console.WriteLine("Potrosac {0} ukljucen", potrosac1);
                             }
                             
@@ -197,7 +194,7 @@ namespace Res
                                     Console.WriteLine("Potrosac nije bio aktivan");
                                     break;
                                 }
-                                ppotrosac.Iskljuci(potrosac2);
+                                ppotrosac.Iskljuci(p2);
                                 Console.WriteLine("Potrosac {0} iskljucen", potrosac2);
                             }
                             break;
@@ -218,12 +215,12 @@ namespace Res
 
                                 if (pa.MaksBaterijaAutomobila > pa.TrenutnoBaterijaAutomobila)
                                 {
-                                    ppunjac.Ukljuci(naziv);
+                                    ppunjac.Ukljuci(pa);
                                     Console.WriteLine("Automobil je ukljucen na punjac {0}", naziv);
                                 }
                                 else
                                 {
-                                    ppunjac.Ukljuci(naziv);
+                                    ppunjac.Ukljuci(pa);
                                     Console.WriteLine("Vas auto je vec pun");
                                     break;
                                 }
@@ -249,7 +246,7 @@ namespace Res
                                 }
                                 else
                                 {
-                                    ppunjac.Iskljuci(nazivZaBrisanje);
+                                    ppunjac.Iskljuci(pa2);
                                     Console.WriteLine("Automobil je istaknut sa punjaca {0}", pa2.Naziv);
                                 }
                             }

@@ -55,7 +55,10 @@ namespace Grafik
 
         private void UpdateChart()
         {
-
+            chart1.Series["potrosaci"].Points.Clear();
+            chart1.Series["paneli"].Points.Clear();
+            chart1.Series["distribucija"].Points.Clear();
+            chart1.Series["baterije"].Points.Clear();
 
 
             for (int i = 0; i < 24; i++)

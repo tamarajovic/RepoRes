@@ -19,13 +19,16 @@ namespace SHES
         public static double ProcenatSunca { get; set; } = 0;
         public static double EnergijaBaterija { get; set; } = 0;
         public static int satnica { get; set; } = 0;
+        PotrosacProvider PotrosaciUpravljac = new PotrosacProvider();
+        PunjacProvider PunjacUpravljac = new PunjacProvider();
 
         public static int countDani = 0;
         
 
         public Simulacija()
         {
-            
+            Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Frizider");
+            PotrosaciUpravljac.Ukljuci(temp);
         }
 
         public void Simuliraj()
@@ -33,160 +36,166 @@ namespace SHES
 
             new Thread(() =>
             {
-            while (true)
-            {
-                double novac = 0;
-                for (int i = 1; i <= 1440; i++)
+                while (true)
                 {
-                    if (i % 60 == 0)
+                    double novac = 0;
+                    for (int i = 1; i <= 1440; i++)
                     {
-
-                        if (satnica == 0)
-                        {
-                            BazaPodataka.istorijaPotrosnje.Add(new PotrosnjaPoDanu());
-                        }
-                        else if (satnica == 1)
-                        {
-                        }
-                        else if (satnica == 2)
+                        if (i % 60 == 0)
                         {
 
-                        }
-                        else if (satnica == 3)
-                        {
-                            BazaPodataka.distribucija[0].CenaPokWh = 1.5;
-                            novac -= PuniBaterije();
-                            Console.WriteLine("Puni Baterije");
+                            if (satnica == 0)
+                            {
+                                BazaPodataka.istorijaPotrosnje.Add(new PotrosnjaPoDanu());
+                                BazaPodataka.distribucija[0].CenaPokWh = 1.5;
+                            }
+                            else if (satnica == 1)
+                            {
+                                PunjacAutomobila temp = PunjacUpravljac.PronadjiPunjac("pa1");
+                                PunjacUpravljac.Ukljuci(temp);
+                            }
+                            else if (satnica == 2)
+                            {
+                                Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Bojler");
+                                PotrosaciUpravljac.Ukljuci(temp);
+                            }
+                            else if (satnica == 3)
+                            {
+                                novac -= PuniBaterije();
+                            }
+                            else if (satnica == 4)
+                            {
+                                novac -= PuniBaterije();
+                            }
+                            else if (satnica == 5)
+                            {
+                                novac -= PuniBaterije();
+                                ProcenatSunca = 10;
+                                Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Bojler");
+                                PotrosaciUpravljac.Iskljuci(temp);
+                                }
+                            else if (satnica == 6)
+                            {
+                                ProcenatSunca = 30;
+                            }
+                            else if (satnica == 7)
+                            {
+                                Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Bojler");
+                                PotrosaciUpravljac.Iskljuci(temp);
+                                ProcenatSunca = 40;
+                            }
+                            else if (satnica == 8)
+                            {
+                                BazaPodataka.distribucija[0].CenaPokWh = 6;
+                                ProcenatSunca = 60;
+                            }
+                            else if (satnica == 9)
+                            {
+                                ProcenatSunca = 80;
+                            }
+                            else if (satnica == 10)
+                            {
+                                ProcenatSunca = 90;
+                            }
+                            else if (satnica == 11)
+                            {
+                                ProcenatSunca = 100;
+                            }
+                            else if (satnica == 12)
+                            {
+                            
+                            }
+                            else if (satnica == 13)
+                            {
+                            
+                            }
+                            else if (satnica == 14)
+                            {
+                                novac += PrazniBaterije();
+                                Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Klima");
+                                PotrosaciUpravljac.Ukljuci(temp);
+                                }
+                            else if (satnica == 15)
+                            {
+                                novac += PrazniBaterije();
+                            }
+                            else if (satnica == 16)
+                            {
+                                novac += PrazniBaterije();
+                                Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Klima");
+                                PotrosaciUpravljac.Iskljuci(temp);
+                                }
+                            else if (satnica == 17)
+                            {
+                            }
+                            else if (satnica == 18)
+                            {
+                                Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Osvetljenje");
+                                PotrosaciUpravljac.Ukljuci(temp);
+                                ProcenatSunca = 80;
+                            }
+                            else if (satnica == 19)
+                            {
+                                ProcenatSunca = 60;
+                            }
+                            else if (satnica == 20)
+                            {
+                                ProcenatSunca = 40;
+                            }
+                            else if (satnica == 21)
+                            {
+                                ProcenatSunca = 10;
+                            }
+                            else if (satnica == 22)
+                            {
+                                ProcenatSunca = 0;
+                            }
+                            else if (satnica == 23)
+                            {
+                                Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Osvetljenje");
+                                PotrosaciUpravljac.Iskljuci(temp);
+                            }
+
+                            novac += Potroseno();
+
+                            BazaPodataka.istorijaPotrosnje[countDani].EnergijaIzBaterije.Add(EnergijaBaterija);
+                            double potrosnjaAktivnih = 0;
+                            foreach (Potrosac p in BazaPodataka.potrosaci)
+                            {
+                                if (p.Aktivan)
+                                    potrosnjaAktivnih -= p.Potrosnja;
+                            }
+                            BazaPodataka.istorijaPotrosnje[countDani].PotrosnjaPotrosaca.Add(potrosnjaAktivnih);
+                            double proizvodnjaPanela = 0;
+
+                            foreach (SolarniPanel sp in BazaPodataka.paneli)
+                            {
+                                proizvodnjaPanela += sp.KolicinaGenerisaneEnergije(ProcenatSunca);
+                            }
+                            BazaPodataka.istorijaPotrosnje[countDani].ProizvodnjaSP.Add(proizvodnjaPanela);
+                            BazaPodataka.istorijaPotrosnje[countDani].Uvoz.Add(Kolicina);
+
+
+                            satnica++;
 
                         }
-                        else if (satnica == 4)
-                        {
-                            
-                            novac -= PuniBaterije();
-                        }
-                        else if (satnica == 5)
-                        {
-                            
-                            novac -= PuniBaterije();
-                            ProcenatSunca = 30;
-                        }
-                        else if (satnica == 6)
-                        {
-                            BazaPodataka.distribucija[0].CenaPokWh = 3;
-                        }
-                        else if (satnica == 7)
-                        {
-                            
-                            ProcenatSunca = 60;
-                        }
-                        else if (satnica == 8)
-                        {
-                           
-                        }
-                        else if (satnica == 9)
-                        {
-                           
-                            ProcenatSunca = 100.0;
-                        }
-                        else if (satnica == 10)
-                        {
-                           
-                        }
-                        else if (satnica == 11)
-                        {
-                            
-                        }
-                        else if (satnica == 12)
-                        {
-                            
-                        }
-                        else if (satnica == 13)
-                        {
-                            
-                        }
-                        else if (satnica == 14)
-                        {
-                            
-                            novac += PrazniBaterije();
-                            BazaPodataka.distribucija[0].CenaPokWh = 5;
-                        }
-                        else if (satnica == 15)
-                        {
-                            
-                            novac += PrazniBaterije();
-                        }
-                        else if (satnica == 16)
-                        {
-                            
-                            novac += PrazniBaterije();
-                        }
-                        else if (satnica == 17)
-                        {
-                            BazaPodataka.distribucija[0].CenaPokWh = 3;
 
-                        }
-                        else if (satnica == 18)
-                        {
-                            
-                        }
-                        else if (satnica == 19)
-                        {
-                            
-                        }
-                        else if (satnica == 20)
-                        {
-                            
-                            ProcenatSunca = 70;
-                        }
-                        else if (satnica == 21)
-                        {
-                            
-                            ProcenatSunca = 40;
-                        }
-                        else if (satnica == 22)
-                        {
-                            
-                            ProcenatSunca = 0;
-                        }
-                        else if (satnica == 23)
-                        {
-                            
-                        }
-
-                        novac += Potroseno();
-
-                        BazaPodataka.istorijaPotrosnje[countDani].EnergijaIzBaterije.Add(EnergijaBaterija);
-                        double potrosnjaAktivnih = 0;
-                        foreach (Potrosac p in BazaPodataka.potrosaci)
-                        {
-                            if (p.Aktivan)
-                                potrosnjaAktivnih -= p.Potrosnja;
-                        }
-                        BazaPodataka.istorijaPotrosnje[countDani].PotrosnjaPotrosaca.Add(potrosnjaAktivnih);
-                        double proizvodnjaPanela = 0;
-
-                        foreach (SolarniPanel sp in BazaPodataka.paneli)
-                        {
-                            proizvodnjaPanela += sp.KolicinaGenerisaneEnergije(ProcenatSunca);
-                        }
-                        BazaPodataka.istorijaPotrosnje[countDani].ProizvodnjaSP.Add(proizvodnjaPanela);
-                        BazaPodataka.istorijaPotrosnje[countDani].Uvoz.Add(Kolicina);
+                            Thread.Sleep(Takt);
 
 
-                        satnica++;
-                        Kolicina = 0;
-                        EnergijaBaterija = 0;
                     }
-
-                     Thread.Sleep(Takt);
-
-
-                }
-                countDani++;
-                Dani++;
-                BazaPodataka.UpisiPotrosnju();
-                satnica = 0;
-                Console.WriteLine("Prodje dan, potroseno {0}", novac);
+                    countDani++;
+                    Dani++;
+                    BazaPodataka.UpisiPotrosnju();
+                    satnica = 0;
+                    if(novac >= 0)
+                    {
+                        Console.WriteLine("Zaradjeno : {0}", novac);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Potroseno : {0}", novac);
+                    }
                 }
             }).Start();
             
@@ -198,6 +207,8 @@ namespace SHES
 
         public double Potroseno()
         {
+            Kolicina = 0;
+            EnergijaBaterija = 0;
             double kolicina = 0;
             kolicina += IzracunajPanele(ProcenatSunca);
             kolicina += IzracunajPotrosace();
@@ -234,7 +245,7 @@ namespace SHES
             {
                 if (pa.UtaknutAutomobil)
                 {
-                    int procenatKojiSeNapuniPoSatuMaks = ((100 * pa.SnagaBaterijePunjaca) / pa.MaksBaterijaAutomobila);
+                    double procenatKojiSeNapuniPoSatuMaks = ((100 * pa.SnagaBaterijePunjaca) / pa.MaksBaterijaAutomobila);
                     if (100 - pa.TrenutnoBaterijaAutomobila >= procenatKojiSeNapuniPoSatuMaks)
                     {
                         kolicina -= pa.SnagaBaterijePunjaca;
@@ -242,7 +253,7 @@ namespace SHES
                     }
                     else
                     {
-                        int procenatPraznogAuta = 100 - pa.TrenutnoBaterijaAutomobila;
+                        double procenatPraznogAuta = 100 - pa.TrenutnoBaterijaAutomobila;
                         kolicina -= ((pa.MaksBaterijaAutomobila * procenatPraznogAuta) / 100);
                         pa.TrenutnoBaterijaAutomobila = 100;
                     }
@@ -286,18 +297,10 @@ namespace SHES
                             else
                             {
                                 double mestaNaBateriji = b.MaksKapacitet - b.TrKapacitet;
-                                if(kolicina <= mestaNaBateriji)
-                                {
-                                    b.TrKapacitet += kolicina;
-                                    EnergijaBaterija -= kolicina;
-                                    kolicina = 0;
-                                }
-                                else
-                                {
-                                    EnergijaBaterija -= mestaNaBateriji;
-                                    b.TrKapacitet += mestaNaBateriji;
-                                    kolicina -= mestaNaBateriji;
-                                }
+
+                                EnergijaBaterija -= mestaNaBateriji;
+                                b.TrKapacitet = b.MaksKapacitet;
+                                kolicina -= mestaNaBateriji;
                             }
                         }
                     }
@@ -368,7 +371,6 @@ namespace SHES
             {
                 if(b.TrKapacitet < b.MaksKapacitet)
                 {
-                    //double procenatKojiSeNapuniPoSatuMaks = ((100 * b.MaxSnaga) / b.Kapacitet);
                     if (b.TrKapacitet + b.MaxSnaga <= b.MaksKapacitet) // moze pun obim u roku od jednog sata
                     {
                         EnergijaBaterija -= b.MaxSnaga;

@@ -9,14 +9,14 @@ namespace Klase
     public class Baterija
     {
         public string Ime { get; set; }
-        public int MaxSnaga { get; set; }  // po satu koliko moze da isporuci
+        public double MaxSnaga { get; set; }  // po satu koliko moze da isporuci
         public double KapacitetUSatima { get; set; } //koliko sati rada ima u sebi 
         public double TrKapacitet { get; set; }  // odnos ova dva iznad
         public double MaksKapacitet { get; set; } // ne menja se
 
         public Baterija() { }
 
-        public Baterija(string ime, int maxSnaga, double kapacitet)
+        public Baterija(string ime, double maxSnaga, double kapacitet)
         {
             if (String.IsNullOrEmpty(ime))
             {

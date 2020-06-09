@@ -21,16 +21,9 @@ namespace SHES
             }
         }
 
-        public void Iskljuci(string ime)
+        public void Iskljuci(PunjacAutomobila pa)
         {
-            foreach (PunjacAutomobila p in BazaPodataka.punjaci)
-            {
-                if (p.Naziv == ime)
-                {
-                    p.UtaknutAutomobil = false;
-                    break;
-                }
-            }
+            pa.UtaknutAutomobil = false;
         }
 
         public bool ObrisiPunjac(string ime)
@@ -56,16 +49,9 @@ namespace SHES
             return null;
         }
 
-        public void Ukljuci(string ime)
+        public void Ukljuci(PunjacAutomobila pa)
         {
-            foreach (PunjacAutomobila p in BazaPodataka.punjaci)
-            {
-                if (p.Naziv == ime)
-                {
-                    p.UtaknutAutomobil = true;
-                    break;
-                }
-            }
+            pa.UtaknutAutomobil = true;
         }
 
         public List<PunjacAutomobila> VratiPunjace()

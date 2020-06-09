@@ -24,10 +24,10 @@ namespace Contracts
         Potrosac PronadjiPotrosaca(string ime);
 
         [OperationContract]
-        void Ukljuci(string ime);
+        void Ukljuci(Potrosac p);
 
         [OperationContract]
-        void Iskljuci(string ime);
+        void Iskljuci(Potrosac p);
 
     }
 }

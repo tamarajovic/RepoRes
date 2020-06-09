@@ -45,8 +45,16 @@ namespace SHES
         public static List<Elektrodistribucija> distribucija = new List<Elektrodistribucija>();
         public static List<PotrosnjaPoDanu> istorijaPotrosnje = new List<PotrosnjaPoDanu>();
 
+        public List<Potrosac> potrosaciZaTest = new List<Potrosac>();
+        public List<Baterija> baterijeZaTest = new List<Baterija>();
+        public List<SolarniPanel> paneliZaTest = new List<SolarniPanel>();
+        public List<PunjacAutomobila> punjaciZaTest = new List<PunjacAutomobila>();
+        public List<Elektrodistribucija> distribucijaZaTest = new List<Elektrodistribucija>();
+        public List<PotrosnjaPoDanu> istorijaPotrosnjeZaTest = new List<PotrosnjaPoDanu>();
+
         public BazaPodataka()
         {
+
 
             if (File.Exists(PotrosaciPath))
             {
@@ -59,9 +67,13 @@ namespace SHES
                 {
                     potrosaci.Add(new Potrosac("Frizider", 0.3));
                     potrosaci.Add(new Potrosac("Rerna", 2));
-                    potrosaci.Add(new Potrosac("Klima", 4));
+                    potrosaci.Add(new Potrosac("Klima", 1));
                     potrosaci.Add(new Potrosac("Ves masina", 1.5));
                     potrosaci.Add(new Potrosac("Toster", 0.01));
+                    potrosaci.Add(new Potrosac("Bojler", 2));
+                    potrosaci.Add(new Potrosac("Osvetljenje", 1.5));
+                    potrosaci.Add(new Potrosac("Pegla", 1.8));
+                    potrosaci.Add(new Potrosac("Televizija", 0.08));
                 }
             }
             if (File.Exists(BaterijePath))
@@ -74,6 +86,8 @@ namespace SHES
                 if(baterije.Count == 0)
                 {
                     baterije.Add(new Baterija("b1", 1, 5));
+                    baterije.Add(new Baterija("b2", 2, 6));
+                    baterije.Add(new Baterija("b3", 0.5, 4));
                 }
             }
             if (File.Exists(PaneliPath))
@@ -85,7 +99,8 @@ namespace SHES
                 }
                 if(paneli.Count == 0)
                 {
-                    paneli.Add(new SolarniPanel("p1", 10));
+                    paneli.Add(new SolarniPanel("p1", 3));
+                    paneli.Add(new SolarniPanel("p2", 2));
                 }
             }
             if (File.Exists(PunjaciPath))
@@ -97,7 +112,7 @@ namespace SHES
                 }
                 if(punjaci.Count == 0)
                 {
-                    punjaci.Add(new PunjacAutomobila("pa1", 100, 50, 400));
+                    punjaci.Add(new PunjacAutomobila("pa1", 2, 30, 8));
                 }
             }
             if (File.Exists(DistribucijaPath))
@@ -160,7 +175,7 @@ namespace SHES
                     {
                         xmlSerializerDistribucija.Serialize(sw, distribucija);
                     }
-                    Thread.Sleep(10000);
+                    Thread.Sleep(1000);
                 }
                 
                 

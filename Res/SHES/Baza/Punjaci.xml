@@ -2,9 +2,9 @@
 <ArrayOfPunjacAutomobila xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <PunjacAutomobila>
     <Naziv>pa1</Naziv>
-    <TrenutnoBaterijaAutomobila>50</TrenutnoBaterijaAutomobila>
-    <SnagaBaterijePunjaca>100</SnagaBaterijePunjaca>
-    <MaksBaterijaAutomobila>400</MaksBaterijaAutomobila>
-    <UtaknutAutomobil>false</UtaknutAutomobil>
+    <TrenutnoBaterijaAutomobila>100</TrenutnoBaterijaAutomobila>
+    <SnagaBaterijePunjaca>2</SnagaBaterijePunjaca>
+    <MaksBaterijaAutomobila>8</MaksBaterijaAutomobila>
+    <UtaknutAutomobil>true</UtaknutAutomobil>
   </PunjacAutomobila>
 </ArrayOfPunjacAutomobila>
