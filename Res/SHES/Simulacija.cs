@@ -155,32 +155,31 @@ namespace SHES
                                 Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Osvetljenje");
                                 PotrosaciUpravljac.Iskljuci(temp);
                             }
-
-                            novac += Potroseno();
-
-                            BazaPodataka.istorijaPotrosnje[countDani].EnergijaIzBaterije.Add(EnergijaBaterija);
-                            double potrosnjaAktivnih = 0;
-                            foreach (Potrosac p in BazaPodataka.potrosaci)
-                            {
-                                if (p.Aktivan)
-                                    potrosnjaAktivnih -= p.Potrosnja;
-                            }
-                            BazaPodataka.istorijaPotrosnje[countDani].PotrosnjaPotrosaca.Add(potrosnjaAktivnih);
-                            double proizvodnjaPanela = 0;
-
-                            foreach (SolarniPanel sp in BazaPodataka.paneli)
-                            {
-                                proizvodnjaPanela += sp.KolicinaGenerisaneEnergije(ProcenatSunca);
-                            }
-                            BazaPodataka.istorijaPotrosnje[countDani].ProizvodnjaSP.Add(proizvodnjaPanela);
-                            BazaPodataka.istorijaPotrosnje[countDani].Uvoz.Add(Kolicina);
-
-
+                            
                             satnica++;
-
                         }
+                        novac += Potroseno();
 
-                            Thread.Sleep(Takt);
+                        BazaPodataka.istorijaPotrosnje[countDani].EnergijaIzBaterije.Add(EnergijaBaterija);
+
+                        double potrosnjaAktivnih = 0;
+                        foreach (Potrosac p in BazaPodataka.potrosaci)
+                        {
+                            if (p.Aktivan)
+                                potrosnjaAktivnih -= p.PotrosnjaUMinutu;
+                        }
+                        BazaPodataka.istorijaPotrosnje[countDani].PotrosnjaPotrosaca.Add(potrosnjaAktivnih);
+                        double proizvodnjaPanela = 0;
+
+                        foreach (SolarniPanel sp in BazaPodataka.paneli)
+                        {
+                            proizvodnjaPanela += sp.KolicinaGenerisaneEnergije(ProcenatSunca);
+                        }
+                        BazaPodataka.istorijaPotrosnje[countDani].ProizvodnjaSP.Add(proizvodnjaPanela);
+                        BazaPodataka.istorijaPotrosnje[countDani].Uvoz.Add(Kolicina);
+
+
+                        Thread.Sleep(Takt);
 
 
                     }
@@ -224,7 +223,7 @@ namespace SHES
             {
                 kolicina += s.KolicinaGenerisaneEnergije(procenatSunca);
             }
-            return kolicina; //po satu kolicina
+            return kolicina; //po minutu kolicina
         }
 
         public double IzracunajPotrosace()
@@ -233,9 +232,9 @@ namespace SHES
             foreach (Potrosac p in BazaPodataka.potrosaci)
             {
                 if (p.Aktivan)
-                    kolicina -= p.Potrosnja;
+                    kolicina -= p.PotrosnjaUMinutu;
             }
-            return kolicina; // po satu
+            return kolicina; // po minutu
         }
 
         public double IzracunajPunjace()
@@ -245,11 +244,11 @@ namespace SHES
             {
                 if (pa.UtaknutAutomobil)
                 {
-                    double procenatKojiSeNapuniPoSatuMaks = ((100 * pa.SnagaBaterijePunjaca) / pa.MaksBaterijaAutomobila);
-                    if (100 - pa.TrenutnoBaterijaAutomobila >= procenatKojiSeNapuniPoSatuMaks)
+                    double procenatKojiSeNapuniPoMinutuMaks = ((100 * pa.SnagaUMinuti) / pa.MaksBaterijaAutomobila);
+                    if (100 - pa.TrenutnoBaterijaAutomobila >= procenatKojiSeNapuniPoMinutuMaks)
                     {
-                        kolicina -= pa.SnagaBaterijePunjaca;
-                        pa.TrenutnoBaterijaAutomobila += procenatKojiSeNapuniPoSatuMaks;
+                        kolicina -= pa.SnagaUMinuti;
+                        pa.TrenutnoBaterijaAutomobila += procenatKojiSeNapuniPoMinutuMaks;
                     }
                     else
                     {
@@ -269,91 +268,33 @@ namespace SHES
             {
                 foreach(Baterija b in BazaPodataka.baterije)
                 {
-                    if(b.TrKapacitet < b.MaksKapacitet)
+                    if (b.TrKapacitetUMinutima + 1 <= b.MaksKapacitetUMinutima) // moze pun obim u roku od jednog sata
                     {
-                        if (kolicina >= b.MaxSnaga) // ne moze sve da stane u jednu bateriju tokom jedne iteracije, ili je knap
-                        {
-                            if (b.TrKapacitet + b.MaxSnaga <= b.MaksKapacitet) // moze pun obim u roku od jednog sata
-                            {
-                                kolicina -= b.MaxSnaga;
-                                b.TrKapacitet += b.MaxSnaga;
-                                EnergijaBaterija -= b.MaxSnaga;
-                            }
-                            else // ne moze pun obim
-                            {
-                                kolicina -= (b.MaksKapacitet - b.TrKapacitet);
-                                b.TrKapacitet = b.MaksKapacitet;
-                                EnergijaBaterija -= (b.MaksKapacitet - b.TrKapacitet);
-                            }
-                        }
-                        else
-                        {
-                            if (b.TrKapacitet + kolicina <= b.MaksKapacitet)
-                            {
-                                b.TrKapacitet += kolicina;
-                                EnergijaBaterija -= kolicina;
-                                kolicina = 0;
-                            }
-                            else
-                            {
-                                double mestaNaBateriji = b.MaksKapacitet - b.TrKapacitet;
-
-                                EnergijaBaterija -= mestaNaBateriji;
-                                b.TrKapacitet = b.MaksKapacitet;
-                                kolicina -= mestaNaBateriji;
-                            }
-                        }
+                        kolicina -= b.MaksKapacitetUMinutima;
+                        b.TrKapacitetUMinutima++;
+                        EnergijaBaterija -= b.MaksKapacitetUMinutima;
                     }
                 }
                 if(kolicina > 0) // kraj proveravanja, odnos sa distribucijom
                 {
-                    Kolicina -= kolicina;
+                    Kolicina += kolicina;
                     novac = BazaPodataka.distribucija[0].Razlika(kolicina);
                 }
             }
-            else // prazne se baterije
+            else
             {
-                kolicina = kolicina * (-1);
                 foreach(Baterija b in BazaPodataka.baterije)
                 {
-                    if(b.TrKapacitet > 0)
+                   if(b.TrKapacitetUMinutima > 0)
                     {
-                        if (kolicina >= b.MaxSnaga) // treba joj ili maks ili vise od jedne baterija
-                        {
-                            if (b.TrKapacitet >= b.MaxSnaga) // ceo kapacitet za jedan sat se skine sa baterije
-                            {
-                                kolicina -= b.MaxSnaga;
-                                b.TrKapacitet -= b.MaxSnaga;
-                                EnergijaBaterija += b.MaxSnaga;
-                            }
-                            else // skida se sa baterije sve
-                            {
-                                kolicina -= b.TrKapacitet;
-                                b.TrKapacitet = 0;
-                                EnergijaBaterija += b.TrKapacitet;
-                            }
-                        }
-                        else // treba joj samo jedna baterija
-                        {
-                            if (b.TrKapacitet >= kolicina) // sve moze sa jedne baterije
-                            {
-                                b.TrKapacitet -= kolicina;
-                                kolicina = 0;
-                                EnergijaBaterija += kolicina;
-                            }
-                            else
-                            {
-                                EnergijaBaterija += b.TrKapacitet;
-                                kolicina -= b.TrKapacitet;
-                                b.TrKapacitet = 0;
-                            }
-                        }
+                        b.TrKapacitetUMinutima--;
+                        Kolicina += b.KolicinaKojuMozeDaIsporuciUMinuti;
+                        EnergijaBaterija -= b.KolicinaKojuMozeDaIsporuciUMinuti;
                     }
                 }
-                if(kolicina > 0)
+                if(kolicina < 0)
                 {
-                    kolicina = kolicina * (-1);
-                    Kolicina -= kolicina;
+                    Kolicina += kolicina;
                     novac = BazaPodataka.distribucija[0].Razlika(kolicina);
                 }
             }
@@ -369,25 +310,16 @@ namespace SHES
             double kolicina = 0;
             foreach(Baterija b in BazaPodataka.baterije)
             {
-                if(b.TrKapacitet < b.MaksKapacitet)
+                if(b.TrKapacitetUMinutima < b.MaksKapacitetUMinutima)
                 {
-                    if (b.TrKapacitet + b.MaxSnaga <= b.MaksKapacitet) // moze pun obim u roku od jednog sata
-                    {
-                        EnergijaBaterija -= b.MaxSnaga;
-                        kolicina += b.MaxSnaga;
-                        b.TrKapacitet += b.MaxSnaga;
-                    }
-                    else // ne moze pun obim
-                    {
-                        EnergijaBaterija -= b.TrKapacitet;
-                        kolicina += b.TrKapacitet;
-                        b.TrKapacitet = 0;
-                    }
+                    b.TrKapacitetUMinutima++;
+                    kolicina -= b.KolicinaKojuMozeDaIsporuciUMinuti;
                 }
             }
-            Kolicina += kolicina;
+            Kolicina -= kolicina;
+            EnergijaBaterija -= kolicina;
 
-            return BazaPodataka.distribucija[0].Razlika(-kolicina);
+            return BazaPodataka.distribucija[0].Razlika(kolicina);
         }
 
         public double PrazniBaterije()
@@ -395,25 +327,14 @@ namespace SHES
             double kolicina = 0;
             foreach (Baterija b in BazaPodataka.baterije)
             {
-                if (b.TrKapacitet > 0)
+               if(b.TrKapacitetUMinutima > 0)
                 {
-                    //double procenatKojiSeIsprazniPoSatuMaks = ((100 * b.MaxSnaga) / b.Kapacitet);
-                    if (b.TrKapacitet - b.MaxSnaga >= 0) // ceo kapacitet za jedan sat se skine sa baterije
-                    {
-                        EnergijaBaterija += b.MaxSnaga;
-                        kolicina += b.MaxSnaga;
-                        b.TrKapacitet -= b.MaxSnaga;
-
-                    }
-                    else // skida se sa baterije sve
-                    {
-                        EnergijaBaterija += b.TrKapacitet;
-                        kolicina += b.TrKapacitet;
-                        b.TrKapacitet = 0;
-                    }
+                    b.TrKapacitetUMinutima--;
+                    kolicina += b.KolicinaKojuMozeDaIsporuciUMinuti;
                 }
             }
-            Kolicina -= kolicina;
+            Kolicina += kolicina;
+            EnergijaBaterija += kolicina;
 
             return BazaPodataka.distribucija[0].Razlika(kolicina);
         }

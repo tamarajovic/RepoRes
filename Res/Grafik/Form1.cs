@@ -61,7 +61,7 @@ namespace Grafik
             chart1.Series["baterije"].Points.Clear();
 
 
-            for (int i = 0; i < 24; i++)
+            for (int i = 0; i < 1440; i++)
             {
                 chart1.Series["potrosaci"].Points.AddXY(i, potrosnje[RedniDan].PotrosnjaPotrosaca[i]);
                 chart1.Series["paneli"].Points.AddXY(i, potrosnje[RedniDan].ProizvodnjaSP[i]);

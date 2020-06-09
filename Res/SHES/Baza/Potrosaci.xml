@@ -4,45 +4,54 @@
     <Ime>Frizider</Ime>
     <Potrosnja>0.3</Potrosnja>
     <Aktivan>true</Aktivan>
+    <PotrosnjaUMinutu>0</PotrosnjaUMinutu>
   </Potrosac>
   <Potrosac>
     <Ime>Rerna</Ime>
     <Potrosnja>4</Potrosnja>
     <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0</PotrosnjaUMinutu>
   </Potrosac>
   <Potrosac>
     <Ime>Klima</Ime>
     <Potrosnja>1</Potrosnja>
     <Aktivan>true</Aktivan>
+    <PotrosnjaUMinutu>0</PotrosnjaUMinutu>
   </Potrosac>
   <Potrosac>
     <Ime>Ves masina</Ime>
     <Potrosnja>1.5</Potrosnja>
     <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0</PotrosnjaUMinutu>
   </Potrosac>
   <Potrosac>
     <Ime>Toster</Ime>
     <Potrosnja>0.01</Potrosnja>
     <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0</PotrosnjaUMinutu>
   </Potrosac>
   <Potrosac>
     <Ime>Bojler</Ime>
     <Potrosnja>2</Potrosnja>
     <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0</PotrosnjaUMinutu>
   </Potrosac>
   <Potrosac>
     <Ime>Osvetljenje</Ime>
     <Potrosnja>3.5</Potrosnja>
     <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0</PotrosnjaUMinutu>
   </Potrosac>
   <Potrosac>
     <Ime>Pegla</Ime>
     <Potrosnja>2.8</Potrosnja>
     <Aktivan>true</Aktivan>
+    <PotrosnjaUMinutu>0</PotrosnjaUMinutu>
   </Potrosac>
   <Potrosac>
     <Ime>Televizija</Ime>
     <Potrosnja>0.08</Potrosnja>
     <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0</PotrosnjaUMinutu>
   </Potrosac>
 </ArrayOfPotrosac>

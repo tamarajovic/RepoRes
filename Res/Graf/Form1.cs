@@ -30,10 +30,10 @@ namespace Graf
         public static int TrSati;
 
         private Thread thread;
-        private double[] vrDistribucije = new double[24];
-        private double[] vrPotrosaca = new double[24];
-        private double[] vrPanela = new double[24];
-        private double[] vrBaterija = new double[24];
+        private double[] vrDistribucije = new double[1440];
+        private double[] vrPotrosaca = new double[1440];
+        private double[] vrPanela = new double[1440];
+        private double[] vrBaterija = new double[1440];
 
         public static void Osvezi()
         {

@@ -13,6 +13,7 @@ namespace Klase
         public double TrenutnoBaterijaAutomobila { get; set; }//procenat punosti
         public double SnagaBaterijePunjaca { get; set; } //koliko moze da puni punjac po satu
         public double MaksBaterijaAutomobila { get; set; }// dokle se puni
+        public double SnagaUMinuti { get; set; }
 
         public bool UtaknutAutomobil { get; set; } = false;
 
@@ -52,6 +53,7 @@ namespace Klase
             SnagaBaterijePunjaca = snagaBaterije;
             MaksBaterijaAutomobila = maksSnagabaterijeAuta;
             TrenutnoBaterijaAutomobila = procenatBaterije;
+            SnagaUMinuti = MaksBaterijaAutomobila / 60;
         }
 
     }

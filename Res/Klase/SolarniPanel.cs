@@ -10,8 +10,8 @@ namespace Klase
     {
 
         public string Ime { get; set; }
-        public double MaksSnaga { get; set; }
-
+        public double MaksSnaga { get; set; } //po satu
+        public double SnagaUMinuti { get; set; }
 
         public SolarniPanel(string ime, double maksSnaga)
         {
@@ -30,6 +30,7 @@ namespace Klase
 
             Ime = ime.Trim();
             MaksSnaga = maksSnaga;
+            SnagaUMinuti = MaksSnaga / 60;
         }
 
         public SolarniPanel()
@@ -44,7 +45,7 @@ namespace Klase
                 throw new ArgumentOutOfRangeException("Procenat sunca je u granicama od 0 do 100");
             }
 
-            return procenatSunca * MaksSnaga / 100;
+            return procenatSunca * SnagaUMinuti / 100;
         }
 
 

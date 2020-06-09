@@ -5,6 +5,7 @@
     <TrenutnoBaterijaAutomobila>100</TrenutnoBaterijaAutomobila>
     <SnagaBaterijePunjaca>2</SnagaBaterijePunjaca>
     <MaksBaterijaAutomobila>8</MaksBaterijaAutomobila>
+    <SnagaUMinuti>0</SnagaUMinuti>
     <UtaknutAutomobil>true</UtaknutAutomobil>
   </PunjacAutomobila>
 </ArrayOfPunjacAutomobila>

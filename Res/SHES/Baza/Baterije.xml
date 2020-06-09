@@ -4,21 +4,24 @@
     <Ime>b1</Ime>
     <MaxSnaga>1</MaxSnaga>
     <KapacitetUSatima>5</KapacitetUSatima>
-    <TrKapacitet>4.7000000000000011</TrKapacitet>
-    <MaksKapacitet>5</MaksKapacitet>
+    <TrKapacitetUMinutima>0</TrKapacitetUMinutima>
+    <MaksKapacitetUMinutima>0</MaksKapacitetUMinutima>
+    <KolicinaKojuMozeDaIsporuciUMinuti>0</KolicinaKojuMozeDaIsporuciUMinuti>
   </Baterija>
   <Baterija>
     <Ime>b2</Ime>
     <MaxSnaga>2</MaxSnaga>
     <KapacitetUSatima>6</KapacitetUSatima>
-    <TrKapacitet>0</TrKapacitet>
-    <MaksKapacitet>12</MaksKapacitet>
+    <TrKapacitetUMinutima>0</TrKapacitetUMinutima>
+    <MaksKapacitetUMinutima>0</MaksKapacitetUMinutima>
+    <KolicinaKojuMozeDaIsporuciUMinuti>0</KolicinaKojuMozeDaIsporuciUMinuti>
   </Baterija>
   <Baterija>
     <Ime>b3</Ime>
     <MaxSnaga>0.5</MaxSnaga>
     <KapacitetUSatima>4</KapacitetUSatima>
-    <TrKapacitet>0</TrKapacitet>
-    <MaksKapacitet>2</MaksKapacitet>
+    <TrKapacitetUMinutima>0</TrKapacitetUMinutima>
+    <MaksKapacitetUMinutima>0</MaksKapacitetUMinutima>
+    <KolicinaKojuMozeDaIsporuciUMinuti>0</KolicinaKojuMozeDaIsporuciUMinuti>
   </Baterija>
 </ArrayOfBaterija>

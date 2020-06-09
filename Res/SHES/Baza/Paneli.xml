@@ -3,9 +3,11 @@
   <SolarniPanel>
     <Ime>p1</Ime>
     <MaksSnaga>3</MaksSnaga>
+    <SnagaUMinuti>0</SnagaUMinuti>
   </SolarniPanel>
   <SolarniPanel>
     <Ime>p2</Ime>
     <MaksSnaga>2</MaksSnaga>
+    <SnagaUMinuti>0</SnagaUMinuti>
   </SolarniPanel>
 </ArrayOfSolarniPanel>

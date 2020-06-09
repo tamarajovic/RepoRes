@@ -11,6 +11,7 @@ namespace Klase
         public string Ime { get; set; }
         public double Potrosnja { get; set; }
         public bool Aktivan { get; set; } = false;
+        public double PotrosnjaUMinutu { get; set; }
 
         public Potrosac(string ime, double potrosnja)
         {
@@ -31,6 +32,7 @@ namespace Klase
 
             Ime = ime;
             Potrosnja = potrosnja;
+            PotrosnjaUMinutu = Potrosnja / 60;
         }
 
         public Potrosac()
