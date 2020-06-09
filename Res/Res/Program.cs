@@ -96,24 +96,39 @@ namespace Res
                                             Console.WriteLine("Ime potrosaca: ");
                                             string ime = Console.ReadLine();
                                             Console.WriteLine("Potrosnja potrosaca: ");
-                                            double potrosnja = double.Parse(Console.ReadLine());
-                                            Potrosac po = new Potrosac(ime, potrosnja);
-                                            if (ppotrosac.DodajPotrosaca(po))
-                                                Console.WriteLine("Uspesno dodat novi potrosac");
-                                            else
-                                                Console.WriteLine("Potrosac sa ovakvim imenom vec postoji");
+                                            try
+                                            {
+                                                double potrosnja = double.Parse(Console.ReadLine());
+                                                Potrosac po = new Potrosac(ime, potrosnja);
+                                                if (ppotrosac.DodajPotrosaca(po))
+                                                    Console.WriteLine("Uspesno dodat novi potrosac");
+                                                else
+                                                    Console.WriteLine("Potrosac sa ovakvim imenom vec postoji");
+                                            }
+                                            catch(Exception e)
+                                            {
+                                                Console.WriteLine("Napravili ste gresku prilikom unosa. Potrosnja potrosaca mora biti broj.");
+                                            }
+
                                             break;
                                         }
-                                    case 2:
+                                        case 2:
                                         {
                                             Console.WriteLine("Ime solarnog panela: ");
                                             string ime = Console.ReadLine();
                                             Console.WriteLine("Maksimalna snaga panela: ");
-                                            int snaga = int.Parse(Console.ReadLine());
-                                            if (ppanel.DodajPanel(new SolarniPanel(ime, snaga)))
-                                                Console.WriteLine("Uspesno dodat novi solarni panel");
-                                            else
-                                                Console.WriteLine("Solarni panel sa ovakvim imenom vec postoji");
+                                            try
+                                            {
+                                                int snaga = int.Parse(Console.ReadLine());
+                                                if (ppanel.DodajPanel(new SolarniPanel(ime, snaga)))
+                                                    Console.WriteLine("Uspesno dodat novi solarni panel");
+                                                else
+                                                    Console.WriteLine("Solarni panel sa ovakvim imenom vec postoji");
+                                            }
+                                            catch (Exception)
+                                            {
+                                                Console.WriteLine("Napravili ste gresku prilikom unosa. Snaga panela mora biti broj.");
+                                            }
                                             break;
                                         }
                                     case 3:
@@ -121,14 +136,22 @@ namespace Res
                                             Console.WriteLine("Ime baterije: ");
                                             string ime = Console.ReadLine();
                                             Console.WriteLine("Maksimalna snaga baterije: ");
-                                            double snaga = double.Parse(Console.ReadLine());
-                                            Console.WriteLine("Kapacitet baterije: ");
-                                            double kapacitet = double.Parse(Console.ReadLine());
-                                            Baterija b = new Baterija(ime, snaga, kapacitet);
-                                            if (pbaterija.DodajBateriju(b))
-                                                Console.WriteLine("Baterija je uspesno dodata");
-                                            else
-                                                Console.WriteLine("Greska prilikom dodavanja baterije");
+                                            try
+                                            {
+                                                double snaga = double.Parse(Console.ReadLine());
+                                                Console.WriteLine("Kapacitet baterije: ");
+                                                double kapacitet = double.Parse(Console.ReadLine());
+                                                Baterija b = new Baterija(ime, snaga, kapacitet);
+                                                if (pbaterija.DodajBateriju(b))
+                                                    Console.WriteLine("Baterija je uspesno dodata");
+                                                else
+                                                    Console.WriteLine("Greska prilikom dodavanja baterije");
+                                            }
+                                            catch (Exception)
+                                            {
+                                                Console.WriteLine("Napravili ste gresku prilikom unosa. Maksimalna snaga i kapacitet baterije moraju biti broj.");
+                                            }
+
                                             break;
                                         }
                                     case 4:
@@ -136,16 +159,24 @@ namespace Res
                                             Console.WriteLine("Naziv punjaca za automobil: ");
                                             string ime = Console.ReadLine();
                                             Console.WriteLine("Snaga punjaca: ");
-                                            double snaga = double.Parse(Console.ReadLine());
-                                            Console.WriteLine("Unesite koliko vas automobil ima trenutno procenata baterije: ");
-                                            double kolicinaBaterije = double.Parse(Console.ReadLine());
-                                            Console.WriteLine("Unesite koliko je kapacitet baterije vaseg automobila: ");
-                                            double maksKoliicinabaterije = double.Parse(Console.ReadLine());
-                                            PunjacAutomobila pauto = new PunjacAutomobila(ime, snaga, kolicinaBaterije, maksKoliicinabaterije);
-                                            if (ppunjac.DodajPunjac(pauto))
-                                                Console.WriteLine("Punjac automobila je uspesno dodat");
-                                            else
-                                                Console.WriteLine("Greska prilikom dodavanja punjaca automobila");
+                                            try
+                                            {
+                                                double snaga = double.Parse(Console.ReadLine());
+                                                Console.WriteLine("Unesite koliko vas automobil ima trenutno procenata baterije: ");
+                                                double kolicinaBaterije = double.Parse(Console.ReadLine());
+                                                Console.WriteLine("Unesite koliko je kapacitet baterije vaseg automobila: ");
+                                                double maksKoliicinabaterije = double.Parse(Console.ReadLine());
+                                                PunjacAutomobila pauto = new PunjacAutomobila(ime, snaga, kolicinaBaterije, maksKoliicinabaterije);
+                                                if (ppunjac.DodajPunjac(pauto))
+                                                    Console.WriteLine("Punjac automobila je uspesno dodat");
+                                                else
+                                                    Console.WriteLine("Greska prilikom dodavanja punjaca automobila");
+                                            }
+                                            catch (Exception)
+                                            {
+                                                Console.WriteLine("Napravili ste gresku prilikom unosa. Snaga punjaca, procenat i kapacitet baterije automobila moraju biti broj.");
+                                            }
+
                                             break;
                                         }
                                     default:
@@ -257,7 +288,7 @@ namespace Res
                             do
                             {
 
-                                Console.WriteLine("Odaberite sta zelite da dodate");
+                                Console.WriteLine("Odaberite sta zelite da obrisete");
                                 Console.WriteLine("1 --> Potrosac");
                                 Console.WriteLine("2 --> Solarni Panel");
                                 Console.WriteLine("3 --> Baterija");
@@ -309,19 +340,34 @@ namespace Res
                             break;
                         case 7:
                             Console.WriteLine("Unesite broj za koliko puta zelite da ubrzate prolazak vremena: ");
-                            int broj = int.Parse(Console.ReadLine());
-                            psimulacija.UbrzajVreme(broj);
+                            try
+                            {
+                                int broj = int.Parse(Console.ReadLine());
+                                
+                                psimulacija.UbrzajVreme(broj);
+                            }
+                            catch (Exception)
+                            {
+                                Console.WriteLine("Morate uneti ceo broj!");
+                            }
                             break;
                         case 8:
                             Console.WriteLine("Unesite procenat osuncanosti: ");
-                            int procenat = int.Parse(Console.ReadLine());
-                            psimulacija.PromeniOsuncanost(procenat);
+                            try
+                            {
+                                int procenat = int.Parse(Console.ReadLine());
+                                psimulacija.PromeniOsuncanost(procenat);
+                            }
+                            catch (Exception)
+                            {
+                                Console.WriteLine("Procenat osuncanosti mora biti broj.");
+                            }
                             break;
                         case 9:
-                            Console.WriteLine("Unesite datum za prikaz izvestaja");
-                            string Datum = Console.ReadLine();
-                            //provera sta je uneo
-                            pgrafik.ProslediDatum(Datum);
+                            Console.WriteLine("Unesite datum za prikaz izvestaja u formatu dd/mm/yyyy");
+                            string datum = Console.ReadLine();
+                            //ne treba provera jer je string, samo ce "skontati" da nema takav datum?
+                            pgrafik.ProslediDatum(datum);
                             break;
                     }
 
