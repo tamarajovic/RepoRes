@@ -29,5 +29,7 @@ namespace Contracts
         [OperationContract]
         int VratiSatnicu();
 
+        [OperationContract]
+        double VratiNovac(string datum);
     }
 }

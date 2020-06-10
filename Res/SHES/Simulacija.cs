@@ -22,13 +22,13 @@ namespace SHES
         PotrosacProvider PotrosaciUpravljac = new PotrosacProvider();
         PunjacProvider PunjacUpravljac = new PunjacProvider();
 
+        public static Dictionary<string, double> PotrosnjaPoDanima = new Dictionary<string, double>();
         public static int countDani = 0;
         
 
         public Simulacija()
         {
-            Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Frizider");
-            PotrosaciUpravljac.Ukljuci(temp);
+
         }
 
         public void Simuliraj()
@@ -36,21 +36,33 @@ namespace SHES
 
             new Thread(() =>
             {
+                bool puniBaterije = false;
+                bool prazniBaterije = false;
                 while (true)
                 {
                     double novac = 0;
                     for (int i = 1; i <= 1440; i++)
                     {
+
+                        if(i == 1)
+                            BazaPodataka.istorijaPotrosnje.Add(new PotrosnjaPoDanu());
+                        if (puniBaterije)
+                        {
+                            novac += PuniBaterije();
+                        }
+                        if (prazniBaterije)
+                        {
+                            novac += PrazniBaterije();
+                        }
+
                         if (i % 60 == 0)
                         {
+                            satnica++;
 
-                            if (satnica == 0)
+                            if (satnica == 1)
                             {
-                                BazaPodataka.istorijaPotrosnje.Add(new PotrosnjaPoDanu());
                                 BazaPodataka.distribucija[0].CenaPokWh = 1.5;
-                            }
-                            else if (satnica == 1)
-                            {
+
                                 PunjacAutomobila temp = PunjacUpravljac.PronadjiPunjac("pa1");
                                 PunjacUpravljac.Ukljuci(temp);
                             }
@@ -61,15 +73,15 @@ namespace SHES
                             }
                             else if (satnica == 3)
                             {
-                                novac -= PuniBaterije();
+                                puniBaterije = true;
                             }
                             else if (satnica == 4)
                             {
-                                novac -= PuniBaterije();
+                                
                             }
                             else if (satnica == 5)
                             {
-                                novac -= PuniBaterije();
+                                
                                 ProcenatSunca = 10;
                                 Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Bojler");
                                 PotrosaciUpravljac.Iskljuci(temp);
@@ -77,6 +89,7 @@ namespace SHES
                             else if (satnica == 6)
                             {
                                 ProcenatSunca = 30;
+                                puniBaterije = false;
                             }
                             else if (satnica == 7)
                             {
@@ -111,22 +124,23 @@ namespace SHES
                             }
                             else if (satnica == 14)
                             {
-                                novac += PrazniBaterije();
+                                prazniBaterije = true;
                                 Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Klima");
                                 PotrosaciUpravljac.Ukljuci(temp);
-                                }
+                            }
                             else if (satnica == 15)
                             {
-                                novac += PrazniBaterije();
+                                
                             }
                             else if (satnica == 16)
                             {
-                                novac += PrazniBaterije();
+                                
                                 Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Klima");
                                 PotrosaciUpravljac.Iskljuci(temp);
                                 }
                             else if (satnica == 17)
                             {
+                                prazniBaterije = false;
                             }
                             else if (satnica == 18)
                             {
@@ -155,36 +169,28 @@ namespace SHES
                                 Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Osvetljenje");
                                 PotrosaciUpravljac.Iskljuci(temp);
                             }
+                            else if (satnica == 24)
+                            {
+
+                            }
                             
-                            satnica++;
                         }
                         novac += Potroseno();
-
-                        BazaPodataka.istorijaPotrosnje[countDani].EnergijaIzBaterije.Add(EnergijaBaterija);
-
-                        double potrosnjaAktivnih = 0;
-                        foreach (Potrosac p in BazaPodataka.potrosaci)
-                        {
-                            if (p.Aktivan)
-                                potrosnjaAktivnih -= p.PotrosnjaUMinutu;
-                        }
-                        BazaPodataka.istorijaPotrosnje[countDani].PotrosnjaPotrosaca.Add(potrosnjaAktivnih);
-                        double proizvodnjaPanela = 0;
-
-                        foreach (SolarniPanel sp in BazaPodataka.paneli)
-                        {
-                            proizvodnjaPanela += sp.KolicinaGenerisaneEnergije(ProcenatSunca);
-                        }
-                        BazaPodataka.istorijaPotrosnje[countDani].ProizvodnjaSP.Add(proizvodnjaPanela);
-                        BazaPodataka.istorijaPotrosnje[countDani].Uvoz.Add(Kolicina);
 
 
                         Thread.Sleep(Takt);
 
 
+                        EnergijaBaterija = 0;
+                        Kolicina = 0;
+
+
                     }
-                    countDani++;
                     Dani++;
+                    DateTime danas = DateTime.Now;
+                    string DanasnjiDan = ((danas.Day + countDani).ToString() + '/' + danas.Month + '/' + danas.Year);
+                    PotrosnjaPoDanima.Add(DanasnjiDan, novac);
+                    countDani++;
                     BazaPodataka.UpisiPotrosnju();
                     satnica = 0;
                     if(novac >= 0)
@@ -206,13 +212,16 @@ namespace SHES
 
         public double Potroseno()
         {
-            Kolicina = 0;
-            EnergijaBaterija = 0;
-            double kolicina = 0;
-            kolicina += IzracunajPanele(ProcenatSunca);
-            kolicina += IzracunajPotrosace();
-            kolicina += IzracunajPunjace();
-            return IzracunajBaterije(kolicina);
+            double kolicinaPanela = IzracunajPanele(ProcenatSunca);
+            BazaPodataka.istorijaPotrosnje[countDani].ProizvodnjaSP.Add(kolicinaPanela);
+            double kolicinaPotrosaca = IzracunajPotrosace();
+            BazaPodataka.istorijaPotrosnje[countDani].PotrosnjaPotrosaca.Add(kolicinaPotrosaca);
+            double kolicinaPunjaca = IzracunajPunjace();
+            double res = IzracunajBaterije(kolicinaPanela + kolicinaPotrosaca + kolicinaPunjaca);
+            BazaPodataka.istorijaPotrosnje[countDani].EnergijaIzBaterije.Add(EnergijaBaterija);
+            BazaPodataka.istorijaPotrosnje[countDani].Uvoz.Add(Kolicina);
+
+            return res;
         }
 
 
@@ -272,16 +281,16 @@ namespace SHES
                     {
                         kolicina -= b.MaksKapacitetUMinutima;
                         b.TrKapacitetUMinutima++;
-                        EnergijaBaterija -= b.MaksKapacitetUMinutima;
+                        EnergijaBaterija -= b.KolicinaKojuMozeDaIsporuciUMinuti;
                     }
                 }
                 if(kolicina > 0) // kraj proveravanja, odnos sa distribucijom
                 {
-                    Kolicina += kolicina;
+                    Kolicina -= kolicina;
                     novac = BazaPodataka.distribucija[0].Razlika(kolicina);
                 }
             }
-            else
+            else if(kolicina < 0)
             {
                 foreach(Baterija b in BazaPodataka.baterije)
                 {
@@ -289,7 +298,7 @@ namespace SHES
                     {
                         b.TrKapacitetUMinutima--;
                         Kolicina += b.KolicinaKojuMozeDaIsporuciUMinuti;
-                        EnergijaBaterija -= b.KolicinaKojuMozeDaIsporuciUMinuti;
+                        EnergijaBaterija += b.KolicinaKojuMozeDaIsporuciUMinuti;
                     }
                 }
                 if(kolicina < 0)
@@ -305,7 +314,7 @@ namespace SHES
 
         #region UpravljanjeBaterijom
 
-        public double PuniBaterije() // vraca kolicinu potrosene energije
+        public double PuniBaterije() 
         {
             double kolicina = 0;
             foreach(Baterija b in BazaPodataka.baterije)
@@ -314,10 +323,11 @@ namespace SHES
                 {
                     b.TrKapacitetUMinutima++;
                     kolicina -= b.KolicinaKojuMozeDaIsporuciUMinuti;
+                    EnergijaBaterija -= b.KolicinaKojuMozeDaIsporuciUMinuti;
                 }
             }
-            Kolicina -= kolicina;
-            EnergijaBaterija -= kolicina;
+            Kolicina += kolicina;
+
 
             return BazaPodataka.distribucija[0].Razlika(kolicina);
         }
@@ -333,13 +343,15 @@ namespace SHES
                     kolicina += b.KolicinaKojuMozeDaIsporuciUMinuti;
                 }
             }
-            Kolicina += kolicina;
+            Kolicina -= kolicina;
             EnergijaBaterija += kolicina;
 
             return BazaPodataka.distribucija[0].Razlika(kolicina);
         }
 
         #endregion
+
+        #region Funkcije za WCF
 
         public void PromeniOsuncanost(int procenat)
         {
@@ -348,7 +360,7 @@ namespace SHES
 
         public void UbrzajVreme(int brojac)
         {
-            Takt = brojac;
+            Takt = Takt / brojac;
         }
 
         public double VratiKolicinu()
@@ -371,7 +383,12 @@ namespace SHES
             return satnica;
         }
 
+        public double VratiNovac(string datum)
+        {
+            return PotrosnjaPoDanima[datum];
+        }
 
+        #endregion
 
 
     }

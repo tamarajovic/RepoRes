@@ -366,8 +366,16 @@ namespace Res
                         case 9:
                             Console.WriteLine("Unesite datum za prikaz izvestaja u formatu dd/mm/yyyy");
                             string datum = Console.ReadLine();
-                            //ne treba provera jer je string, samo ce "skontati" da nema takav datum?
+                            double potroseno = psimulacija.VratiNovac(datum);
                             pgrafik.ProslediDatum(datum);
+                            if (potroseno >= 0)
+                            {
+                                Console.WriteLine("Zaradjeno : {0}", potroseno);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Potroseno : {0}", potroseno);
+                            }
                             break;
                     }
 

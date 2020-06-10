@@ -12,6 +12,7 @@ using System.Web;
 using System.Xml.Serialization;
 using System.IO;
 using System.Web.Hosting;
+using System.Xml;
 
 namespace SHES
 {
@@ -54,7 +55,30 @@ namespace SHES
 
         public BazaPodataka()
         {
+            XmlDocument doc1 = new XmlDocument();
+            doc1.Load(IstorijaPotrosnjePath);
+            doc1.DocumentElement.RemoveAll();
+            doc1.Save(IstorijaPotrosnjePath);
 
+            XmlDocument doc2 = new XmlDocument();
+            doc2.Load(BaterijePath);
+            doc2.DocumentElement.RemoveAll();
+            doc2.Save(BaterijePath);
+
+            XmlDocument doc3 = new XmlDocument();
+            doc3.Load(PotrosaciPath);
+            doc3.DocumentElement.RemoveAll();
+            doc3.Save(PotrosaciPath);
+
+            XmlDocument doc4 = new XmlDocument();
+            doc4.Load(PaneliPath);
+            doc4.DocumentElement.RemoveAll();
+            doc4.Save(PaneliPath);
+
+            XmlDocument doc5 = new XmlDocument();
+            doc5.Load(PunjaciPath);
+            doc5.DocumentElement.RemoveAll();
+            doc5.Save(PunjaciPath);
 
             if (File.Exists(PotrosaciPath))
             {
@@ -124,15 +148,16 @@ namespace SHES
                 }
                 if(distribucija.Count == 0)
                 {
-                    distribucija.Add(new Elektrodistribucija(500));
+                    distribucija.Add(new Elektrodistribucija(5));
                 }
             }
+
             //if (File.Exists(IstorijaPotrosnjePath))
             //{
             //    XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<PotrosnjaPoDanu>));
-            //    using (StreamReader sr = new StreamReader(IstorijaPotrosnjePath))
+            //    using (StreamWriter sw = new StreamWriter(IstorijaPotrosnjePath))
             //    {
-            //        istorijaPotrosnje = (List<PotrosnjaPoDanu>)xmlSerializer.Deserialize(sr);
+            //        xmlSerializer.Serialize(sw, )
             //    }
             //}
 
@@ -176,6 +201,7 @@ namespace SHES
                         xmlSerializerDistribucija.Serialize(sw, distribucija);
                     }
                     Thread.Sleep(1000);
+
                 }
                 
                 
@@ -186,7 +212,6 @@ namespace SHES
         }
 
 
-        //da li pisati na kraju dana ili na svakih sat vremena??
         public static void UpisiPotrosnju()
         {
             XmlSerializer xmlSerializerPotrosac = new XmlSerializer(typeof(List<PotrosnjaPoDanu>));

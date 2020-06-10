@@ -61,6 +61,7 @@
             series3.Name = "distribucija";
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Color = System.Drawing.Color.Lime;
             series4.Legend = "Legend1";
             series4.Name = "baterije";
             this.chart1.Series.Add(series1);

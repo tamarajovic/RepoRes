@@ -53,7 +53,7 @@ namespace Klase
             SnagaBaterijePunjaca = snagaBaterije;
             MaksBaterijaAutomobila = maksSnagabaterijeAuta;
             TrenutnoBaterijaAutomobila = procenatBaterije;
-            SnagaUMinuti = MaksBaterijaAutomobila / 60;
+            SnagaUMinuti = SnagaBaterijePunjaca / 60;
         }
 
     }

@@ -101,7 +101,7 @@ namespace Graf
                 foreach (Potrosac p in potrosaci)
                 {
                     if (p.Aktivan)
-                        potrosanjaPotrosaca -= p.Potrosnja;
+                        potrosanjaPotrosaca -= p.PotrosnjaUMinutu;
                 }
 
                 vrDistribucije[vrDistribucije.Length - 1] = Potroseno;
@@ -128,7 +128,7 @@ namespace Graf
 
                 }
 
-                Thread.Sleep(1000);
+                Thread.Sleep(50);
             }
 
 
