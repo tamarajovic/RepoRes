@@ -105,7 +105,7 @@ namespace Res
                                                 else
                                                     Console.WriteLine("Potrosac sa ovakvim imenom vec postoji");
                                             }
-                                            catch(Exception e)
+                                            catch(Exception)
                                             {
                                                 Console.WriteLine("Napravili ste gresku prilikom unosa. Potrosnja potrosaca mora biti broj.");
                                             }
@@ -400,7 +400,7 @@ namespace Res
                                     Console.WriteLine("Uneli ste datum koji ne postoji u simulaciji");
                                 }
                             }
-                            catch (Exception e)
+                            catch (Exception)
                             {
                                 Console.WriteLine("Datum nije unet u odgovarajucem formatu.");
                             }
