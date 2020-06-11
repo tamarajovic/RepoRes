@@ -11,12 +11,17 @@ namespace SHESTest
     [TestFixture]
     class SimulacijaTest
     {
-        private Simulacija s;
+        private Simulacija s = new Simulacija();
 
-        [SetUp]
-        public void Pokreni()
+        [Test]
+        [TestCase(-5)]
+        [TestCase(115)]
+        public void IzracunajPaneleLosiParametri(double procenat) 
         {
-            Assert.DoesNotThrow(() => s.Simuliraj());
+            Assert.Throws<ArgumentOutOfRangeException>(() =>
+            {
+                s.IzracunajPanele(procenat);
+            });
         }
 
     }

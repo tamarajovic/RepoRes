@@ -1,5 +1,4 @@
-﻿using Contracts;
-using Klase;
+﻿using Klase;
 using Moq;
 using NUnit.Framework;
 using SHES;
@@ -12,24 +11,25 @@ using System.Threading.Tasks;
 namespace SHESTest
 {
     [TestFixture]
-    class PotrosacProviderTest
+    class PunjacProviderTest
     {
-        private PotrosacProvider pp;
+        private PunjacProvider pp;
 
         [SetUp]
         public void Pocetak()
         {
-            Mock<PotrosacProvider> mock = new Mock<PotrosacProvider>();
+            Mock<PunjacProvider> mock = new Mock<PunjacProvider>();
             pp = mock.Object;
         }
 
+
         [Test]
         [TestCase(null)]
-        public void DodajPotrosacaLosiParametri(Potrosac p)
+        public void DodajPunjacLosiParametri(PunjacAutomobila p)
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                pp.DodajPotrosaca(p);
+                pp.DodajPunjac(p);
             });
         }
 
@@ -38,11 +38,11 @@ namespace SHESTest
         [TestCase(null)]
         [TestCase("")]
         [TestCase("  ")]
-        public void ObrisiPotrosacaLosiParametri(string ime)
+        public void ObrisiPunjacLosiParametri(string ime)
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                pp.ObrisiPotrosaca(ime);
+                pp.ObrisiPunjac(ime);
             });
         }
 
@@ -50,17 +50,17 @@ namespace SHESTest
         [TestCase(null)]
         [TestCase("")]
         [TestCase("  ")]
-        public void PronadjiPotrosacaLosiParametri(string ime)
+        public void PronadjiPunjacLosiParametri(string ime)
         {
             Assert.Throws<ArgumentException>(() =>
             {
-                pp.PronadjiPotrosaca(ime);
+                pp.PronadjiPunjac(ime);
             });
         }
 
         [Test]
         [TestCase(null)]
-        public void UkljuciLosiParametri(Potrosac p)
+        public void UkljuciLosiParametri(PunjacAutomobila p)
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
@@ -70,7 +70,7 @@ namespace SHESTest
 
         [Test]
         [TestCase(null)]
-        public void IskljuciLosiParametri(Potrosac p)
+        public void IskljuciLosiParametri(PunjacAutomobila p)
         {
             Assert.Throws<ArgumentNullException>(() =>
             {

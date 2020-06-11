@@ -10,9 +10,13 @@ namespace SHES
 {
     public class SolarniPanelProvider : ISolarniPanel
     {
-
         public bool DodajPanel(SolarniPanel s)
         {
+            if(s == null)
+            {
+                throw new ArgumentNullException("Solarni panel je null");
+            }
+
             if (PronadjiPanel(s.Ime) != null)
                 return false;
 
@@ -24,7 +28,9 @@ namespace SHES
         {
             SolarniPanel s = PronadjiPanel(ime);
             if (s == null)
-                return false;
+            {
+                throw new ArgumentNullException("Solarni panel je null");
+            }
 
             BazaPodataka.paneli.Remove(s);
             return true;
@@ -32,6 +38,16 @@ namespace SHES
 
         public SolarniPanel PronadjiPanel(string ime)
         {
+            if (ime == null)
+            {
+                throw new ArgumentException("Naziv solarnog panela je null");
+            }
+
+            if (ime.Trim().Equals(""))
+            {
+                throw new ArgumentException("Naziv potrosaca je prazan string");
+            }
+
             foreach (SolarniPanel s in BazaPodataka.paneli)
             {
                 if (s.Ime == ime)

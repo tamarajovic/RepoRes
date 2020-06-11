@@ -10,8 +10,14 @@ namespace SHES
 {
     public class PunjacProvider : IPunjac
     {
+        
         public bool DodajPunjac(PunjacAutomobila punjac)
         {
+            if (punjac == null)
+            {
+                throw new ArgumentNullException("Punjac automobila je null");
+            }
+
             if (BazaPodataka.punjaci.Contains(punjac))
                 return false;
             else
@@ -23,7 +29,12 @@ namespace SHES
 
         public void Iskljuci(PunjacAutomobila pa)
         {
-            if (pa != null)
+            if (pa == null)
+            {
+                throw new ArgumentNullException("Punjac je null");
+
+            }
+            else
             {
                 pa.UtaknutAutomobil = false;
             }
@@ -31,6 +42,16 @@ namespace SHES
 
         public bool ObrisiPunjac(string ime)
         {
+            if (ime == null)
+            {
+                throw new ArgumentException("Naziv punjaca je null");
+            }
+
+            if (ime.Trim().Equals(""))
+            {
+                throw new ArgumentException("Naziv punjaca je prazan string");
+            }
+
             PunjacAutomobila p = PronadjiPunjac(ime);
             if (p != null)
             {
@@ -42,6 +63,16 @@ namespace SHES
 
         public PunjacAutomobila PronadjiPunjac(string ime)
         {
+            if (ime == null)
+            {
+                throw new ArgumentException("Naziv punjaca je null");
+            }
+
+            if (ime.Trim().Equals(""))
+            {
+                throw new ArgumentException("Naziv punjaca je prazan string");
+            }
+
             foreach (var p in BazaPodataka.punjaci)
             {
                 if (p.Naziv.ToLower().Equals(ime.ToLower()))
@@ -54,7 +85,12 @@ namespace SHES
 
         public void Ukljuci(PunjacAutomobila pa)
         {
-            if (pa != null)
+            if (pa == null)
+            {
+                throw new ArgumentNullException("Punjac je null");
+
+            }
+            else
             {
                 pa.UtaknutAutomobil = true;
             }

@@ -10,7 +10,6 @@ namespace SHES
 {
     public class PotrosacProvider : IPotrosac
     {
-
         public List<Potrosac> VratiPotrosace()
         {
             return BazaPodataka.potrosaci;
@@ -32,6 +31,16 @@ namespace SHES
 
         public bool ObrisiPotrosaca(string ime)
         {
+            if(ime == null)
+            {
+                throw new ArgumentException("Naziv potrosaca je null");
+            }
+
+            if (ime.Trim().Equals(""))
+            {
+                throw new ArgumentException("Naziv potrosaca je prazan string");
+            }
+
             Potrosac p = PronadjiPotrosaca(ime);
             if (p == null)
                 return false;
@@ -42,6 +51,16 @@ namespace SHES
 
         public Potrosac PronadjiPotrosaca(string ime)
         {
+            if (ime == null)
+            {
+                throw new ArgumentException("Naziv potrosaca je null");
+            }
+
+            if (ime.Trim().Equals(""))
+            {
+                throw new ArgumentException("Naziv potrosaca je prazan string");
+            }
+
             foreach (Potrosac p in BazaPodataka.potrosaci)
             {
                 if (p.Ime == ime)
@@ -52,7 +71,12 @@ namespace SHES
 
         public void Ukljuci(Potrosac p)
         {
-            if (p != null)
+            if (p == null)
+            {
+                throw new ArgumentNullException("Potrosac je null");
+
+            }
+            else
             {
                 p.Aktivan = true;
             }
@@ -60,7 +84,12 @@ namespace SHES
 
         public void Iskljuci(Potrosac p)
         {
-            if(p!= null)
+            if (p == null)
+            {
+                throw new ArgumentNullException("Potrosac je null");
+
+            }
+            else
             {
                 p.Aktivan = false;
             }

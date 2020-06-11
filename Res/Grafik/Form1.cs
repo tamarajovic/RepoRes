@@ -18,7 +18,9 @@ namespace Grafik
     public partial class Form1 : Form , IGrafik
     {
 
-        static string PotrosnjaPoDanuPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\IstorijaPotrosnje.xml";
+      //  static string PotrosnjaPoDanuPath = @"C:\Users\Nikola\source\repos\tamarajovic\RepoRes\Res\SHES\Baza\IstorijaPotrosnje.xml";
+        static string PotrosnjaPoDanuPath = @"C:\Users\User\Source\Repos\RepoRes\Res\SHES\Baza\IstorijaPotrosnje.xml";
+
         public static int RedniDan = 0;
         public static List<PotrosnjaPoDanu> potrosnje = new List<PotrosnjaPoDanu>();
 

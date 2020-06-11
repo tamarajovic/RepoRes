@@ -44,7 +44,7 @@ namespace KlaseTest
         [TestCase(35.1412)]
         public void RazlikaDobriParametri(double kolicina)
         {
-            double resenje = Distribucija.CenaPokWh * kolicina;
+            double resenje = Distribucija.CenaPokWh * kolicina / 60;
 
             Assert.AreEqual(resenje, Distribucija.Razlika(kolicina));
         }

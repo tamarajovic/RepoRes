@@ -57,9 +57,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaterijaProviderTest.cs" />
     <Compile Include="PotrosacProviderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PunjacProviderTest.cs" />
     <Compile Include="SimulacijaTest.cs" />
+    <Compile Include="SolarniPanelProviderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

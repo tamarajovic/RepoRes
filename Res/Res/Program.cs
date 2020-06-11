@@ -343,8 +343,14 @@ namespace Res
                             try
                             {
                                 int broj = int.Parse(Console.ReadLine());
-                                
-                                psimulacija.UbrzajVreme(broj);
+                                if (broj <= 0)
+                                {
+                                    Console.WriteLine("Morate uneti ceo broj veci od 0!");
+                                }
+                                else
+                                {
+                                    psimulacija.UbrzajVreme(broj);
+                                }
                             }
                             catch (Exception)
                             {
@@ -352,11 +358,20 @@ namespace Res
                             }
                             break;
                         case 8:
-                            Console.WriteLine("Unesite procenat osuncanosti: ");
+                            Console.WriteLine("Unesite procenat osuncanosti(0-100): ");
                             try
                             {
                                 int procenat = int.Parse(Console.ReadLine());
-                                psimulacija.PromeniOsuncanost(procenat);
+
+                                if (procenat < 0 || procenat > 100)
+                                {
+                                    Console.WriteLine("Procenat osuncanosti mora biti broj izmedju 0 i 100.");
+                                }
+                                else
+                                {
+                                    psimulacija.PromeniOsuncanost(procenat);
+                                }
+
                             }
                             catch (Exception)
                             {
@@ -366,20 +381,30 @@ namespace Res
                         case 9:
                             Console.WriteLine("Unesite datum za prikaz izvestaja u formatu dd/mm/yyyy");
                             string datum = Console.ReadLine();
-                            double potroseno = psimulacija.VratiNovac(datum);
-                            pgrafik.ProslediDatum(datum);
-                            if (potroseno > 0)
+                            try
                             {
-                                Console.WriteLine("Zaradjeno : {0}", potroseno);
+                                DateTime d = DateTime.Parse(datum);
+
+                                double potroseno = psimulacija.VratiNovac(datum);
+                                pgrafik.ProslediDatum(datum);
+                                if (potroseno > 0)
+                                {
+                                    Console.WriteLine("Zaradjeno : {0}", potroseno);
+                                }
+                                else if (potroseno < 0)
+                                {
+                                    Console.WriteLine("Potroseno : {0}", potroseno);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Uneli ste datum koji ne postoji u simulaciji");
+                                }
                             }
-                            else if(potroseno < 0)
+                            catch (Exception e)
                             {
-                                Console.WriteLine("Potroseno : {0}", potroseno);
+                                Console.WriteLine("Datum nije unet u odgovarajucem formatu.");
                             }
-                            else
-                            {
-                                Console.WriteLine("Uneli ste datum koji ne postoji u simulaciji");
-                            }
+                            
                             break;
                     }
 

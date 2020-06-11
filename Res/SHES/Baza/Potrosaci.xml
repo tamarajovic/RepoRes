@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPotrosac xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Potrosac>
+    <Ime>Frizider</Ime>
+    <Potrosnja>0.3</Potrosnja>
+    <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0.005</PotrosnjaUMinutu>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Rerna</Ime>
+    <Potrosnja>2</Potrosnja>
+    <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0.033333333333333333</PotrosnjaUMinutu>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Klima</Ime>
+    <Potrosnja>1</Potrosnja>
+    <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0.016666666666666666</PotrosnjaUMinutu>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Ves masina</Ime>
+    <Potrosnja>1.5</Potrosnja>
+    <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0.025</PotrosnjaUMinutu>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Toster</Ime>
+    <Potrosnja>0.01</Potrosnja>
+    <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0.00016666666666666666</PotrosnjaUMinutu>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Bojler</Ime>
+    <Potrosnja>2</Potrosnja>
+    <Aktivan>true</Aktivan>
+    <PotrosnjaUMinutu>0.033333333333333333</PotrosnjaUMinutu>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Osvetljenje</Ime>
+    <Potrosnja>1.5</Potrosnja>
+    <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0.025</PotrosnjaUMinutu>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Pegla</Ime>
+    <Potrosnja>1.8</Potrosnja>
+    <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0.030000000000000002</PotrosnjaUMinutu>
+  </Potrosac>
+  <Potrosac>
+    <Ime>Televizija</Ime>
+    <Potrosnja>0.08</Potrosnja>
+    <Aktivan>false</Aktivan>
+    <PotrosnjaUMinutu>0.0013333333333333333</PotrosnjaUMinutu>
+  </Potrosac>
+</ArrayOfPotrosac>

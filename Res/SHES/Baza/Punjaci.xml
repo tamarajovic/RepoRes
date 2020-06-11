@@ -1,3 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfPunjacAutomobila>
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfPunjacAutomobila xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PunjacAutomobila>
+    <Naziv>pa1</Naziv>
+    <TrenutnoBaterijaAutomobila>100</TrenutnoBaterijaAutomobila>
+    <SnagaBaterijePunjaca>2</SnagaBaterijePunjaca>
+    <MaksBaterijaAutomobila>8</MaksBaterijaAutomobila>
+    <SnagaUMinuti>0.033333333333333333</SnagaUMinuti>
+    <UtaknutAutomobil>true</UtaknutAutomobil>
+  </PunjacAutomobila>
 </ArrayOfPunjacAutomobila>

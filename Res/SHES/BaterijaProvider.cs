@@ -12,6 +12,11 @@ namespace SHES
     {
         public bool DodajBateriju(Baterija baterija)
         {
+            if (baterija == null)
+            {
+                throw new ArgumentNullException("Baterija je null");
+            }
+
             if (BazaPodataka.baterije.Contains(baterija))
                 return false;
             else
@@ -23,6 +28,16 @@ namespace SHES
 
         public bool ObrisiBateriju(string ime)
         {
+            if (ime == null)
+            {
+                throw new ArgumentException("Naziv baterije je null");
+            }
+
+            if (ime.Trim().Equals(""))
+            {
+                throw new ArgumentException("Naziv baterije je prazan string");
+            }
+
             Baterija b = PronadjiBateriju(ime);
             if (b != null)
             {
@@ -35,6 +50,16 @@ namespace SHES
 
         public Baterija PronadjiBateriju(string ime)
         {
+            if (ime == null)
+            {
+                throw new ArgumentException("Naziv baterije je null");
+            }
+
+            if (ime.Trim().Equals(""))
+            {
+                throw new ArgumentException("Naziv baterije je prazan string");
+            }
+
             foreach (var b in BazaPodataka.baterije)
             {
                 if (b.Ime.ToLower().Equals(ime.ToLower()))

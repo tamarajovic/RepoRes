@@ -68,7 +68,7 @@ namespace KlaseTest
         [TestCase(78)]
         public void KolicinaGenerisaneEnergijeDobriParametri(double procenatSunca)
         {
-            double resenje = Panel.MaksSnaga * procenatSunca / 100;
+            double resenje = Panel.SnagaUMinuti * procenatSunca / 100;
 
             Assert.AreEqual(resenje, Panel.KolicinaGenerisaneEnergije(procenatSunca));
         }

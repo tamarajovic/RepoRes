@@ -24,7 +24,7 @@ namespace SHES
 
         public static Dictionary<string, double> PotrosnjaPoDanima = new Dictionary<string, double>();
         public static int countDani = 0;
-        
+
 
         public Simulacija()
         {
@@ -44,7 +44,7 @@ namespace SHES
                     for (int i = 1; i <= 1440; i++)
                     {
 
-                        if(i == 1)
+                        if (i == 1)
                             BazaPodataka.istorijaPotrosnje.Add(new PotrosnjaPoDanu());
 
                         if (i % 60 == 0)
@@ -69,15 +69,15 @@ namespace SHES
                             }
                             else if (satnica == 4)
                             {
-                                
+
                             }
                             else if (satnica == 5)
                             {
-                                
+
                                 ProcenatSunca = 10;
                                 Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Bojler");
                                 PotrosaciUpravljac.Iskljuci(temp);
-                                }
+                            }
                             else if (satnica == 6)
                             {
                                 ProcenatSunca = 30;
@@ -108,11 +108,11 @@ namespace SHES
                             }
                             else if (satnica == 12)
                             {
-                            
+
                             }
                             else if (satnica == 13)
                             {
-                            
+
                             }
                             else if (satnica == 14)
                             {
@@ -122,14 +122,14 @@ namespace SHES
                             }
                             else if (satnica == 15)
                             {
-                                
+
                             }
                             else if (satnica == 16)
                             {
-                                
+
                                 Potrosac temp = PotrosaciUpravljac.PronadjiPotrosaca("Klima");
                                 PotrosaciUpravljac.Iskljuci(temp);
-                                }
+                            }
                             else if (satnica == 17)
                             {
                                 prazniBaterije = false;
@@ -165,10 +165,9 @@ namespace SHES
                             {
 
                             }
-                            
-                        }
-                        novac += Potroseno();
 
+                        }
+                        
                         if (puniBaterije)
                         {
                             novac += PuniBaterije();
@@ -178,15 +177,13 @@ namespace SHES
                             novac += PrazniBaterije();
                         }
 
-
+                        novac += Potroseno();
 
                         Thread.Sleep(Takt);
 
 
                         EnergijaBaterija = 0;
                         Kolicina = 0;
-
-
                     }
                     Dani++;
                     DateTime danas = DateTime.Now;
@@ -195,7 +192,7 @@ namespace SHES
                     countDani++;
                     BazaPodataka.UpisiPotrosnju();
                     satnica = 0;
-                    if(novac >= 0)
+                    if (novac >= 0)
                     {
                         Console.WriteLine("Zaradjeno : {0}", novac);
                     }
@@ -205,7 +202,7 @@ namespace SHES
                     }
                 }
             }).Start();
-            
+
 
         }
 
@@ -229,6 +226,11 @@ namespace SHES
 
         public double IzracunajPanele(double procenatSunca)
         {
+            if (procenatSunca < 0 || procenatSunca > 100)
+            {
+                throw new ArgumentOutOfRangeException("Procenat sunca mora biti izmedju 0 i 100.");
+            }
+
             double kolicina = 0;
             foreach (SolarniPanel s in BazaPodataka.paneli)
             {
@@ -238,7 +240,7 @@ namespace SHES
         }
 
         public double IzracunajPotrosace()
-        {
+        { 
             double kolicina = 0;
             foreach (Potrosac p in BazaPodataka.potrosaci)
             {
