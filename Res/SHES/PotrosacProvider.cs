@@ -52,12 +52,19 @@ namespace SHES
 
         public void Ukljuci(Potrosac p)
         {
-            p.Aktivan = true;
+            if (p != null)
+            {
+                p.Aktivan = true;
+            }
         }
 
         public void Iskljuci(Potrosac p)
         {
-            p.Aktivan = false;
+            if(p!= null)
+            {
+                p.Aktivan = false;
+            }
+            
         }
 
     }

@@ -23,7 +23,10 @@ namespace SHES
 
         public void Iskljuci(PunjacAutomobila pa)
         {
-            pa.UtaknutAutomobil = false;
+            if (pa != null)
+            {
+                pa.UtaknutAutomobil = false;
+            }
         }
 
         public bool ObrisiPunjac(string ime)
@@ -51,7 +54,10 @@ namespace SHES
 
         public void Ukljuci(PunjacAutomobila pa)
         {
-            pa.UtaknutAutomobil = true;
+            if (pa != null)
+            {
+                pa.UtaknutAutomobil = true;
+            }
         }
 
         public List<PunjacAutomobila> VratiPunjace()

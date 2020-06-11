@@ -1,27 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ArrayOfBaterija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Baterija>
-    <Ime>b1</Ime>
-    <MaxSnaga>1</MaxSnaga>
-    <KapacitetUSatima>5</KapacitetUSatima>
-    <TrKapacitetUMinutima>300</TrKapacitetUMinutima>
-    <MaksKapacitetUMinutima>300</MaksKapacitetUMinutima>
-    <KolicinaKojuMozeDaIsporuciUMinuti>0.016666666666666666</KolicinaKojuMozeDaIsporuciUMinuti>
-  </Baterija>
-  <Baterija>
-    <Ime>b2</Ime>
-    <MaxSnaga>2</MaxSnaga>
-    <KapacitetUSatima>6</KapacitetUSatima>
-    <TrKapacitetUMinutima>360</TrKapacitetUMinutima>
-    <MaksKapacitetUMinutima>360</MaksKapacitetUMinutima>
-    <KolicinaKojuMozeDaIsporuciUMinuti>0.033333333333333333</KolicinaKojuMozeDaIsporuciUMinuti>
-  </Baterija>
-  <Baterija>
-    <Ime>b3</Ime>
-    <MaxSnaga>0.5</MaxSnaga>
-    <KapacitetUSatima>4</KapacitetUSatima>
-    <TrKapacitetUMinutima>240</TrKapacitetUMinutima>
-    <MaksKapacitetUMinutima>240</MaksKapacitetUMinutima>
-    <KolicinaKojuMozeDaIsporuciUMinuti>0.0083333333333333332</KolicinaKojuMozeDaIsporuciUMinuti>
-  </Baterija>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfBaterija>
 </ArrayOfBaterija>

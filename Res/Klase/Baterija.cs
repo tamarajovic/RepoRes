@@ -11,7 +11,7 @@ namespace Klase
         public string Ime { get; set; }
         public double MaxSnaga { get; set; }  // po satu koliko moze da isporuci
         public double KapacitetUSatima { get; set; } //koliko sati rada ima u sebi 
-        public double TrKapacitetUMinutima { get; set; }  // odnos ova dva iznad
+        public double TrKapacitetUMinutima { get; set; }  // kapacitet
         public double MaksKapacitetUMinutima { get; set; } // ne menja se
         public double KolicinaKojuMozeDaIsporuciUMinuti { get; set; }
 

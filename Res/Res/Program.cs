@@ -368,13 +368,17 @@ namespace Res
                             string datum = Console.ReadLine();
                             double potroseno = psimulacija.VratiNovac(datum);
                             pgrafik.ProslediDatum(datum);
-                            if (potroseno >= 0)
+                            if (potroseno > 0)
                             {
                                 Console.WriteLine("Zaradjeno : {0}", potroseno);
                             }
-                            else
+                            else if(potroseno < 0)
                             {
                                 Console.WriteLine("Potroseno : {0}", potroseno);
+                            }
+                            else
+                            {
+                                Console.WriteLine("Uneli ste datum koji ne postoji u simulaciji");
                             }
                             break;
                     }

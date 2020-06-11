@@ -22,8 +22,8 @@ namespace KlaseTest
             Assert.AreEqual(baterija.Ime, ime);
             Assert.AreEqual(baterija.MaxSnaga, maxSnaga);
             Assert.AreEqual(baterija.KapacitetUSatima, kapacitet);
-            Assert.AreEqual(baterija.TrKapacitet, maxSnaga * kapacitet);
-            Assert.AreEqual(baterija.MaksKapacitet, maxSnaga * kapacitet);
+            Assert.AreEqual(baterija.TrKapacitetUMinutima, 60 * kapacitet);
+            Assert.AreEqual(baterija.MaksKapacitetUMinutima, 60 * kapacitet);
 
         }
 

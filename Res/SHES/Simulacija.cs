@@ -46,14 +46,6 @@ namespace SHES
 
                         if(i == 1)
                             BazaPodataka.istorijaPotrosnje.Add(new PotrosnjaPoDanu());
-                        if (puniBaterije)
-                        {
-                            novac += PuniBaterije();
-                        }
-                        if (prazniBaterije)
-                        {
-                            novac += PrazniBaterije();
-                        }
 
                         if (i % 60 == 0)
                         {
@@ -177,6 +169,16 @@ namespace SHES
                         }
                         novac += Potroseno();
 
+                        if (puniBaterije)
+                        {
+                            novac += PuniBaterije();
+                        }
+                        if (prazniBaterije)
+                        {
+                            novac += PrazniBaterije();
+                        }
+
+
 
                         Thread.Sleep(Takt);
 
@@ -279,7 +281,7 @@ namespace SHES
                 {
                     if (b.TrKapacitetUMinutima + 1 <= b.MaksKapacitetUMinutima) // moze pun obim u roku od jednog sata
                     {
-                        kolicina -= b.MaksKapacitetUMinutima;
+                        kolicina -= b.KolicinaKojuMozeDaIsporuciUMinuti;
                         b.TrKapacitetUMinutima++;
                         EnergijaBaterija -= b.KolicinaKojuMozeDaIsporuciUMinuti;
                     }
@@ -303,7 +305,7 @@ namespace SHES
                 }
                 if(kolicina < 0)
                 {
-                    Kolicina += kolicina;
+                    Kolicina -= kolicina; // ide minus da bi bio plus posto je kolicina sama negativna
                     novac = BazaPodataka.distribucija[0].Razlika(kolicina);
                 }
             }
@@ -326,7 +328,7 @@ namespace SHES
                     EnergijaBaterija -= b.KolicinaKojuMozeDaIsporuciUMinuti;
                 }
             }
-            Kolicina += kolicina;
+            Kolicina -= kolicina; //  ide minus da bi bio plus posto je kolicina sama negativna
 
 
             return BazaPodataka.distribucija[0].Razlika(kolicina);
@@ -341,10 +343,11 @@ namespace SHES
                 {
                     b.TrKapacitetUMinutima--;
                     kolicina += b.KolicinaKojuMozeDaIsporuciUMinuti;
+                    EnergijaBaterija += b.KolicinaKojuMozeDaIsporuciUMinuti;
                 }
             }
             Kolicina -= kolicina;
-            EnergijaBaterija += kolicina;
+
 
             return BazaPodataka.distribucija[0].Razlika(kolicina);
         }
@@ -385,7 +388,14 @@ namespace SHES
 
         public double VratiNovac(string datum)
         {
-            return PotrosnjaPoDanima[datum];
+            if (PotrosnjaPoDanima.ContainsKey(datum))
+            {
+                return PotrosnjaPoDanima[datum];
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         #endregion
